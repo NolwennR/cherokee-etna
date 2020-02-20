@@ -19,6 +19,12 @@
 - Stream au client
 - Fermeture de la connection
 
+### Modules
+
+Les modules permettent la prise en charge des requêtes
+- Module http
+- Module directory listing
+
 
 
 ## Optimistion niveau code
