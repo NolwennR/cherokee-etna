@@ -6,6 +6,7 @@
 #include <string.h>
 #include <spawn.h>
 #include "manager.h"
+#include "banner.h"
 
 #define SERVER_PORT 8050
 
@@ -23,6 +24,8 @@ int main (int argc, char *argv[])
    /* if argument specified, uses it as number of workers */
 
     parse_argument(argc, argv, &worker_number, &server_port);
+
+    write_banner();
 
     exit_status = run_server(worker_number, server_port);
 
