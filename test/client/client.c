@@ -17,7 +17,7 @@ typedef struct sockaddr SOCKADDR;
  
  
  
-int main(void)
+int main(int argc, char *argv[])
 {
     #if defined (WIN32)
         WSADATA WSAData;
@@ -25,11 +25,17 @@ int main(void)
     #else
         int erreur = 0;
     #endif
- 
+
     SOCKET sock;
     SOCKADDR_IN sin;
     char buffer[32] = "";
- 
+    int server_port;
+
+    if (argc >= 2)
+        server_port = atoi(argv[1]);
+    else
+        server_port = PORT;
+
     /* Si les sockets Windows fonctionnent */
     if(!erreur)
     {
@@ -39,7 +45,7 @@ int main(void)
         /* Configuration de la connexion */
         sin.sin_addr.s_addr = inet_addr("127.0.0.1");
         sin.sin_family = AF_INET;
-        sin.sin_port = htons(PORT);
+        sin.sin_port = htons(server_port);
  
         /* Si l'on a réussi à se connecter */
         if(connect(sock, (SOCKADDR*)&sin, sizeof(sin)) != SOCKET_ERROR)

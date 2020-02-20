@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-W -Wall -Wextra -Werror --std=c11 -g -I./include
+CFLAGS=-W -Wall -Wextra -Werror --std=c11 -g -I./include -DLOG_USE_COLOR
 RM=rm -rf
 MDIR= mkdir -p
 

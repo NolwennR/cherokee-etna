@@ -1,6 +1,15 @@
 {
     "files.associations": {
         "spawn.h": "c",
-        "in.h": "c"
+        "in.h": "c",
+        "stropts.h": "c",
+        "*.tcc": "c",
+        "exception": "c",
+        "fstream": "c",
+        "iosfwd": "c",
+        "new": "c",
+        "ostream": "c",
+        "sstream": "c",
+        "streambuf": "c"
     }
 }
