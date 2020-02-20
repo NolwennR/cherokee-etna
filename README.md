@@ -6,14 +6,19 @@
 
 - Server tcp spawn un nombre déterminé de workers au moment de l'initialization.
 - Chaque worker prend un charge des requetes http et les traite, répartition des connections géré par le système d'exploitation
+- Polling des workers grâce à epoll() ou poll()
 - Pour servir des pages statiques, chaque worker implémente un cache LRU. 
         https://www.geeksforgeeks.org/lru-cache-implementation/
 
 ### Parser http
 
-- Parse du header et du body
-- Generation de token
-- Comportement en fonction des tokens
+- Parse du header et generation de tokens
+- Parse du body et generation de tokens
+- Appel du handler associé
+- Generation de la réponse (header / body)
+- Stream au client
+- Fermeture de la connection
+
 
 
 ## Optimistion niveau code
