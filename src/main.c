@@ -72,15 +72,13 @@ int main (int argc, char *argv[])
     for (i=0; i < num; i++)
     {
         pid = fork();
-        switch (fork()) {
+        switch (pid) {
 			case 0 : // enfant
 				// listen_connection()
 				exit(EXIT_SUCCESS);
 			case -1 :
 				perror("fork");
 				return -1;
-			default : // parent
-				continue;
 		}
         if (pid < 0)
         {
@@ -91,14 +89,10 @@ int main (int argc, char *argv[])
         printf("  Worker = %d\n", pid);
     }
 
-    /*************************************************/
     /* Inform the user that the server is ready      */
-    /*************************************************/
     printf("The server is ready\n");
 
-    /*************************************************/
     /* Close down the listening socket               */
-    /*************************************************/
     close(listen_fd);
 
     return 0;
