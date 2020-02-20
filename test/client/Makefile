@@ -1,11 +1,11 @@
 CC=gcc
-CFLAGS=-W -Wall -Wextra -Werror --std=c11 -g -I./include
+CFLAGS=-W -Wall -Wextra -Werror --std=c99 -g 
 RM=rm -rf
 MDIR= mkdir -p
 
-TARGET=cherokee
+TARGET=clientTest
 
-SRCDIR= src/
+SRCDIR= ./
 SRC := $(shell find $(SRCDIR) -name "*.c")
 
 OBJDIR= obj/
