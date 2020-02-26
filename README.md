@@ -35,6 +35,12 @@ Les modules permettent la prise en charge des requêtes
 - Utilisation des structures de tableau pour charger de la mémoire continue dans le cache
 
 
+# Tests
 
+## Benchmarking
+
+### Apache benchmark
+ install ```sudo apt-get install apache2-utils```
+ run test ```ab -n 5000 -c 500 http://localhost:8050/```
 
 

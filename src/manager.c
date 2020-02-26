@@ -9,6 +9,9 @@
 #include "log.h"
 #include "worker.h"
 
+typedef struct sockaddr_in SOCKADDR_IN;
+typedef struct sockaddr SOCKADDR;
+
 int run_server(int workers, int port){
 
     int                    i; 
@@ -16,7 +19,7 @@ int run_server(int workers, int port){
     int               result; 
     int                   on;
     int            listen_fd; 
-    struct sockaddr_in6 addr;
+    SOCKADDR_IN         addr;
 
     /* To wait child processes  */
     pid_t               wpid;
@@ -25,7 +28,7 @@ int run_server(int workers, int port){
     status               = 0;
     on                   = 1;
 
-    listen_fd = socket(AF_INET6, SOCK_STREAM, IPPROTO_TCP);
+    listen_fd = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
     if (listen_fd < 0)
     {
         perror("socket() failed");
@@ -45,10 +48,10 @@ int run_server(int workers, int port){
     }
 
     /* Bind the socket */
-    memset(&addr, 0, sizeof(addr));
-    addr.sin6_family      = AF_INET6;
-    memcpy(&addr.sin6_addr, &in6addr_any, sizeof(in6addr_any));
-    addr.sin6_port        = htons(port);
+
+    addr.sin_addr.s_addr = htonl(INADDR_ANY);
+    addr.sin_family = AF_INET;
+    addr.sin_port = htons(port);
     result = bind(listen_fd,(struct sockaddr *)&addr, sizeof(addr));
     if (result < 0)
     {
