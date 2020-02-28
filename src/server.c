@@ -43,5 +43,4 @@ void parse_argument(int argc, char *argv[], int *worker_number, int *server_port
         *server_port = atoi(argv[2]);
     else
         *server_port = SERVER_PORT;
-
 }

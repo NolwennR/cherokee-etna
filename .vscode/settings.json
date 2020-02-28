@@ -11,6 +11,8 @@
         "ostream": "c",
         "sstream": "c",
         "streambuf": "c",
-        "epoll.h": "c"
+        "epoll.h": "c",
+        "unistd.h": "c",
+        "stdio.h": "c"
     }
 }

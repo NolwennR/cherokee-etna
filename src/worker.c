@@ -1,5 +1,6 @@
 #include "worker.h"
 #include "log.h"
+#include "http.h"
 
 int server_id;
 
@@ -94,6 +95,8 @@ void handle_connection(int id, int server_fd) {
 
                 write(client_send , message , strlen(message));
                 log_trace("Worker %d message sent %s", id, message);
+
+                handle_request(message, client_send);
 
                 if (epoll_ctl(epoll_fd, EPOLL_CTL_DEL, client_send, &event))
                 {
