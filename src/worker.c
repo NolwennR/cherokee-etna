@@ -55,7 +55,7 @@ void handle_connection(int id, int server_fd) {
 
     while(1)
     {
-        log_trace("Worker %d wait for events", id);
+        log_trace("Worker %d waits for events", id);
         number_of_events = epoll_wait(epoll_fd, events, MAX_EVENTS, -1);
 
         for (i = 0; i < number_of_events; ++i) 
@@ -93,22 +93,10 @@ void handle_connection(int id, int server_fd) {
 
                 log_trace("Worker %d received %s", id, buffer);
 
-                write(client_send , message , strlen(message));
-                log_trace("Worker %d message sent %s", id, message);
-
                 handle_request(message, client_send);
-
-                if (epoll_ctl(epoll_fd, EPOLL_CTL_DEL, client_send, &event))
-                {
-                    log_error("Worker %d in epoll_ctl", id);
-                    perror("In epoll_ctl");
-                }
-
-                close(client_send);
             }
         }
     }
-
     free(events);
 }
 
