@@ -86,8 +86,8 @@ void format_response_header(response_header_t response)
     
     struct tm *ptm = localtime(&rawtime);
     
-    if (ptm == NULL) {
-     
+    if (ptm == NULL) 
+    {
         puts("The localtime() function failed");
     }
 

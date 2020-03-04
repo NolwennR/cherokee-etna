@@ -32,14 +32,14 @@ Les modules permettent la prise en charge des requêtes
 - Alignement mémoire des structures pour éviter le padding
 - Utilisation des structures de tableau pour charger de la mémoire continue dans le cache
 
-# Tests
+## Tests
 
-## Tests pour le parsing
+### Tests pour le parsing
 - parsing du header
 - parsing du body
 - parsing de l'url
 
-## Tests requêtes
+### Tests requêtes
 - Si pas HTTP/1.1 retourne Not supported
 
 ## Benchmarking
@@ -49,4 +49,6 @@ Les modules permettent la prise en charge des requêtes
  
  run test ```ab -n 5000 -c 500 http://localhost:8050/```
 
+## Pense-bête
+- Pour servir les fichiers statiques, ne pas oublier le vérifier la présence du dossier au lancemenet du serveur (dossier /files par ex)
 

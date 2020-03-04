@@ -46,8 +46,6 @@ typedef enum
 
 typedef struct request_header
 {
-    char *url;
-    http_method method;
     int content_length;
 } request_header_t;
 
@@ -68,6 +66,8 @@ typedef struct response
 
 typedef struct request
 {
+    char *url;
+    http_method method;
     request_header_t header;
     char *body;
 
