@@ -6,9 +6,20 @@
 #include <string.h>
 #include <sys/epoll.h>
 
-
 #define SERVER_NAME "cherokee"
 #define APPLICATION_JSON "application/json"
+
+typedef enum
+{
+    GET,
+    HEAD,
+    POST,
+    PUT,
+    DELETE,
+    UNSUPORTED
+} http_method;
+
+
 
 typedef struct epoll_instance
 {
@@ -17,17 +28,6 @@ typedef struct epoll_instance
     int client_fd;
     int worker_id;
 } epoll_instance_t;
-
-
-typedef enum
-{
-    GET,
-    HEAD,
-    POST,
-    PUT,
-    DELETE
-
-} http_method;
 
 typedef enum 
 {
@@ -46,10 +46,10 @@ typedef enum
 
 typedef struct request_header
 {
+    char *url;
     http_method method;
     int content_length;
 } request_header_t;
-
 
 typedef struct response_header
 {
@@ -60,22 +60,18 @@ typedef struct response_header
     char *server;
 } response_header_t;
 
-
 typedef struct response
 {
     response_header_t header;
     char *body;
 } response_t;
 
-
 typedef struct request
 {
-    char *url;
     request_header_t header;
     char *body;
 
 } request_t;
-
 
 void send_bad_request(int fd);
 void handle_request(char *data, epoll_instance_t *epoll_instance);
@@ -83,5 +79,6 @@ void get_file(char *filename);
 void send_bad_request(int fd);
 void send_response(int fd, response_t response);
 void format_response_header(response_header_t response);
+void clear_client(epoll_instance_t *epoll_instance);
 
 #endif

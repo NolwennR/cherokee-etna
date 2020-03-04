@@ -4,7 +4,8 @@
 
 int server_id;
 
-void handle_connection(int id, int server_fd) {
+void handle_connection(int id, int server_fd) 
+{
 
     int                      i;
     int                 client;
@@ -18,10 +19,7 @@ void handle_connection(int id, int server_fd) {
     struct epoll_event   event;
     struct epoll_event *events;
 
-    char              *message;
-
     addrlen  = sizeof(address);
-    message           = "Yo !";
     valread                = 0;
 
     server_id = id;
@@ -60,7 +58,6 @@ void handle_connection(int id, int server_fd) {
 
         for (i = 0; i < number_of_events; ++i) 
         {
-
             if (events[i].data.fd == server_fd)
             {
                 if ((client = accept(server_fd, (struct sockaddr *)&address, (socklen_t*)&addrlen))<0)
@@ -91,9 +88,16 @@ void handle_connection(int id, int server_fd) {
                     perror("read() failed");
                 }
 
-                log_trace("Worker %d received %s", id, buffer);
+                log_trace("Worker %d received request", id);
 
-                handle_request(message, client_send);
+                epoll_instance_t epoll_instance = {
+                    .event = &event,
+                    .epoll_fd = epoll_fd,
+                    .client_fd = client_send,
+                    .worker_id = id
+                };
+
+                handle_request(buffer, &epoll_instance);
             }
         }
     }

@@ -1,3 +1,5 @@
+#include <stdlib.h>
+
 #include "http.h"
 #include "parser.h"
 #include "log.h"
@@ -5,19 +7,29 @@
 
 void handle_request(char *data, epoll_instance_t *epoll_instance)
 {
-    request_t request = parse_request(data);
+    request_t *request = malloc(sizeof(request_t));
 
-    if (request.header.content_length == 0)
+    if (request == NULL)
+    {
+        log_error("Worker %d in malloc request", epoll_instance->worker_id);
+        perror("In malloc");
+    }
+
+    parse_request(request, data);
+
+    if (request->header.content_length == 0)
     {
     }
+
     send_bad_request(epoll_instance->client_fd);
     clear_client(epoll_instance);
+
+    free(request);
 }
 
 void clear_client(epoll_instance_t *epoll_instance)
 {
-
-    if (epoll_ctl(epoll_instance->epoll_fd, EPOLL_CTL_DEL, epoll_instance->client_fd, &epoll_instance->event))
+    if (epoll_ctl(epoll_instance->epoll_fd, EPOLL_CTL_DEL, epoll_instance->client_fd, epoll_instance->event))
     {
         log_error("Worker %d in epoll_ctl", epoll_instance->worker_id);
         perror("In epoll_ctl");
