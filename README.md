@@ -52,3 +52,34 @@ Les modules permettent la prise en charge des requêtes
 ## Pense-bête
 - Pour servir les fichiers statiques, ne pas oublier le vérifier la présence du dossier au lancemenet du serveur (dossier /files par ex)
 
+# Travail en cours
+
+
+## Fait
+
+- manager peut spawner les workers
+- worker écoute sur le port et récecptionne les requetes
+
+## En cours
+
+- parser http
+
+## A faire
+
+- Mettre les log.c et .h dans dossier librairies et faire mettre à jour le make file => Cécé
+- Utiliser la librairie de parsing des arguments => Marcus
+- Régler bug mémoire
+- Mettre en place les tests unitaires => morgan
+- Lire les fichiers statiques
+- Envoyer les réponses
+- Mettre en place le LRU
+
+- Demander aux profs pour le CRUD
+
+#### Les librairies
+https://github.com/cofyc/argparse
+https://github.com/rxi/log.c
+
+#### Epoll
+https://medium.com/@copyconstruct/the-method-to-epolls-madness-d9d2d6378642
+
