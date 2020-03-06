@@ -5,15 +5,31 @@
 #include "log.h"
 
 /* To be able to printf http_method enum */
-const char *http_method_array[] = {"GET","HEAD","POST", "PUT", "DELETE", "UNSUPORTED"}; 
+const char *http_method_array[] = {
+  "GET",
+  "HEAD",
+  "POST",
+  "PUT",
+  "DELETE",
+  "UNSUPORTED"
+}; 
 
 void parse_request(request_t *request, char *data)
 {
-    log_trace("data : \n%s", data);
+    request = request;
+    int split_pos = (strstr(data, "\r\n\r\n") - data);
 
-     // find_body(data);
+    data[split_pos] = '\0';
+
+    char *header  = data, 
+         *body    = (data + split_pos + 4);
+
+    log_trace("header: \n%s", header);
+    log_trace("data: \n%s", body);
+
+    // find_body(data);
     
-    parse_header(request, data);
+    // parse_header(request, data);
 
     // parse_body(request, data);
 }
