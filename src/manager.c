@@ -6,7 +6,7 @@
 #include <string.h>
 #include <sys/wait.h>
 #include "manager.h"
-#include "log.h"
+#include "log/log.h"
 #include "worker.h"
 
 typedef struct sockaddr_in SOCKADDR_IN;

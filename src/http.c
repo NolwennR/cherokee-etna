@@ -1,8 +1,8 @@
 #include <stdlib.h>
+#include "log/log.h"
 
 #include "http.h"
 #include "parser.h"
-#include "log.h"
 #include "formatter.h"
 
 void handle_request(char *data, epoll_instance_t *epoll_instance)

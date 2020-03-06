@@ -1,6 +1,6 @@
 #include "formatter.h"
 #include "http.h"
-#include "log.h"
+#include "log/log.h"
 
 const char *format_response_to_string(response_t response)
 {

@@ -2,7 +2,7 @@
 
 #include "http.h"
 #include "parser.h"
-#include "log.h"
+#include "log/log.h"
 
 /* To be able to printf http_method enum */
 const char *http_method_array[] = {
