@@ -4,19 +4,9 @@
 #include "parser.h"
 #include "log/log.h"
 
-/* To be able to printf http_method enum */
-const char *http_method_array[] = {
-  "GET",
-  "HEAD",
-  "POST",
-  "PUT",
-  "DELETE",
-  "UNSUPORTED"
-}; 
 
 void parse_request(request_t *request, char *data)
 {
-    request = request;
     int split_pos = (strstr(data, "\r\n\r\n") - data);
 
     data[split_pos] = '\0';
@@ -27,71 +17,53 @@ void parse_request(request_t *request, char *data)
     log_trace("header: \n%s", header);
     log_trace("data: \n%s", body);
 
-    // find_body(data);
-    
-    // parse_header(request, data);
-
-    // parse_body(request, data);
+    parse_header(request, data);
 }
 
 void parse_header(request_t *request, char *data) 
 {
-    /* HTTP Method */
-    data += parse_method(request, data); //move
-    log_trace("Method : %s", http_method_array[request->method]);
-
-    /* URI */
-    data += parse_uri(request, data); // move
-    log_trace("Url: %s", request->url);
-
-    /* HTTP-Version */
-    data += check_http_version(request, data); // move \n\r
-    log_trace("Method after version checking: %s", http_method_array[request->method]);
-
-    // data += 
+    parse_method(request, &data); 
+    parse_uri(request, &data);
+    check_http_version(request, &data);
     parse_content_length(request, &data);
-    log_trace("Content-Length : %d", request->header.content_length);
-
-    log_trace("data after parsing :\n%s", data);
 }
 
-int parse_uri(request_t *request, char *data)
+void parse_uri(request_t *request, char **data)
 {
-    size_t url_length = strcspn(data, " ");
+    size_t url_length = strcspn(*data, " ");
     request->url = malloc(url_length + 1);
     
-    if (!request->url) 
-    {
+    if (!request->url) {
         log_error("Worker Malloc failed for request url"); /*TODO : get worker id */
         free(request);
     }
 
-    memcpy(request->url, data, url_length);
+    memcpy(request->url, *data, url_length);
+
     request->url[url_length] = '\0';
 
-    return url_length + 1;
+    *data += url_length + 1;
 }
 
 /* Assign not supported method if version if not HTTP/1.1 */
-int check_http_version(request_t *request, char *data)
+void check_http_version(request_t *request, char **data)
 {
-    size_t version_length = strcspn(data, "\r\n");
+    size_t version_length = strcspn(*data, "\r\n");
 
     char version[version_length];
-    memcpy(version, data, version_length );
+
+    memcpy(version, *data, version_length );
+
     version[version_length] = '\0';
 
-    log_trace("version: %s", version);
-
-    if (strcmp(version, "HTTP/1.1") != 0)
-    {
+    if (strcmp(version, "HTTP/1.1") != 0){
         request->method = UNSUPORTED;
     }
 
-    return version_length + 2;
+    *data += version_length + 2;
 }
 
-void parse_content_length(request_t *request, char **data) /* TODO: Return void, inconsistence ? */
+void parse_content_length(request_t *request, char **data)
 {
     while(*data[0]!='\r' || *data[1]!='\n' || *data[0]!='\n')
     {
@@ -115,48 +87,32 @@ void parse_content_length(request_t *request, char **data) /* TODO: Return void,
         value[value_length] = '\0';
         *data += value_length + 2;
 
-        if (strcmp(header, "Content-Length") == 0)
-        {
+        if (strcmp(header, "Content-Length") == 0){
             request->header.content_length = atoi(value);
-            // break;
+            break;
         }
     }
 }
 
-int parse_method(request_t *request, char *data)
+void parse_method(request_t *request, char **data)
 {
-    size_t meth_len = strcspn(data, " ");
+    size_t meth_len = strcspn(*data, " ");
 
-    if (memcmp(data, "GET", strlen("GET")) == 0) 
-    {
+    if (memcmp(*data, "GET", strlen("GET")) == 0) {
         request->method = GET;
     } 
-    else if (memcmp(data, "POST", strlen("POST")) == 0) 
-    {
+    else if (memcmp(*data, "POST", strlen("POST")) == 0) {
         request->method = POST;
     }
-    else if (memcmp(data, "PUT", strlen("PUT")) == 0) 
-    {
+    else if (memcmp(*data, "PUT", strlen("PUT")) == 0) {
         request->method = PUT;
     }
-    else if (memcmp(data, "DELETE", strlen("DELETE")) == 0) 
-    {
+    else if (memcmp(*data, "DELETE", strlen("DELETE")) == 0) {
         request->method = DELETE;
     } 
-    else 
-    {
+    else {
         request->method = UNSUPORTED;
     }
 
-    return meth_len + 1; 
+    *data += meth_len + 1; 
 }
-
-// void find_body(char *data)
-// {
-//     // \r\n\r\n
-// }
-
-// void parse_body(request_t *request, char *body) 
-// {
-//     log_trace("body %s", body);
-// }

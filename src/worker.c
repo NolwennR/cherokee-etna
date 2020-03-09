@@ -68,17 +68,20 @@ void handle_connection(int id, int server_fd)
                 }
 
                 set_non_block(client);
-                event.events = EPOLLIN | EPOLLET;
+
+                event.events = EPOLLIN | EPOLLET | EPOLLEXCLUSIVE;
                 event.data.fd = client;
 
-                if (epoll_ctl(epoll_fd, EPOLL_CTL_ADD, client, &event) == -1) // Add fd to the interest list
+                /* Add fd to the interest list */
+                if (epoll_ctl(epoll_fd, EPOLL_CTL_ADD, client, &event) == -1) 
                 {
                     log_error("Worker %d in epoll_ctl", id);
                     perror("In epoll_ctl");
                 }
             }
-            else if (events[i].events & EPOLLIN) // socket is available for read operations
+            else if (events[i].events & EPOLLIN) 
             {
+                /* socket is available for read operations */
                 char buffer[30000] = {0};
                 int client_send = events[i].data.fd;
 
@@ -90,7 +93,7 @@ void handle_connection(int id, int server_fd)
 
                 log_trace("Worker %d received request", id);
 
-                epoll_instance_t epoll_instance = {
+                connection_instance_t epoll_instance = {
                     .event = &event,
                     .epoll_fd = epoll_fd,
                     .client_fd = client_send,

@@ -66,15 +66,12 @@ Les modules permettent la prise en charge des requêtes
 
 ## A faire
 
-- Mettre les log.c et .h dans dossier librairies et faire mettre à jour le make file => Cécé
 - Utiliser la librairie de parsing des arguments => Marcus
 - Régler bug mémoire
 - Mettre en place les tests unitaires => morgan
 - Lire les fichiers statiques
 - Envoyer les réponses
 - Mettre en place le LRU
-
-- Demander aux profs pour le CRUD
 
 #### Les librairies
 https://github.com/cofyc/argparse

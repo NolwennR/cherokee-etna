@@ -19,15 +19,13 @@ typedef enum
     UNSUPORTED
 } http_method;
 
-
-
-typedef struct epoll_instance
+typedef struct connection_instance
 {
     struct epoll_event *event;
     int epoll_fd;
     int client_fd;
     int worker_id;
-} epoll_instance_t;
+} connection_instance_t;
 
 typedef enum 
 {
@@ -74,11 +72,13 @@ typedef struct request
 } request_t;
 
 void send_bad_request(int fd);
-void handle_request(char *data, epoll_instance_t *epoll_instance);
-void get_file(char *filename);
-void send_bad_request(int fd);
-void send_response(int fd, response_t response);
-void format_response_header(response_header_t response);
-void clear_client(epoll_instance_t *epoll_instance);
+void handle_request(char *data, connection_instance_t *connection);
+void clear_client(connection_instance_t *connection);
+void free_request(request_t *request);
+void get_on_url(request_t *request);
+void handle_method(request_t *request);
+char *get_folder(char *path);
+char *get_file_name(char *path);
+void remove_argument(char **path);
 
 #endif

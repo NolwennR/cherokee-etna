@@ -19,6 +19,10 @@
         "array": "c",
         "string": "c",
         "string_view": "c",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "server.h": "c",
+        "manager.h": "c",
+        "cstdlib": "c",
+        "memory": "c"
     }
 }

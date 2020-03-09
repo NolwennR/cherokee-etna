@@ -1,36 +1,93 @@
 #include <stdlib.h>
-#include "log/log.h"
+#include <unistd.h>
 
+#include "log/log.h"
 #include "http.h"
 #include "parser.h"
 #include "formatter.h"
+#include "static_file.h"
 
-void handle_request(char *data, epoll_instance_t *epoll_instance)
+const char *http_method_array[] = {
+  "GET",
+  "HEAD",
+  "POST",
+  "PUT",
+  "DELETE",
+  "UNSUPORTED"
+}; 
+
+void handle_request(char *data, connection_instance_t *connection)
 {
     request_t *request = malloc(sizeof(request_t));
 
-    if (request == NULL)
-    {
-        log_error("Worker %d in malloc request", epoll_instance->worker_id);
-        perror("In malloc");
+    if (request == NULL) {
+        log_error("Worker %d in malloc request", connection->worker_id);
+        return;
     }
 
     parse_request(request, data);
 
-    if (request->header.content_length == 0)
-    {
-    }
+    log_trace("Url: %s", request->url);
+    log_trace("Method : %s", http_method_array[request->method]);
+    log_trace("Content-Length : %d", request->header.content_length);
 
-    send_bad_request(epoll_instance->client_fd);
-    clear_client(epoll_instance);
+    handle_method(request, connection);  
 
-    free(request);
+    clear_client(connection);
+    free_request(request);
 }
 
-void clear_client(epoll_instance_t *epoll_instance)
+void handle_method(request_t *request, connection_instance_t *connection)
 {
-    if (epoll_ctl(epoll_instance->epoll_fd, EPOLL_CTL_DEL, epoll_instance->client_fd, epoll_instance->event))
+    switch (request->method)
     {
+        case GET:
+            get_on_url(request, connection);
+            break;
+        case POST:
+            break;
+        case PUT:
+            break;
+        case DELETE:
+            break;
+        case HEAD:
+            break;
+        case UNSUPORTED:
+            break;
+        default:
+            break;
+    }
+}
+
+void get_on_url(request_t *request, connection_instance_t *connection)
+{
+    remove_argument(&request->url);
+    serve_static_file(request, connection);
+}
+
+void remove_argument(char **path)
+{
+    int split_pos = (strchr(*path, '?') - *path);
+    (*path)[split_pos] = '\0';
+}
+
+
+void free_request(request_t *request)
+{
+    if (!request->url) {
+        free(request->url);
+    }
+    if (!request->body) {
+        free(request->body);
+    }
+    if (!request) {
+        free(request);
+    }
+}
+
+void clear_client(connection_instance_t *epoll_instance)
+{
+    if (epoll_ctl(epoll_instance->epoll_fd, EPOLL_CTL_DEL, epoll_instance->client_fd, epoll_instance->event)) {
         log_error("Worker %d in epoll_ctl", epoll_instance->worker_id);
         perror("In epoll_ctl");
     }
@@ -38,64 +95,9 @@ void clear_client(epoll_instance_t *epoll_instance)
     close(epoll_instance->client_fd);
 }
 
-void get_file(char *filename) 
-{
-    log_trace(filename);
-}
-
-void send_bad_request(int fd)
-{   
-    response_header_t header = {
-        .status = BAD_REQUEST,
-        .content_type = APPLICATION_JSON,
-        .date = "",
-        .server = SERVER_NAME,
-    };
-
-    response_t bad_request_response = {
-        header = header,
-        "hello wordld !"
-    };
-
-    format_response_header(header);
-    log_trace("response bad request : %d", bad_request_response.header.status);
-    log_trace("fd : %d", fd);
-
-    send_response(fd, bad_request_response);
-}
-
-void send_response(int fd, response_t response)
-{
-    const char *response_content = format_response_to_string(response);
-
-    log_trace("send %s", response_content);
-    write(fd , response_content , strlen(response_content));
-}
 
 
-void format_response_header(response_header_t response)
-{
-    char buf[300] = {0};
-    
-    time_t rawtime = time(NULL);
-    
-    if (rawtime == -1) {
-        
-        puts("The time() function failed");
-    }
-    
-    struct tm *ptm = localtime(&rawtime);
-    
-    if (ptm == NULL) 
-    {
-        puts("The localtime() function failed");
-    }
 
-    strftime(buf, 300, "%d/%m/%Y", ptm);
-    puts(buf);
 
-    response.date = buf;
 
-    log_trace("date : %s", response.date);
-}
 

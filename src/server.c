@@ -1,16 +1,7 @@
-#include <stdio.h>
-#include <sys/socket.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <netinet/in.h>
-#include <string.h>
-#include <spawn.h>
+#include "server.h"
 #include "manager.h"
 #include "banner.h"
-
-#define SERVER_PORT 8050
-
-void parse_argument();
+#include "log/log.h"
 
 int main (int argc, char *argv[])
 {
@@ -22,10 +13,14 @@ int main (int argc, char *argv[])
     exit_status   = 0;
 
    /* if argument specified, uses it as number of workers */
-
     parse_argument(argc, argv, &worker_number, &server_port);
 
     write_banner();
+
+    exit_status = check_static_file_folder();
+
+    if (exit_status == 1)
+        return exit_status;
 
     exit_status = run_server(worker_number, server_port);
 
@@ -43,4 +38,20 @@ void parse_argument(int argc, char *argv[], int *worker_number, int *server_port
         *server_port = atoi(argv[2]);
     else
         *server_port = SERVER_PORT;
+}
+
+int check_static_file_folder()
+{
+    log_info("Checking for static files folder...");
+
+    struct stat s;
+    int err = stat("./files", &s);
+
+    if(-1 == err) 
+    {
+        log_fatal("Couldn't find directory for static files \"file\". It's mandatory for programme startup.");
+        return 1;
+    }
+
+    return 0;
 }
