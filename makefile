@@ -8,18 +8,23 @@ TARGET=cherokee
 SRCDIR= src/
 LIBDIR= libraries/
 SRC := $(shell find $(SRCDIR) -name "*.c")
-SRC += $(shell find $(LIBDIR) -name "*.c")
+LIB := $(shell find $(LIBDIR) -name "*.c")
 
 OBJDIR= obj/
 OBJ=$(SRC:$(SRCDIR)%.c=$(OBJDIR)%.o)
+OBJLIB=$(LIB:$(LIBDIR)%.c=$(OBJDIR)%.o)
 
-all: directories  $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(TARGET) $(LIBS)
+all: directories $(OBJLIB) $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) $(OBJLIB) -o $(TARGET) $(LIBS)
 
 directories: 
 	$(MDIR) $(sort $(dir $(OBJ)))
+	$(MDIR) $(sort $(dir $(OBJLIB)))
 
 $(OBJDIR)%.o: $(SRCDIR)%.c
+	$(CC) $(CFLAGS) -c $< -o $@ $(TINYLIBS)
+
+$(OBJDIR)%.o: $(LIBDIR)%.c
 	$(CC) $(CFLAGS) -c $< -o $@ $(TINYLIBS)
 
 clean: 
