@@ -3,7 +3,7 @@
 #include "banner.h"
 #include "log/log.h"
 
-int main (int argc, char *argv[])
+int main (int argc, char **argv)
 {
     int worker_number;
     int   exit_status;

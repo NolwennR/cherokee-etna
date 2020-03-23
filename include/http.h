@@ -39,7 +39,6 @@ typedef enum
     I_AM_A_TEA_POT = 418,
     SERVER_ERROR = 500,
     NOT_IMPLEMENTED = 501,
-
 } status_code;
 
 typedef struct request_header
@@ -75,8 +74,8 @@ void send_bad_request(int fd);
 void handle_request(char *data, connection_instance_t *connection);
 void clear_client(connection_instance_t *connection);
 void free_request(request_t *request);
-void get_on_url(request_t *request);
-void handle_method(request_t *request);
+void get_on_url(request_t *request, connection_instance_t *connection);
+void handle_method(request_t *request, connection_instance_t *connection);
 char *get_folder(char *path);
 char *get_file_name(char *path);
 void remove_argument(char **path);

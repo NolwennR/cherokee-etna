@@ -14,10 +14,10 @@ void parse_request(request_t *request, char *data)
     char *header  = data, 
          *body    = (data + split_pos + 4);
 
-    log_trace("header: \n%s", header);
+    // log_trace("header: \n%s", header);
     log_trace("data: \n%s", body);
 
-    parse_header(request, data);
+    parse_header(request, header);
 }
 
 void parse_header(request_t *request, char *data) 

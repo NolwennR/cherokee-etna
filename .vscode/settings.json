@@ -23,6 +23,7 @@
         "server.h": "c",
         "manager.h": "c",
         "cstdlib": "c",
-        "memory": "c"
+        "memory": "c",
+        "response.h": "c"
     }
 }

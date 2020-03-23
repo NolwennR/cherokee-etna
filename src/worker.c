@@ -93,14 +93,22 @@ void handle_connection(int id, int server_fd)
 
                 log_trace("Worker %d received request", id);
 
-                connection_instance_t epoll_instance = {
-                    .event = &event,
-                    .epoll_fd = epoll_fd,
-                    .client_fd = client_send,
-                    .worker_id = id
-                };
+                connection_instance_t *epoll_instance = malloc(sizeof(connection_instance_t));
 
-                handle_request(buffer, &epoll_instance);
+                if (!epoll_instance)
+                {
+                    log_error("malloc() failed in epollin for worker %d", id);
+                    continue;
+                }
+
+                epoll_instance->client_fd = client_send;
+                epoll_instance->epoll_fd = epoll_fd;
+                epoll_instance->event = &event;
+                epoll_instance->worker_id = id;
+
+                handle_request(buffer, epoll_instance);
+
+                free(epoll_instance);
             }
         }
     }

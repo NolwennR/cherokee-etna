@@ -27,9 +27,9 @@ void handle_request(char *data, connection_instance_t *connection)
 
     parse_request(request, data);
 
-    log_trace("Url: %s", request->url);
+    /* log_trace("Url: %s", request->url);
     log_trace("Method : %s", http_method_array[request->method]);
-    log_trace("Content-Length : %d", request->header.content_length);
+    log_trace("Content-Length : %d", request->header.content_length); */
 
     handle_method(request, connection);  
 
@@ -70,7 +70,6 @@ void remove_argument(char **path)
     int split_pos = (strchr(*path, '?') - *path);
     (*path)[split_pos] = '\0';
 }
-
 
 void free_request(request_t *request)
 {

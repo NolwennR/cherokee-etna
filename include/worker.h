@@ -9,6 +9,7 @@
 #include <netinet/in.h>
 #include <sys/epoll.h>
 #include <fcntl.h>
+#include <stdlib.h>
 
 #define MAX_EVENTS 1000
 
