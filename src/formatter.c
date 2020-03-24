@@ -13,38 +13,45 @@ char *format_response_to_string(response_t response)
 
 void format_response(response_t *response, char **formatted_response)
 {
+    int size;
     char *status_line;
-    // char *date_header;
+    char *date_header;
     // char *server_header;
     // char *content_type_header;
     // char *content_length_header;
-    // char *body_separator = "\r\n\0";
-    
+    char *body_separator = "\r\n\0";
+    size = 1;
+
+    size = strlen(body_separator);
     add_status_line(response->header.status, &status_line);
-    // add_date_header(response->header.date, &date_header);
-    // add_server_header(response->header.server, &server_header);
-    // add_content_type_header(response->header.content_type, &content_type_header);
+    size += strlen(status_line);  
+    add_date_header(response->header.date, &date_header);
+    size += strlen(date_header);  
 
-    // int size = (strlen(body_separator) + strlen(status_line) + 1);
-    *formatted_response = malloc(strlen(status_line) 
-                                // + strlen(body_separator) 
-                                // + strlen(date_header) 
-                                // + strlen(server_header) 
-                                // + strlen(content_type_header)
-                                + 1);
+    if (response->body){
+        size += strlen(response->body);
+    }
+    // if (response->header.server){
+    //     add_server_header(response->header.server, &server_header);
+    //     size += strlen(server_header) ;
+    // }
+    // if (response->header.content_type){
+    //     add_content_type_header(response->header.content_type, &content_type_header);
+    //     size += strlen(content_type_header) ;
+    // }
 
-    // strcpy(*formatted_response, status_line);
-    //strcat(*formatted_response, body_separator);
+    *formatted_response = malloc(size + 1);
+
     strcpy(*formatted_response, status_line);
-    // strcat(*formatted_response, body_separator);
-    // strcat(*formatted_response, date_header);
-    // strcat(*formatted_response, server_header);
+    strcat(*formatted_response, date_header);
+    strcat(*formatted_response, body_separator);
+    //strcat(*formatted_response, server_header);
     // strcat(*formatted_response, content_type_header);
-    // strcat(*formatted_response, response->body);
+    strcat(*formatted_response, response->body);
 
     free(status_line);
-    // free(date_header);
-    // free(server_header);
+    free(date_header);
+    //free(server_header);
     // free(content_type_header);
 }
 
