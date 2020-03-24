@@ -7,6 +7,8 @@
 
 void parse_request(request_t *request, char *data)
 {
+    request->body = NULL;
+    
     int split_pos = (strstr(data, "\r\n\r\n") - data);
 
     data[split_pos] = '\0';
@@ -16,7 +18,6 @@ void parse_request(request_t *request, char *data)
 
     // log_trace("header: \n%s", header);
     log_trace("data: \n%s", body);
-
     parse_header(request, header);
 }
 

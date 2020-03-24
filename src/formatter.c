@@ -16,11 +16,11 @@ void format_response(response_t *response, char **formatted_response)
     int size;
     char *status_line;
     char *date_header;
-    // char *server_header;
-    // char *content_type_header;
-    // char *content_length_header;
+    char *server_header;
+    char *content_type_header;
+    char *content_length_header;
     char *body_separator = "\r\n\0";
-    size = 1;
+    size = 0;
 
     size = strlen(body_separator);
     add_status_line(response->header.status, &status_line);
@@ -31,28 +31,44 @@ void format_response(response_t *response, char **formatted_response)
     if (response->body){
         size += strlen(response->body);
     }
-    // if (response->header.server){
-    //     add_server_header(response->header.server, &server_header);
-    //     size += strlen(server_header) ;
-    // }
-    // if (response->header.content_type){
-    //     add_content_type_header(response->header.content_type, &content_type_header);
-    //     size += strlen(content_type_header) ;
-    // }
+    if (response->header.server){
+        add_server_header(response->header.server, &server_header);
+        size += strlen(server_header);
+    }
+    if (response->header.content_type){
+        add_content_type_header(response->header.content_type, &content_type_header);
+        size += strlen(content_type_header);
+    }
+    if (response->header.content_length)
+    {
+        add_content_length_header(&response->header.content_length, &content_length_header);
+        size += strlen(content_length_header);
+    }
 
     *formatted_response = malloc(size + 1);
 
     strcpy(*formatted_response, status_line);
     strcat(*formatted_response, date_header);
+
+    if (response->header.server){
+        strcat(*formatted_response, server_header);
+    }
+    if (response->header.content_type){
+        strcat(*formatted_response, content_type_header);
+    }
+    if (response->header.content_length){
+        strcat(*formatted_response, content_length_header);
+    }
     strcat(*formatted_response, body_separator);
-    //strcat(*formatted_response, server_header);
-    // strcat(*formatted_response, content_type_header);
-    strcat(*formatted_response, response->body);
+    if (response->body){
+        strcat(*formatted_response, response->body);
+    }
 
     free(status_line);
     free(date_header);
-    //free(server_header);
-    // free(content_type_header);
+    free(server_header);
+    free(content_type_header);
+    free(content_length_header);
 }
 
 void add_status_line(status_code status,char **status_line)
