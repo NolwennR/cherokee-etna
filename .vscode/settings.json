@@ -24,6 +24,8 @@
         "manager.h": "c",
         "cstdlib": "c",
         "memory": "c",
-        "response.h": "c"
+        "response.h": "c",
+        "initializer_list": "c",
+        "utility": "c"
     }
 }

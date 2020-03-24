@@ -108,6 +108,11 @@ void handle_connection(int id, int server_fd)
 
                 handle_request(buffer, epoll_instance);
 
+                if (epoll_ctl(epoll_fd, EPOLL_CTL_DEL, client_send, &event)) {
+                    log_error("Worker %d in epoll_ctl", id);
+                    perror("In epoll_ctl");
+                }
+                close(client_send);
                 free(epoll_instance);
             }
         }

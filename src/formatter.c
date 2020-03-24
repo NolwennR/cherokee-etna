@@ -2,7 +2,7 @@
 #include "http.h"
 #include "log/log.h"
 
-const char *format_response_to_string(response_t response)
+char *format_response_to_string(response_t response)
 {
     log_trace("reponse status %d", response.header.status);
     char *content;
@@ -11,64 +11,114 @@ const char *format_response_to_string(response_t response)
     return content;
 }
 
-char *format_response(response_t *response)
+void format_response(response_t *response, char **formatted_response)
 {
-    char status_str[10];
     char *status_line;
-
-    char *http_version = "HTTP/1.1 ";
-    char *reason_phrase;
+    // char *date_header;
+    // char *server_header;
+    // char *content_type_header;
+    // char *content_length_header;
+    // char *body_separator = "\r\n\0";
     
-    add_reason_phrase(response->header.status, &reason_phrase);
+    add_status_line(response->header.status, &status_line);
+    // add_date_header(response->header.date, &date_header);
+    // add_server_header(response->header.server, &server_header);
+    // add_content_type_header(response->header.content_type, &content_type_header);
 
-    sprintf(status_str, "%d", response->header.status);
-    status_line = malloc((sizeof(*http_version) + sizeof(status_str) + sizeof(reason_phrase)));
-    strcpy(status_line, http_version);
-    strncat(status_line, status_str, strlen(status_str));
-    strncat(status_line, reason_phrase, strlen(reason_phrase));
+    // int size = (strlen(body_separator) + strlen(status_line) + 1);
+    *formatted_response = malloc(strlen(status_line) 
+                                // + strlen(body_separator) 
+                                // + strlen(date_header) 
+                                // + strlen(server_header) 
+                                // + strlen(content_type_header)
+                                + 1);
 
-    log_trace("response content: %s", status_line);
+    // strcpy(*formatted_response, status_line);
+    //strcat(*formatted_response, body_separator);
+    strcpy(*formatted_response, status_line);
+    // strcat(*formatted_response, body_separator);
+    // strcat(*formatted_response, date_header);
+    // strcat(*formatted_response, server_header);
+    // strcat(*formatted_response, content_type_header);
+    // strcat(*formatted_response, response->body);
 
-    return status_line;
+    free(status_line);
+    // free(date_header);
+    // free(server_header);
+    // free(content_type_header);
 }
 
-void add_reason_phrase(status_code status, char **reason_phrase)
+void add_status_line(status_code status,char **status_line)
 {
+    char *http_version = "HTTP/1.1 \0";
+    char status_str[10];
+    char *reason_phrase;
+
     switch (status)
     {
     case OK:
-        *reason_phrase = " Ok\n";
+        reason_phrase = " Ok\n\0";
         break;
     case NOT_FOUND:
-        *reason_phrase = " Not found\n";
+        reason_phrase = " Not found\n\0";
         break;
     case CREATED:
-        *reason_phrase = " Created\n";
+        reason_phrase = " Created\n\0";
         break;
     default:
         break;
     }
+
+    sprintf(status_str, "%d", status);
+    status_str[9] = '\0';
+
+    *status_line = malloc(strlen(http_version) + strlen(reason_phrase) + strlen(status_str) + 1);
+
+    strcpy(*status_line, http_version);
+    strcat(*status_line, status_str);
+    strcat(*status_line, reason_phrase);
 }
 
-int set_current_time(response_header_t *header)
+void add_date_header(char *date, char **date_header)
 {
-    char buf[300] = {0};
-    time_t rawtime = time(NULL);
-    
-    if (rawtime == -1) {
-        return -1;
-    }
-    
-    struct tm *ptm = localtime(&rawtime);
-    
-    if (ptm == NULL) {  
-        return -1;
-    }
+    char *prop = "Date: ";
 
-    strftime(buf, 300, "%d/%m/%Y", ptm);
-    log_trace("Current time: %s", buf);
-
-    header->date = buf;
-
-    return 0;
+    *date_header = malloc(strlen(prop) + strlen(date) + strlen("\n\0") + 1);
+    strcpy(*date_header, prop);
+    strcat(*date_header, date);
+    strcat(*date_header, "\n");
 }
+
+void add_server_header(char *server, char **server_header)
+{
+    char *prop = "Server: ";
+    
+    *server_header = malloc(strlen(prop) + strlen(server) + strlen("\n\0") + 1);
+    strcpy(*server_header, prop);
+    strcat(*server_header, server);
+    strcat(*server_header, "\n");
+}
+
+void add_content_type_header(char *content_type, char **content_type_header)
+{
+    char *prop = "Content-type: ";
+
+    *content_type_header = malloc(strlen(prop) + strlen(content_type) + strlen("\n\0") + 1);
+    strcpy(*content_type_header, prop);
+    strcat(*content_type_header, content_type);
+    strcat(*content_type_header, "\n");
+}
+
+void add_content_length_header(int *content_length, char **content_length_header)
+{
+    char content_length_str[10];
+
+    sprintf(content_length_str, "%d", *content_length);
+
+    char *prop = "Content-lenght: ";
+    *content_length_header = malloc(sizeof(*prop) + sizeof(*content_length_str) + sizeof("\n" + 1));
+    strcpy(*content_length_header, prop);
+    strcat(*content_length_header, content_length_str);
+    strcat(*content_length_header, "\n");
+}
+

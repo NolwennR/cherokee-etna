@@ -23,12 +23,14 @@ void serve_static_file(request_t *request, connection_instance_t *connection)
         if(ENOENT == errno) 
         {
             /* doesn't exists */ 
-            return not_found(response, connection);
+            not_found(response, connection);
+            return;
         } 
         else 
         {
             log_error("Worker error on stat");
-            return internal_server_error(response, connection);
+            internal_server_error(response, connection);
+            return;
         }
     } 
     else if (S_ISDIR(status.st_mode)) 
@@ -44,9 +46,10 @@ void serve_static_file(request_t *request, connection_instance_t *connection)
     else
     {
         /* exists but is not dir nor file */
-        return not_found(response, connection);
+        not_found(response, connection);
+        return;
     }
-    
-    return ok(response, connection);
+    ok(response, connection);
+    return;
 }
 

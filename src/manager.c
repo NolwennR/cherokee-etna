@@ -79,7 +79,7 @@ int run_server(int workers, int port){
     {
         pid = fork();
         switch (pid) {
-			case 0 : // enfant
+			case 0 : // child
 				handle_connection(i, listen_fd);
 				exit(EXIT_SUCCESS);
 			case -1 :
@@ -96,7 +96,7 @@ int run_server(int workers, int port){
         log_info("  Worker %d = %d",i, pid);
     }
 
-    /* Inform the user that the server is ready      */
+    /* Inform user that server is ready      */
     log_info("The server is ready");
 
     while ((wpid = wait(&status)) > 0);

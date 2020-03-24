@@ -33,7 +33,7 @@ void handle_request(char *data, connection_instance_t *connection)
 
     handle_method(request, connection);  
 
-    clear_client(connection);
+    // clear_client(connection);
     free_request(request);
 }
 
@@ -73,15 +73,9 @@ void remove_argument(char **path)
 
 void free_request(request_t *request)
 {
-    if (!request->url) {
-        free(request->url);
-    }
-    if (!request->body) {
-        free(request->body);
-    }
-    if (!request) {
-        free(request);
-    }
+    free(request->url);
+    free(request->body);
+    free(request);
 }
 
 void clear_client(connection_instance_t *epoll_instance)
