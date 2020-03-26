@@ -26,6 +26,7 @@
         "memory": "c",
         "response.h": "c",
         "initializer_list": "c",
-        "utility": "c"
+        "utility": "c",
+        "system_error": "c"
     }
 }

@@ -18,16 +18,16 @@ void ok(response_t *response, connection_instance_t *connection)
 {
     log_trace("Worker %d send OK", connection->worker_id);
 
-    response_header_t header = {
-        .status = OK,
-        .server = SERVER_NAME,
-    };
+    response->header.status = OK;
+    response->header.server = SERVER_NAME;
 
-    if (header.content_type == NULL) {
-        header.content_type = APPLICATION_JSON;
+    if (response->body){
+        response->header.content_length = strlen(response->body);
     }
 
-    response->header = header;
+    if (response->header.content_type == NULL) {
+        response->header.content_type = APPLICATION_JSON;
+    }
 
     send_response(response, connection);
 }
@@ -97,19 +97,14 @@ void bad_request(response_t *response, connection_instance_t *connection)
 void send_response(response_t *response, connection_instance_t *connection)
 {
     char *response_content;
-    // const char *xml_content_type = "text/html\0";
 
     if (set_current_time(&(response->header)) != 0)
     {
         log_error("Couldn't set time in response header");
     }
-    /*TODO: move content type */
-    // response->header.content_type = malloc(sizeof(*xml_content_type));
-    // strcpy(response->header.content_type, xml_content_type);
 
     format_response(response, &response_content);
     write(connection->client_fd, response_content , strlen(response_content));
-
 
     log_trace("send %s", response_content);
 

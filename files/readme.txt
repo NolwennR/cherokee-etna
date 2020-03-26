@@ -80,7 +80,3 @@ https://github.com/rxi/log.c
 #### Epoll
 https://medium.com/@copyconstruct/the-method-to-epolls-madness-d9d2d6378642
 
-#### Question suivi
-- Listing du répertoire doit-on generer un xml ?
-- si fichier sans extension considère comme répertoire ?
-- Problème read image

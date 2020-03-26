@@ -67,7 +67,12 @@ void get_on_url(request_t *request, connection_instance_t *connection)
 
 void remove_argument(char **path)
 {
-    int split_pos = (strchr(*path, '?') - *path);
+    char *argument = strchr(*path, '?');
+    
+    if (!argument)
+        return;
+
+    int split_pos = (argument - *path);
     (*path)[split_pos] = '\0';
 }
 

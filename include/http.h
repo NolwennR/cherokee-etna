@@ -6,8 +6,8 @@
 #include <string.h>
 #include <sys/epoll.h>
 
-#define SERVER_NAME "cherokee"
-#define APPLICATION_JSON "application/json"
+#define SERVER_NAME "cherokee\0"
+#define APPLICATION_JSON "application/json\0"
 
 typedef enum
 {
