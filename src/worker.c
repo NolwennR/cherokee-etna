@@ -21,8 +21,7 @@ void handle_connection(int id, int server_fd)
 
     addrlen  = sizeof(address);
     valread                = 0;
-
-    server_id = id;
+    server_id             = id;
 
     epoll_fd = epoll_create1(0);
     if (epoll_fd == -1) 

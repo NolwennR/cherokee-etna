@@ -81,6 +81,7 @@ https://github.com/rxi/log.c
 https://medium.com/@copyconstruct/the-method-to-epolls-madness-d9d2d6378642
 
 #### Question suivi
-- Listing du répertoire doit-on generer un xml ?
-- si fichier sans extension considère comme répertoire ?
+- Listing du répertoire doit-on generer un html ? oui
+- si index dans le dossier on sert l'index.html
+- si fichier sans extension considère comme répertoire ? 
 - Problème read image

@@ -21,7 +21,7 @@ void ok(response_t *response, connection_instance_t *connection)
     response->header.status = OK;
     response->header.server = SERVER_NAME;
 
-    if (response->body){
+    if (response->body && response->header.content_length == 0){
         response->header.content_length = strlen(response->body);
     }
 
@@ -97,14 +97,14 @@ void bad_request(response_t *response, connection_instance_t *connection)
 void send_response(response_t *response, connection_instance_t *connection)
 {
     char *response_content;
-
+    int size = 0;
     if (set_current_time(&(response->header)) != 0)
     {
         log_error("Couldn't set time in response header");
     }
 
-    format_response(response, &response_content);
-    write(connection->client_fd, response_content , strlen(response_content));
+    size = format_response(response, &response_content);
+    write(connection->client_fd, response_content , size);
 
     log_trace("send %s", response_content);
 

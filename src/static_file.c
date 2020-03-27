@@ -79,6 +79,7 @@ void serve_static_file(request_t *request, connection_instance_t *connection)
             if ((*handlers[i])(extension, response, path, status.st_size) == 0)
                 break;
         }
+        response->header.content_length = status.st_size + 1;
     }
     else
     {
@@ -216,7 +217,7 @@ void read_image_file(const char *fileName, char **body, int size)
     }
 
     *body = malloc(size + 1);
-
+    /* while */
     fread(*body, sizeof(char), size, file);
     if (ferror(file) != 0) 
     {

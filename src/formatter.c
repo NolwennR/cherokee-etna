@@ -11,7 +11,7 @@ char *format_response_to_string(response_t response)
     return content;
 }
 
-void format_response(response_t *response, char **formatted_response)
+int format_response(response_t *response, char **formatted_response)
 {
     int size;
     char *status_line;
@@ -29,7 +29,7 @@ void format_response(response_t *response, char **formatted_response)
     size += strlen(date_header);  
 
     if (response->body){
-        size += strlen(response->body);
+        size += response->header.content_length;
     }
     if (response->header.server){
         add_server_header(response->header.server, &server_header);
@@ -61,7 +61,7 @@ void format_response(response_t *response, char **formatted_response)
     }
     strcat(*formatted_response, body_separator);
     if (response->body){
-        strcat(*formatted_response, response->body);
+        memcpy((*formatted_response + size - response->header.content_length), response->body, response->header.content_length);
     }
 
     free(status_line);
@@ -69,6 +69,8 @@ void format_response(response_t *response, char **formatted_response)
     free(server_header);
     free(content_type_header);
     free(content_length_header);
+
+    return size;
 }
 
 void add_status_line(status_code status,char **status_line)
