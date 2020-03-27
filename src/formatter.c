@@ -45,7 +45,7 @@ int format_response(response_t *response, char **formatted_response)
         size += strlen(content_length_header);
     }
 
-    *formatted_response = malloc(size + 1);
+    *formatted_response = malloc(size);
 
     strcpy(*formatted_response, status_line);
     strcat(*formatted_response, date_header);
