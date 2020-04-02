@@ -49,28 +49,14 @@ Les modules permettent la prise en charge des requêtes
  
  run test ```ab -n 5000 -c 500 http://localhost:8050/```
 
-## Pense-bête
-- Pour servir les fichiers statiques, ne pas oublier le vérifier la présence du dossier au lancemenet du serveur (dossier /files par ex)
-
-# Travail en cours
-
-
-## Fait
-
-- manager peut spawner les workers
-- worker écoute sur le port et récecptionne les requetes
+## Pense-bêt
 
 ## En cours
-
-- parser http
 
 ## A faire
 
 - Utiliser la librairie de parsing des arguments => Marcus
-- Régler bug mémoire
 - Mettre en place les tests unitaires => morgan
-- Lire les fichiers statiques
-- Envoyer les réponses
 - Mettre en place le LRU
 
 #### Les librairies
@@ -85,3 +71,8 @@ https://medium.com/@copyconstruct/the-method-to-epolls-madness-d9d2d6378642
 - si index dans le dossier on sert l'index.html
 - si fichier sans extension considère comme répertoire ? 
 - Problème read image
+
+## Architecture
+
+### Diagramme de decision
+https://www.loggly.com/blog/http-status-code-diagram/

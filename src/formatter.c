@@ -85,11 +85,13 @@ void add_status_line(status_code status,char **status_line)
         reason_phrase = " Ok\n\0";
         break;
     case NOT_FOUND:
-        reason_phrase = " Not found\n\0";
+        reason_phrase = " Not Found\n\0";
         break;
     case CREATED:
         reason_phrase = " Created\n\0";
         break;
+    case NOT_IMPLEMENTED:
+        reason_phrase = " Not Implemented\n\0";
     default:
         break;
     }

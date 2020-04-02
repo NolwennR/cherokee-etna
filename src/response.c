@@ -37,7 +37,7 @@ void not_found(response_t *response, connection_instance_t *connection)
     log_trace("Worker %d send NOT_FOUND", connection->worker_id);
 
     const char* body_content = "Ressource not found\0";
-    response->body = malloc(sizeof(body_content));
+    response->body = malloc(strlen(body_content));
 
     if (!(response->body))
     {
@@ -79,9 +79,19 @@ void internal_server_error(response_t *response, connection_instance_t *connecti
 
 void bad_request(response_t *response, connection_instance_t *connection)
 {
-    log_trace("Worker %d send BAD REQUEST", connection->worker_id);
+    log_trace("Worker %d send Bad Request", connection->worker_id);
 
-    response->body = "Bad Request !\0";
+    const char* body_content = "Bad Request\0";
+    response->body = malloc(strlen(body_content));
+
+    if (!(response->body))
+    {
+        log_error("malloc() in not_found() for worker %d", connection->worker_id);
+        free_response(response);
+        return;
+    }
+
+    strcpy(response->body, body_content);
     response_header_t header = {
         .status = BAD_REQUEST,
         .content_type = APPLICATION_JSON,
@@ -90,6 +100,35 @@ void bad_request(response_t *response, connection_instance_t *connection)
     };
 
     response->header = header;
+    log_trace("Worker \"%s\" response body", response->body);
+
+    send_response(response, connection);
+}
+
+void not_implemented(response_t *response, connection_instance_t *connection)
+{
+    log_trace("Worker %d send NOT_FOUND", connection->worker_id);
+
+    const char* body_content = "Not Implemented\0";
+    response->body = malloc(strlen(body_content));
+
+    if (!(response->body))
+    {
+        log_error("malloc() in not_found() for worker %d", connection->worker_id);
+        free_response(response);
+        return;
+    }
+
+    strcpy(response->body, body_content);
+    response_header_t header = {
+        .status = NOT_IMPLEMENTED,
+        .content_type = APPLICATION_JSON,
+        .server = SERVER_NAME,
+        .content_length = strlen(response->body),
+    };
+
+    response->header = header;
+    log_trace("Worker \"%s\" response body", response->body);
 
     send_response(response, connection);
 }

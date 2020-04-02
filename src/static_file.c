@@ -62,7 +62,7 @@ void serve_static_file(request_t *request, connection_instance_t *connection)
     {
         /* it's a dir */    
         log_info("it's a dir");
-        //list_dir(path, &response->body);
+        list_dir(path, &response->body);
         char *content_type = "text/html\0";
         response->header.content_type = malloc(strlen(content_type));
         strcpy(response->header.content_type, content_type);
@@ -78,6 +78,14 @@ void serve_static_file(request_t *request, connection_instance_t *connection)
         {
             if ((*handlers[i])(extension, response, path, status.st_size) == 0)
                 break;
+
+            /* can't handle extension */
+            if (i == NB_HANDLERS - 1)
+            {
+                free(path);
+                not_implemented(response, connection);
+                return;
+            }
         }
         response->header.content_length = status.st_size;
     }
@@ -100,16 +108,27 @@ void list_dir(const char *path, char **body)
     DIR *d;
     struct dirent *dir;
     d = opendir(path);
-    *body = malloc(1); /* init in heap */
-    *body = '\0';
+    int index = 0;
+    char **array = NULL;
+    *body = NULL;
 
     if (d) 
     {
-        while ((dir = readdir(d)) != NULL) {
-            // printf("%s\n", dir->d_name);
-            *body = realloc(*body, strlen(dir->d_name) + 1);
-            strcat(*body, dir->d_name);
-            strcat(*body, "\n");
+        while ((dir = readdir(d)) != NULL) 
+        {
+            printf("%s\n", dir->d_name);
+            size_t size = strlen(dir->d_name);
+            array = realloc(array, sizeof(char*) * (index + 1));
+            array[index] = realloc(array[index], sizeof(char) * (size + 3));
+            
+            if (index == 0){
+                strcpy(array[0], dir->d_name);
+            }
+            else {
+                strcat(array[index], dir->d_name);
+            }
+            strcat(array[index], "\n");
+            ++index;
         }
         closedir(d);
     }
@@ -165,7 +184,8 @@ int handle_png_file(const char *extension, response_t *response, const char *pat
 int handle_jpeg_file(const char *extension, response_t *response, const char *path, int size)
 {
     if (strcmp(extension, "jpeg") != 0 
-        && strcmp(extension, "JPEG") != 0)
+        && strcmp(extension, "JPEG") != 0
+        && strcmp(extension, "jpg") != 0 )
         return -1;
     
     char *content_type = "image/jpeg\0";

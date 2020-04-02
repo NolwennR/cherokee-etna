@@ -27,13 +27,8 @@ void handle_request(char *data, connection_instance_t *connection)
 
     parse_request(request, data);
 
-    /* log_trace("Url: %s", request->url);
-    log_trace("Method : %s", http_method_array[request->method]);
-    log_trace("Content-Length : %d", request->header.content_length); */
-
     handle_method(request, connection);  
 
-    // clear_client(connection);
     free_request(request);
 }
 
