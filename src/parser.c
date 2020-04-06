@@ -50,13 +50,13 @@ void parse_uri(request_t *request, char **data)
 void check_http_version(request_t *request, char **data)
 {
     size_t version_length = strcspn(*data, "\r\n");
+    log_trace("version: %s", *data);
 
     char version[version_length];
 
     memcpy(version, *data, version_length );
 
     version[version_length] = '\0';
-
     if (strcmp(version, "HTTP/1.1") != 0){
         request->method = UNSUPORTED;
     }
@@ -110,6 +110,9 @@ void parse_method(request_t *request, char **data)
     }
     else if (memcmp(*data, "DELETE", strlen("DELETE")) == 0) {
         request->method = DELETE;
+    }
+    else if (memcmp(*data, "HEAD", strlen("HEAD")) == 0) {
+        request->method = HEAD;
     } 
     else {
         request->method = UNSUPORTED;

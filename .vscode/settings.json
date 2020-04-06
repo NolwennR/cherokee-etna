@@ -27,6 +27,8 @@
         "response.h": "c",
         "initializer_list": "c",
         "utility": "c",
-        "system_error": "c"
+        "system_error": "c",
+        "criterion.h": "c",
+        "functional": "c"
     }
 }

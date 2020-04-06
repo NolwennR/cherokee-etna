@@ -34,10 +34,19 @@ Les modules permettent la prise en charge des requêtes
 
 ## Tests
 
+### Installation de criterion
+
+`̀ `
+$ sudo add-apt-repository ppa:snaipewastaken/ppa
+$ sudo apt-get update
+$ sudo apt-get install criterion-dev
+`̀ `
+
 ### Tests pour le parsing
 - parsing du header
 - parsing du body
 - parsing de l'url
+
 
 ### Tests requêtes
 - Si pas HTTP/1.1 retourne Not supported
@@ -56,7 +65,6 @@ Les modules permettent la prise en charge des requêtes
 ## A faire
 
 - Utiliser la librairie de parsing des arguments => Marcus
-- Mettre en place les tests unitaires => morgan
 - Mettre en place le LRU
 
 #### Les librairies

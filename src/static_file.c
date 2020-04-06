@@ -62,10 +62,10 @@ void serve_static_file(request_t *request, connection_instance_t *connection)
     {
         /* it's a dir */    
         log_info("it's a dir");
-        list_dir(path, &response->body);
-        char *content_type = "text/html\0";
-        response->header.content_type = malloc(strlen(content_type));
-        strcpy(response->header.content_type, content_type);
+        // list_dir(path, &response->body);
+        // char *content_type = "text/html\0";
+        // response->header.content_type = malloc(strlen(content_type));
+        // strcpy(response->header.content_type, content_type);
     } 
     else if (S_ISREG(status.st_mode))
     {

@@ -2,6 +2,7 @@ CC=gcc
 CFLAGS=-W -Wall -Wextra -Werror --std=c11 -g -I./include -I./libraries -DLOG_USE_COLOR
 RM=rm -rf
 MDIR= mkdir -p
+TESTLIB= -lcriterion
 
 TARGET=cherokee
 
@@ -34,5 +35,8 @@ fclean: clean
 	$(RM) $(TARGET)
 
 re: fclean all
+
+tests_run: 
+	make -C test/unit-tests/ run-tests
 
 .PHONY: all clean fclean re hard-re build-lib directories
