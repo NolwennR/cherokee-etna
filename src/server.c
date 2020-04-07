@@ -23,7 +23,7 @@ int main (int argc, char **argv)
     }
 
     if (ini_parse("config.ini", handler, config) < 0) {
-        log_error("Can't load 'config.ini'\n");
+        log_fatal("Can't load 'config.ini'\n");
         return 1;
     }
 
@@ -31,6 +31,13 @@ int main (int argc, char **argv)
         config->port, config->workers, config->log_level, config->static_file_folder);
 
     parse_argument(argc, argv, config);
+
+    if (config->log_level > 5 || config->log_level < 0) {
+        log_fatal("Log level must be between 0 and 5\n");
+        return 1;
+    }
+
+    log_set_level(config->log_level);
 
     if (exit_status == 1)
         return exit_status;
