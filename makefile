@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-W -Wall -Wextra -Werror --std=c11 -g -I./include -I./libraries -DLOG_USE_COLOR
+CFLAGS=-W -Wall -Wextra -Werror --std=c11 -g -I./include -I./libraries -DLOG_USE_COLOR -D_GNU_SOURCE
 RM=rm -rf
 MDIR= mkdir -p
 TESTLIB= -lcriterion

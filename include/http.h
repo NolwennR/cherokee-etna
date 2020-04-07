@@ -5,6 +5,9 @@
 #include <unistd.h>
 #include <string.h>
 #include <sys/epoll.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include "server.h"
 
 #define SERVER_NAME "cherokee\0"
 #define APPLICATION_JSON "application/json\0"
@@ -70,12 +73,11 @@ typedef struct request
 
 } request_t;
 
-void send_bad_request(int fd);
-void handle_request(char *data, connection_instance_t *connection);
+void handle_request(char *data, connection_instance_t *connection, configuration_t *config);
 void clear_client(connection_instance_t *connection);
 void free_request(request_t *request);
-void get_on_url(request_t *request, connection_instance_t *connection);
-void handle_method(request_t *request, connection_instance_t *connection);
+void get_on_url(request_t *request, connection_instance_t *connection, configuration_t *config);
+void handle_method(request_t *request, connection_instance_t *connection, configuration_t *config);
 char *get_folder(char *path);
 char *get_file_name(char *path);
 void remove_argument(char **path);

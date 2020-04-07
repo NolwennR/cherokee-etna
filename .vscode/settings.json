@@ -29,6 +29,10 @@
         "utility": "c",
         "system_error": "c",
         "criterion.h": "c",
-        "functional": "c"
+        "functional": "c",
+        "typeinfo": "c",
+        "wait.h": "c",
+        "worker.h": "c",
+        "static_file.h": "c"
     }
 }

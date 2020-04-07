@@ -10,10 +10,11 @@
 #include <sys/epoll.h>
 #include <fcntl.h>
 #include <stdlib.h>
+#include "server.h"
 
 #define MAX_EVENTS 1000
 
-void handle_connection(int id, int server_fd);
+void handle_connection(int id, int server_fd, configuration_t *config);
 int set_non_block(int fd);
 
 #endif

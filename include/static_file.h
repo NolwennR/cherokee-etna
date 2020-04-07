@@ -7,10 +7,11 @@
 #include <errno.h> 
 #include <stdlib.h>
 #include <dirent.h> 
+#include "server.h"
 
 #include "http.h"
 
-void serve_static_file(request_t *request, connection_instance_t *connection);
+void serve_static_file(request_t *request, connection_instance_t *connection, configuration_t *config);
 const char *get_filename_ext(const char *filename);
 void read_text_file(const char *fileName, char **body, int size);
 void read_image_file(const char *fileName, char **body, int size);

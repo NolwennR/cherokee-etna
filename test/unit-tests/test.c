@@ -106,7 +106,7 @@ Test(check_http_version, check_http_version_valid) {
     request->method = GET;
     parse_method(request, &input);
     
-    cr_assert(request->method != UNSUPORTED, "the result is %d, expected %d", request->method, UNSUPORTED);
+    cr_assert(request->method != UNSUPORTED, "the result is %d, expected not %d", request->method, UNSUPORTED);
 }
 
 Test(check_http_version, check_http_version_unvalid) {
@@ -120,7 +120,7 @@ Test(check_http_version, check_http_version_unvalid) {
 }
 
 Test(parse, parse_request) {
-    char *url_result = "/lololol/56?GBG=5 ";
+    char *url_result = "/lololol/56?GBG=5";
     char *input = "GET /lololol/56?GBG=5 HTTP/1.1\r\n\
         Content-Type: application/json\r\n\
         User-Agent: PostmanRuntime/7.24.0\r\n\
@@ -134,12 +134,12 @@ Test(parse, parse_request) {
         {\"password\": \"password\",\"username\": \"jonny\"}";
 
     request_t *request = malloc(sizeof(request_t));
-    request->method = GET;
     parse_header(request, input);
     int compare = strcmp(request->url, url_result);
 
     cr_expect(request->method == GET, "the result is %d, expected %d", request->method, GET);
     cr_expect(compare, "the result is %s, expected %s", request->url, url_result);
+    cr_expect(request->header.content_length == 49, "the result is %d, expected %d.", request->header.content_length, 49);
 }
 
 

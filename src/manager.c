@@ -1,32 +1,26 @@
-#include <stdio.h>
-#include <sys/socket.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <netinet/in.h>
-#include <string.h>
-#include <sys/wait.h>
 #include "manager.h"
 #include "log/log.h"
 #include "worker.h"
+#include "server.h"
 
 typedef struct sockaddr_in SOCKADDR_IN;
 typedef struct sockaddr SOCKADDR;
 
-int run_server(int workers, int port){
+int run_server(configuration_t *config)
+{
 
-    int                    i; 
-    int                  pid;
-    int               result; 
-    int                   on;
-    int            listen_fd; 
-    SOCKADDR_IN         addr;
-
+    int            i; 
+    int          pid;
+    int       result; 
+    int           on;
+    int    listen_fd; 
+    SOCKADDR_IN addr;
     /* To wait child processes  */
-    pid_t               wpid;
-    int               status;
+    pid_t       wpid;
+    int       status;
 
-    status               = 0;
-    on                   = 1;
+    status = 0;
+    on     = 1;
 
     listen_fd = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
     if (listen_fd < 0)
@@ -51,7 +45,7 @@ int run_server(int workers, int port){
 
     addr.sin_addr.s_addr = htonl(INADDR_ANY);
     addr.sin_family = AF_INET;
-    addr.sin_port = htons(port);
+    addr.sin_port = htons(config->port);
     result = bind(listen_fd,(struct sockaddr *)&addr, sizeof(addr));
     if (result < 0)
     {
@@ -62,7 +56,7 @@ int run_server(int workers, int port){
     }
 
     /* Set the listen back log (5 connections queued) */
-    log_info("Creating listener on port %d...", port);
+    log_info("Creating listener on port %d...", config->port);
     result = listen(listen_fd, 5);
     if (result < 0)
     {
@@ -73,14 +67,14 @@ int run_server(int workers, int port){
     }
 
     /* Create each of the worker jobs */
-    log_info("Creating %d worker jobs...", workers);
+    log_info("Creating %d worker jobs...", config->workers);
 
-    for (i = 1; i < workers + 1; ++i)
+    for (i = 1; i < config->workers + 1; ++i)
     {
         pid = fork();
         switch (pid) {
 			case 0 : // child
-				handle_connection(i, listen_fd);
+				handle_connection(i, listen_fd, config);
 				exit(EXIT_SUCCESS);
 			case -1 :
 				perror("fork");
@@ -103,7 +97,7 @@ int run_server(int workers, int port){
 
     /* Close down the listening socket               */
     close(listen_fd);
-    log_info("Close listener on port %d", port);
+    log_info("Close listener on port %d", config->port);
 
     return 0;
 }

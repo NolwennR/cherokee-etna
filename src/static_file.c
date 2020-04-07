@@ -2,6 +2,7 @@
 #include "log/log.h"
 #include "http.h"
 #include "response.h"
+#include "server.h"
 
 #define NB_HANDLERS 4
 
@@ -12,11 +13,12 @@ int (*handlers[NB_HANDLERS]) (const char *ext, response_t *response, const char 
                                                         handle_jpeg_file 
                                                         };
 
-void serve_static_file(request_t *request, connection_instance_t *connection)
+void serve_static_file(request_t *request, connection_instance_t *connection, configuration_t *config)
 {
     log_trace("URL: %s", request->url);
     char *path;
-    const char *dir = "/home/nolwenn/Documents/etna/master2/idv/aql5/group-763730/files\0";
+    char dir[strlen(config->static_file_folder)];// = config->static_file_folder;//"/home/nolwenn/Documents/etna/master2/idv/aql5/group-763730/files\0";
+    strcpy(dir, config->static_file_folder);
 
     response_t *response = malloc(sizeof(response_t));
     response->body = NULL;

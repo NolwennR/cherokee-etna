@@ -50,7 +50,6 @@ void parse_uri(request_t *request, char **data)
 void check_http_version(request_t *request, char **data)
 {
     size_t version_length = strcspn(*data, "\r\n");
-    log_trace("version: %s", *data);
 
     char version[version_length];
 

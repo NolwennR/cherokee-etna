@@ -1,11 +1,12 @@
-#include <stdlib.h>
-#include <unistd.h>
+
 
 #include "log/log.h"
 #include "http.h"
 #include "parser.h"
 #include "formatter.h"
 #include "static_file.h"
+#include "server.h"
+
 
 const char *http_method_array[] = {
   "GET",
@@ -16,7 +17,7 @@ const char *http_method_array[] = {
   "UNSUPORTED"
 }; 
 
-void handle_request(char *data, connection_instance_t *connection)
+void handle_request(char *data, connection_instance_t *connection, configuration_t *config)
 {
     request_t *request = malloc(sizeof(request_t));
 
@@ -27,17 +28,17 @@ void handle_request(char *data, connection_instance_t *connection)
 
     parse_request(request, data);
 
-    handle_method(request, connection);  
+    handle_method(request, connection, config);  
 
     free_request(request);
 }
 
-void handle_method(request_t *request, connection_instance_t *connection)
+void handle_method(request_t *request, connection_instance_t *connection, configuration_t *config)
 {
     switch (request->method)
     {
         case GET:
-            get_on_url(request, connection);
+            get_on_url(request, connection, config);
             break;
         case POST:
             break;
@@ -54,10 +55,10 @@ void handle_method(request_t *request, connection_instance_t *connection)
     }
 }
 
-void get_on_url(request_t *request, connection_instance_t *connection)
+void get_on_url(request_t *request, connection_instance_t *connection, configuration_t *config)
 {
     remove_argument(&request->url);
-    serve_static_file(request, connection);
+    serve_static_file(request, connection, config);
 }
 
 void remove_argument(char **path)

@@ -64,12 +64,14 @@ $ sudo apt-get install criterion-dev
 
 ## A faire
 
-- Utiliser la librairie de parsing des arguments => Marcus
-- Mettre en place le LRU
+- CRUD => Nonox
+- Mettre en place le LRU => Cécé
 
 #### Les librairies
 https://github.com/cofyc/argparse
 https://github.com/rxi/log.c
+https://github.com/benhoyt/inih
+
 
 #### Epoll
 https://medium.com/@copyconstruct/the-method-to-epolls-madness-d9d2d6378642
