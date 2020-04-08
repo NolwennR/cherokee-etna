@@ -106,7 +106,9 @@ void handle_connection(int id, int server_fd, configuration_t *config)
                 epoll_instance->event = &event;
                 epoll_instance->worker_id = id;
                 log_trace("Input \n%s", buffer);
-                handle_request(buffer, epoll_instance, config);
+                if(strlen(buffer) != 0){
+                  handle_request(buffer, epoll_instance, config);
+                }
 
                 if (epoll_ctl(epoll_fd, EPOLL_CTL_DEL, client_send, &event)) {
                     log_error("Worker %d in epoll_ctl", id);

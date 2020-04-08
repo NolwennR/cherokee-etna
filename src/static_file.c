@@ -3,6 +3,8 @@
 #include "http.h"
 #include "response.h"
 #include "server.h"
+#include "dir_list.h"
+#include "html_generator.h"
 
 #define NB_HANDLERS 4
 
@@ -21,8 +23,8 @@ void serve_static_file(request_t *request, connection_instance_t *connection, co
     strcpy(dir, config->static_file_folder);
 
     response_t *response = malloc(sizeof(response_t));
+    init_header(&(response->header));
     response->body = NULL;
-    response->header.content_type = NULL;
 
     if (!response)
     {
@@ -64,10 +66,10 @@ void serve_static_file(request_t *request, connection_instance_t *connection, co
     {
         /* it's a dir */    
         log_info("it's a dir");
-        // list_dir(path, &response->body);
-        // char *content_type = "text/html\0";
-        // response->header.content_type = malloc(strlen(content_type));
-        // strcpy(response->header.content_type, content_type);
+        list_dir(path, request->url, &response->body);
+        char *content_type = "text/html";
+        response->header.content_type = malloc(strlen(content_type));
+        strcpy(response->header.content_type, content_type);
     } 
     else if (S_ISREG(status.st_mode))
     {
@@ -105,33 +107,30 @@ void serve_static_file(request_t *request, connection_instance_t *connection, co
     return;
 }
 
-void list_dir(const char *path, char **body)
+void list_dir(const char *path, char* url, char **body)
 {
     DIR *d;
     struct dirent *dir;
     d = opendir(path);
-    int index = 0;
-    char **array = NULL;
-    *body = NULL;
 
     if (d) 
-    {
+    {      
+        dir_list_t* list = create_list();
+
         while ((dir = readdir(d)) != NULL) 
         {
-            printf("%s\n", dir->d_name);
-            size_t size = strlen(dir->d_name);
-            array = realloc(array, sizeof(char*) * (index + 1));
-            array[index] = realloc(array[index], sizeof(char) * (size + 3));
-            
-            if (index == 0){
-                strcpy(array[0], dir->d_name);
-            }
-            else {
-                strcat(array[index], dir->d_name);
-            }
-            strcat(array[index], "\n");
-            ++index;
+            if(add_dir(list, dir) == -1) perror(""); 
         }
+
+        // char* str = generateDirListing(url, list); 
+        // size_t strl = strlen(str);
+
+        *body =/*  malloc(strl) */ generateDirListing(url, list);
+        // strncpy(*body, str, strl);
+
+        // free(str);
+        // free_list(list);
+        
         closedir(d);
     }
 }
