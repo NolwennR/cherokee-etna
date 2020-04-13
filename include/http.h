@@ -32,6 +32,7 @@ typedef struct connection_instance
 
 typedef enum 
 {
+    UNDEFINED = 0,
     OK = 200,
     CREATED = 201,
     NO_CONTENT = 204,
@@ -73,6 +74,7 @@ typedef struct request
 
 } request_t;
 
+void init_header(response_header_t* header);
 void handle_request(char *data, connection_instance_t *connection, configuration_t *config);
 void clear_client(connection_instance_t *connection);
 void free_request(request_t *request);

@@ -14,6 +14,14 @@ const char *http_method_array[] = {
   "UNSUPORTED"
 }; 
 
+void init_header(response_header_t* header){
+  header->content_length = 0;
+  header->content_type = NULL;
+  header->status = UNDEFINED;
+  header->server = NULL;
+  header->date = NULL;
+};
+
 void handle_request(char *data, connection_instance_t *connection, configuration_t *config)
 {
     request_t *request = malloc(sizeof(request_t));
