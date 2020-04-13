@@ -65,6 +65,7 @@ $ sudo apt-get install criterion-dev
 ## A faire
 
 - CRUD => Nonox
+- Not supported => Nonox
 - Mettre en place le LRU => Cécé
 
 #### Les librairies

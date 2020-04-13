@@ -14,7 +14,6 @@ int main (int argc, char **argv)
 
     write_banner();
 
-    exit_status = check_static_file_folder();
 
     config = malloc(sizeof(configuration_t));
     if (!config){
@@ -26,6 +25,8 @@ int main (int argc, char **argv)
         log_fatal("Can't load 'config.ini'\n");
         return 1;
     }
+
+    exit_status = check_static_file_folder();
 
     log_info("Config loaded from 'config.ini': port=%d, workers=%d, log_level=%d, static file folder=%s\n",
         config->port, config->workers, config->log_level, config->static_file_folder);

@@ -76,10 +76,14 @@ typedef struct request
 void handle_request(char *data, connection_instance_t *connection, configuration_t *config);
 void clear_client(connection_instance_t *connection);
 void free_request(request_t *request);
-void get_on_url(request_t *request, connection_instance_t *connection, configuration_t *config);
 void handle_method(request_t *request, connection_instance_t *connection, configuration_t *config);
-char *get_folder(char *path);
-char *get_file_name(char *path);
 void remove_argument(char **path);
+
+void get_on_url(request_t *request, connection_instance_t *connection, configuration_t *config);
+void post_on_url(request_t *request, connection_instance_t *connection, configuration_t *config);
+void put_on_url(request_t *request, connection_instance_t *connection, configuration_t *config);
+void delete_on_url(request_t *request, connection_instance_t *connection, configuration_t *config);
+void head_on_url(request_t *request, connection_instance_t *connection, configuration_t *config);
+
 
 #endif
