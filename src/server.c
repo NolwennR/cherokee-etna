@@ -11,9 +11,7 @@ int main (int argc, char **argv)
 
     exit_status   = 0;
 
-
     write_banner();
-
 
     config = malloc(sizeof(configuration_t));
     if (!config){
@@ -25,8 +23,6 @@ int main (int argc, char **argv)
         log_fatal("Can't load 'config.ini'\n");
         return 1;
     }
-
-    exit_status = check_static_file_folder();
 
     log_info("Config loaded from 'config.ini': port=%d, workers=%d, log_level=%d, static file folder=%s\n",
         config->port, config->workers, config->log_level, config->static_file_folder);
@@ -55,22 +51,6 @@ void parse_argument(int argc, char *argv[], configuration_t *config) {
         config->workers = atoi(argv[1]);
     if (argc >= 3)
         config->port = atoi(argv[2]);
-}
-
-int check_static_file_folder()
-{
-    log_info("Checking for static files folder...");
-
-    struct stat s;
-    int err = stat("./files", &s);
-
-    if(-1 == err) 
-    {
-        log_fatal("Couldn't find directory for static files \"file\". It's mandatory for programme startup.");
-        return 1;
-    }
-
-    return 0;
 }
 
 int handler(void* user, const char* section, const char* name, const char* value)

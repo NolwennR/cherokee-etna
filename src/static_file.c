@@ -122,15 +122,7 @@ void list_dir(const char *path, char* url, char **body)
             if(add_dir(list, dir) == -1) perror(""); 
         }
 
-        // char* str = generateDirListing(url, list); 
-        // size_t strl = strlen(str);
-
-        *body =/*  malloc(strl) */ generateDirListing(url, list);
-        // strncpy(*body, str, strl);
-
-        // free(str);
-        // free_list(list);
-        
+        *body = generateDirListing(url, list);
         closedir(d);
     }
 }

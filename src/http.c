@@ -4,6 +4,7 @@
 #include "formatter.h"
 #include "static_file.h"
 #include "server.h"
+#include "crud.h"
 
 const char *http_method_array[] = {
   "GET",
@@ -46,16 +47,16 @@ void handle_method(request_t *request, connection_instance_t *connection, config
             get_on_url(request, connection, config);
             break;
         case POST:
-            post_on_url(request, connection, config);
+            test_call_py();
             break;
         case PUT:
-            put_on_url(request, connection, config);
+            // put_on_url(request, connection, config);
             break;
         case DELETE:
-            delete_on_url(request, connection, config);
+            // delete_on_url(request, connection, config);
             break;
         case HEAD:
-            head_on_url(request, connection, config);
+            // head_on_url(request, connection, config);
             break;
         case UNSUPORTED:
             break;
@@ -70,25 +71,25 @@ void get_on_url(request_t *request, connection_instance_t *connection, configura
     serve_static_file(request, connection, config);
 }
 
-void post_on_url(request_t *request, connection_instance_t *connection, configuration_t *config)
-{
+// void post_on_url(request_t *request, connection_instance_t *connection, configuration_t *config)
+// {
     
-}
+// }
 
-void put_on_url(request_t *request, connection_instance_t *connection, configuration_t *config)
-{
+// void put_on_url(request_t *request, connection_instance_t *connection, configuration_t *config)
+// {
 
-}
+// }
 
-void delete_on_url(request_t *request, connection_instance_t *connection, configuration_t *config)
-{
+// void delete_on_url(request_t *request, connection_instance_t *connection, configuration_t *config)
+// {
 
-}
+// }
 
-void head_on_url(request_t *request, connection_instance_t *connection, configuration_t *config)
-{
+// void head_on_url(request_t *request, connection_instance_t *connection, configuration_t *config)
+// {
 
-}
+// }
 
 void remove_argument(char **path)
 {

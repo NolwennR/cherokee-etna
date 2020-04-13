@@ -1,8 +1,9 @@
 CC=gcc
-CFLAGS=-W -Wall -Wextra -Werror -std=c11 -g -I./include -I./libraries -DLOG_USE_COLOR -D_GNU_SOURCE
+CFLAGS=-W -Wall -Wextra -Werror -std=c11 -g -I./include -I./libraries -I/usr/include/python3.6m -L/usr/include/python3.6m -DLOG_USE_COLOR -D_GNU_SOURCE 
 RM=rm -rf
 MDIR= mkdir -p
 TESTLIB= -lcriterion
+PLIB:=$(shell /usr/bin/python3-config --ldflags) #--cflags
 
 TARGET=cherokee
 
@@ -16,7 +17,7 @@ OBJ=$(SRC:$(SRCDIR)%.c=$(OBJDIR)%.o)
 OBJLIB=$(LIB:$(LIBDIR)%.c=$(OBJDIR)%.o)
 
 all: directories $(OBJLIB) $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) $(OBJLIB) -o $(TARGET) $(LIBS)
+	$(CC) $(CFLAGS) $(OBJ) $(OBJLIB) -o $(TARGET) $(PLIB)
 
 directories: 
 	$(MDIR) $(sort $(dir $(OBJ)))

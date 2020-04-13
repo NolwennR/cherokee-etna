@@ -87,3 +87,13 @@ https://medium.com/@copyconstruct/the-method-to-epolls-madness-d9d2d6378642
 
 ### Diagramme de decision
 https://www.loggly.com/blog/http-status-code-diagram/
+
+
+#### Embed Python
+
+find flags: 
+/usr/lib/python3.6/config-3.6m-x86_64-linux-gnu/python-config.py --libs
+/usr/lib/python3.6/config-3.6m-x86_64-linux-gnu/python-config.py --cflags
+
+find header:
+locate Python.h
