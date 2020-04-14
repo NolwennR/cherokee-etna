@@ -221,7 +221,7 @@ void read_text_file(const char *fileName, char **body, int *size, lru_cache_t *c
     if (file == NULL)
         return; /* could not open file */
 
-    *body = malloc((*size) + 1);
+    *body = malloc((*size));
 
     while ((c = fgetc(file)) != EOF)
     {
@@ -231,12 +231,13 @@ void read_text_file(const char *fileName, char **body, int *size, lru_cache_t *c
     fclose(file);    
 
     cache_put(cache, fileName, *body, size);
-    (*body)[n] = '\0';  
+    //(*body)[n] = '\0';  
 }
 
 void read_image_file(const char *fileName, char **body, int *size, lru_cache_t *cache)
 {
-    if (cache_get(cache, fileName, body)){
+    int cache_result;
+    if ((cache_result = cache_get(cache, fileName, body)) != -1){
         return;
     }
 
@@ -248,7 +249,7 @@ void read_image_file(const char *fileName, char **body, int *size, lru_cache_t *
         return; 
     }
 
-    *body = malloc((*size) + 1);
+    *body = malloc((*size));
     /* while */
     fread(*body, sizeof(char), *size, file);
     if (ferror(file) != 0) 
@@ -256,10 +257,6 @@ void read_image_file(const char *fileName, char **body, int *size, lru_cache_t *
         log_error("Error reading image: %s", fileName);
         return;
     } 
-    else 
-    {
-        (*body)[(*size)++] = '\0';  
-    }
 
     fclose(file);
 

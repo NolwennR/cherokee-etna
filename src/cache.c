@@ -88,7 +88,7 @@ int cache_get(lru_cache_t *cache, const char *file_name, char **content)
         if (strcmp(node->file_name, file_name) == 0){
             hit = 0;
             if (!(*content)){
-                *content = malloc(sizeof(node->content_length));
+                *content = malloc(node->content_length);
             }
             if (!(*content)){
                 log_error("Malloc failed, couldn't set content from cache request");
