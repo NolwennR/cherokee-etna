@@ -13,13 +13,13 @@
 
 void serve_static_file(request_t *request, connection_instance_t *connection, configuration_t *config);
 const char *get_filename_ext(const char *filename);
-void read_text_file(const char *fileName, char **body, int size);
-void read_image_file(const char *fileName, char **body, int size);
+void read_text_file(const char *fileName, char **body, int *size, lru_cache_t *cache);
+void read_image_file(const char *fileName, char **body, int *size, lru_cache_t *cache);
 void list_dir(const char *path,char* url, char **body);
 
-int handle_text_file(const char* extension, response_t *response, const char *path, int size);
-int handle_json_file(const char* extension, response_t *response, const char *path, int size);
-int handle_png_file(const char *extension, response_t *response, const char *path, int size);
-int handle_jpeg_file(const char *extension, response_t *response, const char *path, int size);
+int handle_text_file(const char* extension, response_t *response, const char *path, int size, lru_cache_t *cache);
+int handle_json_file(const char* extension, response_t *response, const char *path, int size, lru_cache_t *cache);
+int handle_png_file(const char *extension, response_t *response, const char *path, int size, lru_cache_t *cache);
+int handle_jpeg_file(const char *extension, response_t *response, const char *path, int size, lru_cache_t *cache);
 
 #endif

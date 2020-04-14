@@ -42,10 +42,10 @@ int run_server(configuration_t *config)
     }
 
     /* Bind the socket */
-
     addr.sin_addr.s_addr = htonl(INADDR_ANY);
     addr.sin_family = AF_INET;
     addr.sin_port = htons(config->port);
+    
     result = bind(listen_fd,(struct sockaddr *)&addr, sizeof(addr));
     if (result < 0)
     {

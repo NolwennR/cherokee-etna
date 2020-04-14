@@ -11,6 +11,8 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
+#include "cache.h"
+
 #define SERVER_PORT 8070
 
 typedef struct method_conf
@@ -31,6 +33,7 @@ typedef struct configuration
     method_conf_t put_conf;
     method_conf_t delete_conf;
     method_conf_t head_conf;
+    lru_cache_t *cache;
 
 } configuration_t;
 

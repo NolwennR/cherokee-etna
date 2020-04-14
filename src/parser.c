@@ -98,19 +98,20 @@ void parse_method(request_t *request, char **data)
 {
     size_t meth_len = strcspn(*data, " ");
 
-    if (memcmp(*data, "GET", strlen("GET")) == 0) {
+    #define MATCH_METHOD(m) memcmp(*data, m, strlen(m)) == 0
+    if (MATCH_METHOD("GET")) {
         request->method = GET;
     } 
-    else if (memcmp(*data, "POST", strlen("POST")) == 0) {
+    else if (MATCH_METHOD("POST")) {
         request->method = POST;
     }
-    else if (memcmp(*data, "PUT", strlen("PUT")) == 0) {
+    else if (MATCH_METHOD("PUT")) {
         request->method = PUT;
     }
-    else if (memcmp(*data, "DELETE", strlen("DELETE")) == 0) {
+    else if (MATCH_METHOD("DELETE")) {
         request->method = DELETE;
     }
-    else if (memcmp(*data, "HEAD", strlen("HEAD")) == 0) {
+    else if (MATCH_METHOD("HEAD")) {
         request->method = HEAD;
     } 
     else {

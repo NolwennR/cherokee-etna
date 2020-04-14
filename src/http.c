@@ -47,7 +47,7 @@ void handle_method(request_t *request, connection_instance_t *connection, config
             get_on_url(request, connection, config);
             break;
         case POST:
-            test_call_py();
+            // test_call_py();
             break;
         case PUT:
             // put_on_url(request, connection, config);

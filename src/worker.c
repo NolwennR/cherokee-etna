@@ -2,6 +2,7 @@
 #include "log/log.h"
 #include "http.h"
 #include "server.h"
+#include "cache.h"
 
 int server_id;
 
@@ -23,6 +24,8 @@ void handle_connection(int id, int server_fd, configuration_t *config)
     addrlen  = sizeof(address);
     valread                = 0;
     server_id             = id;
+
+    config->cache = create_cache(5);
 
     epoll_fd = epoll_create1(0);
     if (epoll_fd == -1) 
@@ -105,6 +108,7 @@ void handle_connection(int id, int server_fd, configuration_t *config)
                 epoll_instance->epoll_fd = epoll_fd;
                 epoll_instance->event = &event;
                 epoll_instance->worker_id = id;
+
                 log_trace("Input \n%s", buffer);
                 if(strlen(buffer) != 0){
                   handle_request(buffer, epoll_instance, config);

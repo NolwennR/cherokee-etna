@@ -33,6 +33,8 @@
         "typeinfo": "c",
         "wait.h": "c",
         "worker.h": "c",
-        "static_file.h": "c"
+        "static_file.h": "c",
+        "cache.h": "c",
+        "stat.h": "c"
     }
 }

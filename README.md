@@ -56,7 +56,18 @@ $ sudo apt-get install criterion-dev
 ### Apache benchmark
  install ```sudo apt-get install apache2-utils```
  
- run test ```ab -n 5000 -c 500 http://localhost:8050/```
+ run test ```ab -n 5000 -c 500 http://localhost:8070/```
+
+Percentage of the requests served within a certain time (ms)
+  50%      2
+  66%      7
+  75%     14
+  80%     22
+  90%     38
+  95%     40
+  98%     43
+  99%     43
+ 100%    371 (longest request)
 
 ## Pense-bêt
 

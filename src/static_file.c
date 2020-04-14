@@ -5,10 +5,11 @@
 #include "server.h"
 #include "dir_list.h"
 #include "html_generator.h"
+#include "cache.h"
 
 #define NB_HANDLERS 4
 
-int (*handlers[NB_HANDLERS]) (const char *ext, response_t *response, const char *path, int size) = { 
+int (*handlers[NB_HANDLERS]) (const char *ext, response_t *response, const char *path, int size, lru_cache_t *cache) = { 
                                                         handle_text_file, 
                                                         handle_json_file, 
                                                         handle_png_file, 
@@ -17,9 +18,13 @@ int (*handlers[NB_HANDLERS]) (const char *ext, response_t *response, const char 
 
 void serve_static_file(request_t *request, connection_instance_t *connection, configuration_t *config)
 {
+    lru_cache_t *cache;
     log_trace("URL: %s", request->url);
     char *path;
     char dir[strlen(config->static_file_folder)];// = config->static_file_folder;//"/home/nolwenn/Documents/etna/master2/idv/aql5/group-763730/files\0";
+    
+    cache = config->cache;
+
     strcpy(dir, config->static_file_folder);
 
     response_t *response = malloc(sizeof(response_t));
@@ -80,7 +85,7 @@ void serve_static_file(request_t *request, connection_instance_t *connection, co
         /* Checks for extension and handles it if needed  */
         for (int i = 0; i < NB_HANDLERS; i++)
         {
-            if ((*handlers[i])(extension, response, path, status.st_size) == 0)
+            if ((*handlers[i])(extension, response, path, status.st_size, cache) == 0)
                 break;
 
             /* can't handle extension */
@@ -91,7 +96,6 @@ void serve_static_file(request_t *request, connection_instance_t *connection, co
                 return;
             }
         }
-        response->header.content_length = status.st_size;
     }
     else
     {
@@ -127,7 +131,7 @@ void list_dir(const char *path, char* url, char **body)
     }
 }
 
-int handle_text_file(const char* extension, response_t *response, const char *path, int size)
+int handle_text_file(const char* extension, response_t *response, const char *path, int size, lru_cache_t *cache)
 {
     if (strcmp(extension, "txt") != 0 
         && strcmp(extension, "TXT") != 0
@@ -136,15 +140,16 @@ int handle_text_file(const char* extension, response_t *response, const char *pa
         return -1;
     
     char *content_type = "text/html\0";
+    read_text_file(path, &response->body, &size, cache);
+
     response->header.content_type = malloc(strlen(content_type));
     strcpy(response->header.content_type, content_type);
-
-    read_text_file(path, &response->body, size);
+    response->header.content_length = size;
 
     return 0;
 }
 
-int handle_json_file(const char* extension, response_t *response, const char *path, int size)
+int handle_json_file(const char* extension, response_t *response, const char *path, int size, lru_cache_t *cache)
 {
     if (strcmp(extension, "JSON") != 0 
         && strcmp(extension, "json") != 0)
@@ -153,13 +158,14 @@ int handle_json_file(const char* extension, response_t *response, const char *pa
     char *content_type = "application/json\0";
     response->header.content_type = malloc(strlen(content_type));
     strcpy(response->header.content_type, content_type);
+    response->header.content_length = size;
 
-    read_text_file(path, &response->body, size);
+    read_text_file(path, &response->body, &size, cache);
 
     return 0;
 }
 
-int handle_png_file(const char *extension, response_t *response, const char *path, int size)
+int handle_png_file(const char *extension, response_t *response, const char *path, int size, lru_cache_t *cache)
 {
     if (strcmp(extension, "png") != 0 
         && strcmp(extension, "PNG") != 0)
@@ -168,13 +174,14 @@ int handle_png_file(const char *extension, response_t *response, const char *pat
     char *content_type = "image/png\0";
     response->header.content_type = malloc(strlen(content_type));
     strcpy(response->header.content_type, content_type);
+    response->header.content_length = size;
 
-    read_image_file(path, &response->body, size);
+    read_image_file(path, &response->body, &size, cache);
 
     return 0;
 }
 
-int handle_jpeg_file(const char *extension, response_t *response, const char *path, int size)
+int handle_jpeg_file(const char *extension, response_t *response, const char *path, int size, lru_cache_t *cache)
 {
     if (strcmp(extension, "jpeg") != 0 
         && strcmp(extension, "JPEG") != 0
@@ -184,8 +191,9 @@ int handle_jpeg_file(const char *extension, response_t *response, const char *pa
     char *content_type = "image/jpeg\0";
     response->header.content_type = malloc(strlen(content_type));
     strcpy(response->header.content_type, content_type);
+    response->header.content_length = size;
 
-    read_image_file(path, &response->body, size);
+    read_image_file(path, &response->body, &size, cache);
 
     return 0;
 }
@@ -199,8 +207,13 @@ const char *get_filename_ext(const char *filename)
     return dot + 1;
 }
 
-void read_text_file(const char *fileName, char **body, int size)
+void read_text_file(const char *fileName, char **body, int *size, lru_cache_t *cache)
 {
+    int cache_result;
+    if ((cache_result = cache_get(cache, fileName, body)) != -1){
+        return;
+    }
+
     FILE *file = fopen(fileName, "r");
     size_t n = 0;
     int c;
@@ -208,19 +221,25 @@ void read_text_file(const char *fileName, char **body, int size)
     if (file == NULL)
         return; /* could not open file */
 
-    *body = malloc(size + 1);
+    *body = malloc((*size) + 1);
 
     while ((c = fgetc(file)) != EOF)
     {
         (*body)[n++] = (char) c;
     }
 
-    (*body)[n] = '\0';  
     fclose(file);    
+
+    cache_put(cache, fileName, *body, size);
+    (*body)[n] = '\0';  
 }
 
-void read_image_file(const char *fileName, char **body, int size)
+void read_image_file(const char *fileName, char **body, int *size, lru_cache_t *cache)
 {
+    if (cache_get(cache, fileName, body)){
+        return;
+    }
+
     FILE *file = fopen(fileName, "rb");
 
     if (file == NULL)
@@ -229,9 +248,9 @@ void read_image_file(const char *fileName, char **body, int size)
         return; 
     }
 
-    *body = malloc(size + 1);
+    *body = malloc((*size) + 1);
     /* while */
-    fread(*body, sizeof(char), size, file);
+    fread(*body, sizeof(char), *size, file);
     if (ferror(file) != 0) 
     {
         log_error("Error reading image: %s", fileName);
@@ -239,9 +258,11 @@ void read_image_file(const char *fileName, char **body, int size)
     } 
     else 
     {
-        (*body)[size++] = '\0';  
+        (*body)[(*size)++] = '\0';  
     }
 
     fclose(file);
+
+    cache_put(cache, fileName, *body, size);
 }
 
