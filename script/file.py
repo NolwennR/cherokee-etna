@@ -6,7 +6,7 @@ def post():
     return [200, '{"data": "Call post"}']
 
 def put():
-    return [200, '{"data": "Call put with custom response code"}']
+    return [200, '{"data": "Call put"}']
 
 def delete():
     return [200, '{"data": "Call delete"}']
