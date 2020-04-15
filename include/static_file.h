@@ -18,6 +18,7 @@ void read_image_file(const char *fileName, char **body, int *size, lru_cache_t *
 void list_dir(const char *path,char* url, char **body);
 
 int handle_text_file(const char* extension, response_t *response, const char *path, int size, lru_cache_t *cache);
+int handle_css_file(const char* extension, response_t *response, const char *path, int size, lru_cache_t *cache);
 int handle_json_file(const char* extension, response_t *response, const char *path, int size, lru_cache_t *cache);
 int handle_png_file(const char *extension, response_t *response, const char *path, int size, lru_cache_t *cache);
 int handle_jpeg_file(const char *extension, response_t *response, const char *path, int size, lru_cache_t *cache);

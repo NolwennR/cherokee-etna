@@ -1,0 +1,1231 @@
+<html>
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+  <title>If Data Is Destiny, Then You Chart the Path | Incite Inc.</title>
+
+  <link data-react-helmet="true" rel="canonical" href="https://inciteinc.com">
+  <link data-react-helmet="true" rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAEVQTFRFAAAAAAEAAAIAAAEAAAEAAAEAAAEAAAEAAAEAAAEAAAEAAAEAAAEAAAEAAAEAAAAAGRkZHB0cNTY1PT09FRYVGBkY////l/WuGwAAAA50Uk5TAAAAB0mn4/sYke6vBu1lGW95AAAAAWJLR0QWfNGoGQAAAAlwSFlzAAAASAAAAEgARslrPgAAAGBJREFUGNNlj1cOgDAMQ52udJd5/6sitYAK8Zf1pDg2ANLGOmZnjSYAinyItSsGTwrkU32VPCGHOilkmDKDYmC7acvaurFwA2z7AA78BSyBOLlDj/MJFW9FMVFdjPvPvwD/VAtLoADcRwAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxOS0xMS0wNVQyMjo0NTo1OCswMDowMLAD8iQAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMTktMTEtMDVUMjI6NDU6NTgrMDA6MDDBXkqYAAAARnRFWHRzb2Z0d2FyZQBJbWFnZU1hZ2ljayA2LjcuOC05IDIwMTQtMDUtMTIgUTE2IGh0dHA6Ly93d3cuaW1hZ2VtYWdpY2sub3Jn3IbtAAAAABh0RVh0VGh1bWI6OkRvY3VtZW50OjpQYWdlcwAxp/+7LwAAABh0RVh0VGh1bWI6OkltYWdlOjpoZWlnaHQAMTkyDwByhQAAABd0RVh0VGh1bWI6OkltYWdlOjpXaWR0aAAxOTLTrCEIAAAAGXRFWHRUaHVtYjo6TWltZXR5cGUAaW1hZ2UvcG5nP7JWTgAAABd0RVh0VGh1bWI6Ok1UaW1lADE1NzI5OTM5NTjiD4A5AAAAD3RFWHRUaHVtYjo6U2l6ZQAwQkKUoj7sAAAAVnRFWHRUaHVtYjo6VVJJAGZpbGU6Ly8vbW50bG9nL2Zhdmljb25zLzIwMTktMTEtMDUvYmMzOGJkNmRkZTg5NGIyMjk2ZTkzYjgyZDI2NTU1ODcuaWNvLnBuZwIZHJsAAAAASUVORK5CYII=" sizes="16x16">
+  <link data-react-helmet="true" rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAQJQTFRFAAAAAAIAAAYAAAEAAAMAAAIAAAEAAAEAAAEAAAEAAAEAAAEAAAEAAAEAAAEAAAEAAAEAAAEAAAEAAAEAAAEAAAEAAAEAAAEAAAEAAAEAAAEAAAEAAAEAAAEAAAEAAAEAAAEAAAEAAAEAAAEAAAEAAAEAAAEAAAEAAAEAAAEAAAEAAAIAAAEAAAMAAAEAAAEAAAEAAAEAAAQAAAEAAAEAAAEAAAEAAAEAAAEAAAEAAAEAAAEAAAEAAAEAAAEAAAMAAAEAAAEAAAEAAAEAAAEAAAEAAAEAAAEAAAEACQoJCgsKAAAAXF1cXV1dcnNycHBwcXJxb3BvcnJyT1BPAwQD////OV/6kwAAAEh0Uk5TAAAAAAADLX2u0O/87s96Kz+a3v3cmTwdjennixvE/r43SNjUQdM2HsO8HAKGAkDoO48BLt1sm86ta9uMPTiCAbcaMTq9uJCcLuHr8gAAAAFiS0dEVZMEuDMAAAAJcEhZcwAAAEgAAABIAEbJaz4AAAE5SURBVDjLhZNrW4JAEIUHRhJc0rxgioaWZuWlTDRSy8puW3TX//9bUsFiCOh8mz3vPLO7zxwAV4K0EZeVBGPqppxMSQJQCdJWOpPlrlhOyxNExO1CkRPppTKKaz+G+R2D+2RUqhhzfdjd4wGq1R1CxHygz/l+YzUFDw55iI6auLh/q8BD1e4IgMfFcOCki9BJ8wid9sDsk5OnZ1L2TYhnvQf2y6vtrdkAZNJhv70TgJ+BQoGPTwookIgGEsCiAfY/oEYDKlgU+PIBFpxHP1ODJLmEPZvRjxpCakQ65nNSjlLQ0XiExj3ACz3c1y8RsFUKByZXi5XCciXMv77B5dZitRbsK1N0UoX1QEK5RWEdjMbdH9u4n66Ds5zSbPujN3Hm/4a3+5D5+VOWG1cD8m0OHlfxt9JDT/y/AWTr3lBtBZUSAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDE5LTExLTA1VDIyOjQ1OjU4KzAwOjAwsAPyJAAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxOS0xMS0wNVQyMjo0NTo1OCswMDowMMFeSpgAAABGdEVYdHNvZnR3YXJlAEltYWdlTWFnaWNrIDYuNy44LTkgMjAxNC0wNS0xMiBRMTYgaHR0cDovL3d3dy5pbWFnZW1hZ2ljay5vcmfchu0AAAAAGHRFWHRUaHVtYjo6RG9jdW1lbnQ6OlBhZ2VzADGn/7svAAAAGHRFWHRUaHVtYjo6SW1hZ2U6OmhlaWdodAAxOTIPAHKFAAAAF3RFWHRUaHVtYjo6SW1hZ2U6OldpZHRoADE5MtOsIQgAAAAZdEVYdFRodW1iOjpNaW1ldHlwZQBpbWFnZS9wbmc/slZOAAAAF3RFWHRUaHVtYjo6TVRpbWUAMTU3Mjk5Mzk1OOIPgDkAAAAPdEVYdFRodW1iOjpTaXplADBCQpSiPuwAAABWdEVYdFRodW1iOjpVUkkAZmlsZTovLy9tbnRsb2cvZmF2aWNvbnMvMjAxOS0xMS0wNS9iYzM4YmQ2ZGRlODk0YjIyOTZlOTNiODJkMjY1NTU4Ny5pY28ucG5nAhkcmwAAAABJRU5ErkJggg==" sizes="32x32">
+  <link data-react-helmet="true" rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAMAAADVRocKAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAW5QTFRFAAAAAAoAAB8AAAIAAAUAABMAAAQAABAAABEAAAMAAAEAABQAACcAAA8AAAMAAAIAAAEAAAEAAAEAAAEAAAEAAAEAAAEAAAEAAAEAAAEAAAIAAAIAAAIAAAEAAAEAAAEAAAEAAAEAAAEAAAQAAAIAAAEAAAEAAAYAAAIAAAEAAAEAAAEAAAEAAAgAAAIAAAIAAAEAAAEAAAIAAAIAAAEAAAMAAAEAAAEAAAIAAAEAAAEAAAQAAAEAAAEAAAIAAAEAAAEAAAYAAAIAAAEAAAMAAAEAAAEAAAQAAAEAAAMAAAEAAAEAAAQAAAEAAAEAAAQAAAEAAAcAAAEAAAEAAAEAAAIAAAEAAAEAAAEAAAIAAAQAAAEAAAEAAAEAAAEAAAAAAQIBDxAPFRYVBAUEFxcXoKCgw8PDQkJCLy8v39/f/v7+c3RzMTEx4eHh////d3h34ODgd3d3Kioq1tbW+fn5aGhoDQ4NWVlZb29vISEhEQ/VywAAAF50Uk5TAAAAAAAAAAAAAAAAAAAGFjVUep250OHw9/wBDi5gk77c+P4LNHGyAhlYpuD6ASBtwfQbbMkNVr0wnO4KXtMciu0BN7QDStEF2wdm5QRl6gLkAUsc0iHIpfsPBlXve12+KgYAAAABYktHRG4iD1EXAAAACXBIWXMAAABIAAAASABGyWs+AAADP0lEQVRo3rVa518iQQyNjsItFnpT2tJXUBGkKR4C9o5d0eF6P6+3//4W1PtxirAB8j7PvkeGTCaTBKAt+vpHtTq9wWgyW6w2u91mtZhNRoNepx3t72v/dTuwsXGH0+X2WEUvb4BXtHrcLqdjfIx1wz4w6PMHghaRPwDREgz4fYMDHdKrQmFpIhLlLRGNTEjhkKoT+smp6dgMV4CZ2PTUJFZCpY4nZkUl9PWtmk3E1RiJR5BMpW1K6WuwpVNJ+TOFEEKZ7ByGvoa5bCYkKOSfzy14sfyy5y7k5pUoCPA4v4inr2Ex/xjaSgiFYinaGb/ss6VioY0CW1pe6ZS+hpXlpZZHW1iV1rrh53xNWm1hA1vf2OyOn/PNjfUHbRC2tne65ed8Z3vrARvYrrTXPT/ne9JuUxtYeb/L/b/F2n65icIAFLvyn0asFOF+CNcclHrFz3npQHM/PuQ7Pl/3Ec3fjRpCOddhfGiOxVz5P4U+yBz2kp/zwww0ZgQsme0gfraCN5ts8CQBUuj43w5zqYbIyuLpXvNzno7/M0EYSii+fpVDTAzdmsCOjnvPz/nxEbs1YJrAANmE6RsTWDhGwc95LMyuXUhSlF/hMSPVHUnwndDwc37ikwXUGn8E8U21ilgc8WvUwIYDp8o/efL02XPlq08Dwww0Z0HE73/x8tVrhA3BMw0wB2KHqm/evnuPEIg4ZD9yIg5B9cPHq08IAdEJcO5Svl4W+Hz1BfM3u85B66YUcGtB56EU8OigckEpcFGBS0ygQwuIl2DE3JVoAa8RTIjleAFuAjOtgBkstAIWsNIKWAH1HMYL2MBOK2CnFyDfIvI/mdxNyQ8aeaggD3YG2nBtAD3thaOnvzLJL33ytAWZeOEEaokXLnX8+u37D2TqiEt+f/76/Qeb/KLSd/l9gOCvp+/IBwgK9QcI+ROK/hFI/oylf4iTlxLoiyHk5Rz6ghR5SY2+KEhe1qQvzNKXlumL48AKvSvvF5o3EIgbFPQtFvomUb3NhUn0msDTss1F36ijbzXSN0uBvN0L9A3rm5Y76hYVUS13GaoR7NDACHougXbsoS5BO7hRA/HoSR20wzPXqI//VO6O/1QUjv/8BT8WaMtpZjKSAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDE5LTExLTA1VDIyOjQ1OjU4KzAwOjAwsAPyJAAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxOS0xMS0wNVQyMjo0NTo1OCswMDowMMFeSpgAAABGdEVYdHNvZnR3YXJlAEltYWdlTWFnaWNrIDYuNy44LTkgMjAxNC0wNS0xMiBRMTYgaHR0cDovL3d3dy5pbWFnZW1hZ2ljay5vcmfchu0AAAAAGHRFWHRUaHVtYjo6RG9jdW1lbnQ6OlBhZ2VzADGn/7svAAAAGHRFWHRUaHVtYjo6SW1hZ2U6OmhlaWdodAAxOTIPAHKFAAAAF3RFWHRUaHVtYjo6SW1hZ2U6OldpZHRoADE5MtOsIQgAAAAZdEVYdFRodW1iOjpNaW1ldHlwZQBpbWFnZS9wbmc/slZOAAAAF3RFWHRUaHVtYjo6TVRpbWUAMTU3Mjk5Mzk1OOIPgDkAAAAPdEVYdFRodW1iOjpTaXplADBCQpSiPuwAAABWdEVYdFRodW1iOjpVUkkAZmlsZTovLy9tbnRsb2cvZmF2aWNvbnMvMjAxOS0xMS0wNS9iYzM4YmQ2ZGRlODk0YjIyOTZlOTNiODJkMjY1NTU4Ny5pY28ucG5nAhkcmwAAAABJRU5ErkJggg==" sizes="96x96">
+  <link data-react-helmet="true" rel="apple-touch-icon" href="data:image/png;base64,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PaF/kgJoj3AkIT07AryHVoGAozwtCwjpMV1ACj8f/AfsnY80M/gCIQAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxOS0xMS0wNVQyMjo0NTo1OCswMDowMLAD8iQAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMTktMTEtMDVUMjI6NDU6NTgrMDA6MDDBXkqYAAAARnRFWHRzb2Z0d2FyZQBJbWFnZU1hZ2ljayA2LjcuOC05IDIwMTQtMDUtMTIgUTE2IGh0dHA6Ly93d3cuaW1hZ2VtYWdpY2sub3Jn3IbtAAAAABh0RVh0VGh1bWI6OkRvY3VtZW50OjpQYWdlcwAxp/+7LwAAABh0RVh0VGh1bWI6OkltYWdlOjpoZWlnaHQAMTkyDwByhQAAABd0RVh0VGh1bWI6OkltYWdlOjpXaWR0aAAxOTLTrCEIAAAAGXRFWHRUaHVtYjo6TWltZXR5cGUAaW1hZ2UvcG5nP7JWTgAAABd0RVh0VGh1bWI6Ok1UaW1lADE1NzI5OTM5NTjiD4A5AAAAD3RFWHRUaHVtYjo6U2l6ZQAwQkKUoj7sAAAAVnRFWHRUaHVtYjo6VVJJAGZpbGU6Ly8vbW50bG9nL2Zhdmljb25zLzIwMTktMTEtMDUvYmMzOGJkNmRkZTg5NGIyMjk2ZTkzYjgyZDI2NTU1ODcuaWNvLnBuZwIZHJsAAAAASUVORK5CYII=">
+  <link data-react-helmet="true" rel="apple-touch-icon" sizes="180x180" href="data:image/png;base64,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">
+  <link data-react-helmet="true" rel="apple-touch-icon" sizes="152x152" href="data:image/png;base64,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Ct43/SWZK5yLO8btO3zTuOvO7QWuu6VGvmHcZSy9y3KJdWUmvmHcZSrTsalXcZEBZMCZN958C2QgQxELll0M8sSdefudd997fxZgpNHi7HmwHD3Erj/7wYcfPf/4EwgwuT5nHkwLMpOzLz79bO7zL2YgxjKwb8zcEhCwL796Pvf1N99CjFWSy3Ddy7uPDex+3j0XmCIf5A0CCabJV7jA0hwQY4GC0Y401wGeDnOnBgUrSKfIg4xCfGCFGQ/IQ6DzCBTMVPaQRD8CGQoWjH4UTaaVGMGU0yQmEyNYZgyJzcIIlhVL4oAiA7BgqjgSD/QChwVTx5MEnGAJJBEoWgcLpkkkSTjBkkgyTrBkkgIzEjAYnUJScYKlEhlOMBmBiosBg8nxgqGdSrSLH+12gXaDRXskoT3E0V570F4U0V6t0T5G0D7fpEqMYEop3hAB2qAK2jAU2sAd2lAn3uAwWDj9O+BwOlQCgsmMfP8DSGaETUBApWx+/OnnuV9+hcglLaRsgJJcv/3+x59//Q2Z5AJKC9L//PvfC5CE5UJaECqRSs+CzONSIhVt6hltsh5veQPeghCsJTR4i47wlmmhLWxDWwqIt3gSbbkp2gJdQqYaMZQ0Ny4racZbBI62bJ6Qx/w3Gjz2Ckbx35rho5slyt7LZzNLrz3KOxehnE94PDJrnzh9NyYhbZgiaFvMEDflYW1jxNv46dLg6yhbZYlEyENz8bDQH/sXHtqxX/MDC3EDO9qWf7wmCXhtJfAaceC1LsFr9sIIpz0OZkMhrBZMhDWtMnBhWmUIzbTKJeopNzZfT0O2RsNqjIbXSg6v+R47n5ZnMHaFzwDtChlhNXjEa4nJCKeJ6LyQ2q7OzyhOo1pGSK19WaE0Q36pBfvoaV/20dMh2kf/D10lf3APUgsuAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDE5LTExLTA1VDIyOjQ1OjU4KzAwOjAwsAPyJAAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxOS0xMS0wNVQyMjo0NTo1OCswMDowMMFeSpgAAABGdEVYdHNvZnR3YXJlAEltYWdlTWFnaWNrIDYuNy44LTkgMjAxNC0wNS0xMiBRMTYgaHR0cDovL3d3dy5pbWFnZW1hZ2ljay5vcmfchu0AAAAAGHRFWHRUaHVtYjo6RG9jdW1lbnQ6OlBhZ2VzADGn/7svAAAAGHRFWHRUaHVtYjo6SW1hZ2U6OmhlaWdodAAxOTIPAHKFAAAAF3RFWHRUaHVtYjo6SW1hZ2U6OldpZHRoADE5MtOsIQgAAAAZdEVYdFRodW1iOjpNaW1ldHlwZQBpbWFnZS9wbmc/slZOAAAAF3RFWHRUaHVtYjo6TVRpbWUAMTU3Mjk5Mzk1OOIPgDkAAAAPdEVYdFRodW1iOjpTaXplADBCQpSiPuwAAABWdEVYdFRodW1iOjpVUkkAZmlsZTovLy9tbnRsb2cvZmF2aWNvbnMvMjAxOS0xMS0wNS9iYzM4YmQ2ZGRlODk0YjIyOTZlOTNiODJkMjY1NTU4Ny5pY28ucG5nAhkcmwAAAABJRU5ErkJggg==">
+  <link data-react-helmet="true" rel="apple-touch-icon" sizes="144x144" href="data:image/png;base64,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">
+  <meta data-react-helmet="true" name="description" content="If data is destiny, then you can chart your path. Here at Incite, we bring sophisticated solutions to any of your problems large and small. Find out how we can help now.">
+  <meta data-react-helmet="true" name="og:title" content="If Data Is Destiny, Then You Chart the Path | Incite Inc.">
+  <meta data-react-helmet="true" name="og:description" content="If data is destiny, then you can chart your path. Here at Incite, we bring sophisticated solutions to any of your problems large and small. Find out how we can help now.">
+  <meta data-react-helmet="true" name="og:image" content="https://inciteinc.com/share.jpg">
+  <meta data-react-helmet="true" name="og:url" content="https://inciteinc.com">
+  <meta data-react-helmet="true" name="og:type" content="website">
+  <meta data-react-helmet="true" name="twitter:title" content="If Data Is Destiny, Then You Chart the Path | Incite Inc.">
+  <meta data-react-helmet="true" name="twitter:description" content="If data is destiny, then you can chart your path. Here at Incite, we bring sophisticated solutions to any of your problems large and small. Find out how we can help now.">
+  <meta data-react-helmet="true" name="twitter:image" content="https://inciteinc.com/share.jpg">
+  <meta data-react-helmet="true" name="twitter:card" content="Summary">
+  <meta data-react-helmet="true" name="viewport" content="width=device-width, user-scalable=no">
+
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+  <link href="https://fonts.googleapis.com/css?family=Bebas+Neue|Comfortaa|Playfair+Display|Source+Code+Pro:400,500,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
+  <script type="text/javascript" src="js/user-agent.js"></script>
+  <script src="js/underscore.js"></script>
+
+    <script src="https://privacy.hbo.com/sites/inciteinc.js" type="text/javascript"></script>
+    <script src="https://privacy.hbo.com/wm-user-consent.min.js" type="text/javascript"></script>
+    <script>
+        (function initalizeUserConsent(win) {
+            win.WM.UserConsent.init({
+                cookieDomain: win.WM.ConsentSiteConfig.cookiedomain,
+                domId: win.WM.ConsentSiteConfig.domId,
+                src: win.WM.ConsentSiteConfig.src
+            });
+        })(window);
+
+        if (window.WM.UserConsent.inUserConsentState(window.WM.ConsentSiteConfig.vendor.gtm.ucStates)) {
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-K822JDZ');
+        }
+    </script>
+</head>
+
+<body>
+  <div class="main-wrapper" current-page="welcome">
+    <div class="notif-wrapper">
+      <div><span>http://www.inciteinc.com wants to send you push notifications</span></div>
+      <div><img src="img/icons/bell.svg"> <span>In order to chart your path, opt in to push notifications.</span></div>
+      <div>
+        <div class="deny-btn notif-btn">DENY</div>
+        <div class="allow-btn notif-btn">ALLOW</div>
+      </div>
+    </div>
+    <div class="bg">
+      <div class="bg1"></div>
+      <div class="bg2"></div>
+      <div class="bg3"></div>
+    </div>
+
+    <div class="cu-wrapper">
+      <div class="particles-video-cu cu-normal">
+        <video class="particles-video vid1" src="/img/particles_video_cu_v4.mp4" muted  playsinline loop preload="none"></video>
+      </div>
+      <div class="particles-video-cu cu-black">
+        <video class="particles-video vid4" src="/img/particles_video_cu_black.mp4" muted  playsinline loop preload="none"></video>
+      </div>
+      <div class="particles-video-cu cu-zoom">
+        <video class="particles-video vid2" src="/img/particles_video_full_zoom.mp4" muted  playsinline loop preload="none"></video>
+      </div>
+    </div>
+
+    <div class="time-weather">
+      <div class="time copy"></div>
+      <div class="weather copy">
+        <span class="" icon-weather></span>
+        <span class="temp"></span>
+      </div>
+    </div>
+
+    <div class="menu" style="visibility: hidden;">
+      <div class="main-menu-btn copy icon-btn"><span class="icon-main-menu"></span></div>
+      <div class="prev-arrow-btn copy icon-btn"><span class="icon-prev-arrow"></span></div>
+    </div>
+
+    <div class="particles-wrapper">
+      <video class="particles-video particles-video-full vid3" src="/img/ParticleSphere_Element_Test_v02_Full_v6.mp4" muted autoplay playsinline loop preload="none"></video>
+
+      <div class="plus-wrapper">
+      </div>
+
+      <div id="particles-js" class="particles-inner">
+      </div>
+
+      <div class="plus-item plus-0">
+        <div class="icon-plus"></div>
+        <span class="plu-label">ADVANCEMENTS</span>
+      </div>
+      <div class="plus-item plus-5">
+        <div class="icon-plus"></div>
+        <span class="plu-label">MY INCITE</span>
+      </div>
+      <div class="plus-item plus-1" target-section="about">
+        <div class="icon-plus"></div>
+        <span class="plu-label">ABOUT US</span>
+      </div>
+      <div class="plus-item plus-4">
+        <div class="icon-plus"></div>
+        <span class="plu-label">PRODUCT DEMO</span>
+      </div>
+
+    </div>
+
+    <!-- notifications -->
+    <section class="notification">
+      <div class="wrapper">
+        <div class="notification-wrapper">
+          <div class="tag box-tag red-tag">NOTIFICATION</div>
+          <p>Sorry, something went wrong. We are experiencing widespread technical difficulties. All of our physical offices are currently closed, but automated customer service representatives are on standby to handle your questions and concerns. Wait times for human callbacks may be longer than usual due to heavy call volume. We apologize for the disruption this may have caused and we encourage you to remain patient. This changes nothing—we will get you back on your path shortly.</p>
+        </div>
+      </div>
+      <div class="icon-close notification-close-btn"></div>
+    </section>
+
+    <section class="notif-alert">
+      <div class="notif-alert-wrapper">
+        <div class="tag box-tag red-tag">NOTIFICATION</div>
+        <p>Sorry, something went wrong. Incite is experiencing technical difficulties. Please try again later.</p>
+        <div class="icon-close notif-alert-close-btn"></div>
+      </div>
+    </section>
+
+    <section class="welcome">
+      <div class="wrapper">
+        <div class="welcome-wrapper">
+          <div class="welcome-logo"><span>Welcome to</span> <img src="img/logo.svg"></div>
+          <div class="welcome-sub">If Data Is Destiny, Then You Chart the Path</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="main-menu">
+      <div class="wrapper">
+        <div class="menu-wrapper">
+          <div class="tag box-tag">ADVANCEMENTS</div>
+          <div class="links">
+            <div><span class="num">01</span><span class="link transpo-link" target-section="transportation">TRANSPORTATION</span></div>
+            <div><span class="num">02</span><span class="link limbic-link" target-section="medical">PSYCHO PHARMACOLOGY</span></div>
+            <div><span class="num">03</span><span class="link virtual-link" target-section="virtual">VIRTUAL ASSISTANT</span></div>
+            <div><span class="num">04</span><span class="link tech-link" target-section="technology">TECHNOLOGY</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- about -->
+    <section class="about page">
+      <div class="wrapper">
+        <div class="inner">
+          <div class="tag box-tag">OUR STORY</div>
+          <h2 class="caption box-hl2">Who are we?</h2>
+          <p>We’re a technology company. We take your data and strategize how to make it work for you. It’s as simple as that.</p>
+          <h2 class="caption box-hl2 margin-top">How We’re Re-Writing the Future</h2>
+          <p>Before Incite, you would have to switch careers seven times to find your calling.</p>
+          <p>Before Incite, you would have to get your heart broken twice to find true love. Today, Incite helps over 1 billion people in over 100 countries to find their path. We’re building a better world and a brighter future, one user at a time.</p>
+          <p><em>Tell us who you are. We’ll tell you who you can be.</em></p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- page -->
+    <section class="technology page">
+      <div class="wrapper">
+        <div class="headline-wrapper inner">
+          <div class="title name tag subtitle1 ">ADVANCEMENTS</div>
+          <h1 class="caption headline1 fonty">Tell us who you are.
+          We tell you who you
+          can be.</h1>
+          <div class="explore-btn" target-id="photo-technology">
+            <span class="icon-arow-down"></span><span class="exploretext fonty">Explore Rehoboam</span>
+          </div>
+        </div>
+
+        <div class="photo-wrapper" id="photo-technology" >
+          <img src="img/photo1.jpg">
+        </div>
+
+        <div id="explore-technology" class="explore inner">
+          <div class="name subtitle2 ">REHOBOAM</div>
+          <h1 class="headline2 fonty">Clarity beyond 
+          the crystal ball.</h1>
+          <div class="div-flex">
+            <p class="desc fonty">Powered by more than bytes and bits (though there are plenty of those), Incite promises just that: insight into who we are as individuals and a collective. Our groundbreaking strategy engine, Rehoboam, finally gives humanity a way to navigate through the millions of tiny decisions made throughout our lives, and to reflect on and learn from the thousands of years of recorded human history. </p>
+            <div class="spacer"></div>
+            <p class="desc fonty">Rehoboam’s spherical design is a reminder of the collective responsibility we have to each other on this planet, a commitment to strength and improvement by way of objective computation and sophisticated machine learning. Choosing Incite means paving the way to a better future, with you at the controls</p>
+          </div>
+        </div>
+
+        <div class="empty-space"></div>
+
+      </div>
+    </section>
+
+    <!-- page -->
+    <section class="transportation page" selected-gallery="1">
+      <div class="wrapper">
+        <div class="headline-wrapper inner">
+          <div class="title name tag subtitle1 ">ADVANCEMENTS</div>
+          <h1 class="caption headline1 fonty">Speed.
+          Safety.
+          Style.</h1>
+          <div class="explore-btn" target-id="photo-transportation">
+            <span class="icon-arow-down"></span><span class="exploretext fonty">Explore Transportation</span>
+          </div>
+        </div>
+
+        <div class="photo-wrapper" id="photo-transportation">
+          <img src="img/transparent.png">
+          <div class="gallery">
+            <div class="photo1"></div>
+            <div class="photo2"></div>
+            <div class="photo3"></div>
+            <div class="photo4"></div>
+          </div>
+          <div class="overlay-caption box-tag">
+            <p class="p1">&nbsp;</p>
+            <p class="p2">For mid-range trips, you can take the skies in a fully autonomous, four passanger airpod.</p>
+            <p class="p3">&nbsp;</p>
+            <p class="p4">Today’s autonomous ambulances are equipped with a full suite of AI-assisted medical equipment.</p>
+          </div>
+          <div class="icons">
+            <div class="icon-btn btn-white" target-gallery="1"><span class="icon-01"></span></div>
+            <div class="icon-btn btn-white" target-gallery="2"><span class="icon-02"></span></div>
+            <div class="icon-btn btn-white" target-gallery="3"><span class="icon-03"></span></div>
+            <div class="icon-btn btn-white" target-gallery="4"><span class="icon-04"></span></div>
+          </div>
+        </div>
+
+        <div id="explore-transportation" class="explore inner">
+          <div class="name subtitle2 ">TRANSPORTATION & VEHICLES</div>
+          <h1 class="headline2 fonty">We’ll get you where 
+          you need to go.</h1>
+          <div class="div-flex">
+            <p class="desc fonty">Live your life in motion with Incite’s fully autonomous transportation technology. Gone are the days of polluted city centers, clogged with cars but not a parking space in sight. Today, Incite offers both door-to-door and rooftop-to-rooftop service. Hail a convenient & cutting-edge multi-passenger rideshare with a simple voice command. Or take to the skies in a sleek, stylish cab from our quadcopter fleet. Incite goes beyond GPS, putting the full force of our strategy engine behind calculating your morning commute. </p>
+            <div class="spacer"></div>
+            <p class="desc fonty">When it comes to safety, Incite goes the extra mile with advanced anti-collision features and predictive event mapping. Settle into our award-winning ergonomic design and plush seating and let us do the rest—you’ll get to your destination faster than ever before, but you won’t want the journey to end.</p>
+          </div>
+        </div>
+
+        <div class="empty-space"></div>
+
+      </div>
+    </section>
+
+    <!-- page -->
+    <section class="medical page" is-audio="off">
+      <div class="wrapper">
+        <div class="headline-wrapper inner">
+          <div class="title name tag subtitle1  copy">ADVANCEMENTS</div>
+          <h1 class="caption headline1 fonty copy copy-main">Feel the way you want,
+          When you want.
+          Find the new you.</h1>
+          <h1 class="caption headline1 fonty copy copy-cozy">Feel the way you felt,
+          When you last curled up with a good book.
+          Find your comfort.</h1>
+          <h1 class="caption headline1 fonty copy copy-ocean">Feel the way you felt,
+          When you had the whole beach to yourself.
+          Find your center.</h1>
+          <h1 class="caption headline1 fonty copy copy-impulse">Feel the way you felt,
+          When you captured lightning in a bottle.
+          Find your focus.</h1>
+          <div class="explore-btn copy" target-id="explore-limbic">
+            <span class="icon-arow-down"></span><span class="exploretext fonty">Explore Limbics</span>
+          </div>
+        </div>
+
+        <div class="photo-wrapper" id="explore-limbic">
+          <div class="audio-bg">
+            <div class="audio-bg1"></div>
+            <div class="audio-bg2">
+              <video class="limbic-glitch" src="/img/limbic_impulse_bg.mp4" muted  playsinline loop preload="none"></video>
+            </div>
+            <div class="audio-bg3"></div>
+          </div>
+          <video class="medical-video" src="/img/limbic_video.mp4"  muted  playsinline  preload="none"></video>
+          <div class="icons">
+            <!-- <img src="img/icons/cycle.svg"> -->
+            <span class="icon-cycle vid-btn"></span>
+            <!-- <span class="icon-wave vid-btn"></span> -->
+            <div class="audio-btn vid-btn">
+              <span class="audio-text box-tag fonty copy">TURN AUDIO <span class="on">ON</span><span class="off">OFF</span></span>
+              <div class="wave-wrapper">
+                <svg class="wave-line" x="0px" y="0px" viewBox="0 0 92.4 11" xml:space="preserve">
+                  <path class="wave-path" d="M92.4,7c-1.1,0-2.1-0.1-2.7-0.7c-0.8-0.7-1.6-1.5-2.4-2.3c-1.2-1.3-4.1-1.6-5.3-0.2c-0.8,0.9-1.6,1.9-2.4,2.9c-1.2,1.6-4,1.9-5.3,0.2c-0.8-1.1-1.6-2.2-2.4-3.4c-0.6-1-1.6-1.5-2.6-1.6c-1-0.1-2,0.4-2.6,1.4c-0.8,1.3-1.6,2.6-2.4,4C63,9.4,60.2,9.7,59,7.5c-0.8-1.5-1.6-3-2.4-4.5c-1.2-2.4-4.1-2.7-5.3-0.2c-0.8,1.6-1.6,3.3-2.4,5.1c-0.6,1.3-1.7,2.1-2.7,2.1
+                  s-2.1-0.9-2.7-2.1c-0.8-1.8-1.6-3.4-2.4-5.1c-1.2-2.5-4.1-2.2-5.3,0.2C35,4.5,34.2,6,33.4,7.5c-1.2,2.2-4,1.9-5.3-0.2
+                  c-0.8-1.4-1.6-2.7-2.4-4c-0.6-1-1.6-1.5-2.6-1.4c-1,0.1-2,0.6-2.6,1.6c-0.8,1.2-1.6,2.3-2.4,3.4c-1.3,1.7-4.1,1.4-5.3-0.2
+                  c-0.8-1-1.6-2-2.4-2.9C9.2,2.4,6.3,2.8,5.1,4C4.3,4.9,3.5,5.6,2.7,6.3C2.1,6.9,1.1,7,0,7"></path>
+                </svg>
+                <div class="straight-line"></div>
+              </div>
+            </div>
+          </div>
+          <div class="try">
+            <div class="try-center">
+              <span class="circle-center mousy"></span>
+              <img class="plus-center" src="img/icons/plus.svg">
+            </div>
+            <div class="dial-center">
+              <div class="close-center"></div>
+              <div class="dial dial-ocean"><img src="img/icons/ocean.svg"><span class="label fonty copy">OCEAN BREEZE</span></div>
+              <div class="dial dial-thunder"><img src="img/icons/thunder.svg"><span class="label fonty copy">IMPULSE</span></div>
+              <div class="dial dial-flame"><img src="img/icons/flame.svg"><span class="label fonty copy">COZY FIREPLACE</span></div>
+            </div>
+            <div class="try-text box-tag fonty copy">TRY IT YOURSELF</div>
+          </div>
+        </div>
+
+        <div class="button-wrapper">
+          <div class="moods-button copy btn box-btn">EXPLORE LIMBIC MOODS</div>
+          <div class="moods-list">
+            <div>
+              <div><img src="img/moods/1.png"> <span class="fonty">Mellow Sunset</span></div>
+              <div><img src="img/moods/2.png"> <span class="fonty">Desert Oasis</span></div>
+              <div><img src="img/moods/3.png"> <span class="fonty">Morning Forest</span></div>
+              <div><img src="img/moods/4.png"> <span class="fonty">Zen Garden</span></div>
+              <div><img src="img/moods/5.png"> <span class="fonty">Coral Sands</span></div>
+              <div><img src="img/moods/6.png"> <span class="fonty">Still Waters</span></div>
+              <div><img src="img/moods/7.png"> <span class="fonty">Ocean Breeze</span></div>
+              <div><img src="img/moods/8.png"> <span class="fonty">Grand Canyon</span></div>
+              <div><img src="img/moods/9.png"> <span class="fonty">Mountain Air</span></div>
+              <div><img src="img/moods/10.png"> <span class="fonty">Aurora Borealis</span></div>
+              <div><img src="img/moods/11.png"> <span class="fonty">Crystal Ponds</span></div>
+              <div><img src="img/moods/12.png"> <span class="fonty">Misty Dusk</span></div>
+              <div><img src="img/moods/13.png"> <span class="fonty">Cozy Fireplace</div>
+              <div><img src="img/moods/14.png"> <span class="fonty">Snowy Woods</span></div>
+              <div><img src="img/moods/15.png"> <span class="fonty">Silent Night</span></div>
+            </div>
+            <div class="spacer"></div>
+            <div>
+              <div><img src="img/moods/16.png"> <span class="fonty">Cherry Catalyst</span></div>
+              <div><img src="img/moods/17.png"> <span class="fonty">Rasberry Resolve</span></div>
+              <div><img src="img/moods/18.png"> <span class="fonty">Citrus Compulsion</span></div>
+              <div><img src="img/moods/19.png"> <span class="fonty">Espresso Shot</span></div>
+              <div><img src="img/moods/20.png"> <span class="fonty">Impulse</span></div>
+              <div><img src="img/moods/21.png"> <span class="fonty">Agenda Achiever</span></div>
+              <div><img src="img/moods/22.png"> <span class="fonty">Passion Flower</span></div>
+              <div><img src="img/moods/23.png"> <span class="fonty">Soaring Eagle</span></div>
+            </div>
+            <div class="icon-close moods-close copy"></div>
+          </div>
+
+          
+        </div>
+
+        <div id="explore-mecical" class="explore inner">
+          <div class="name subtitle2  copy">MEDICAL ADVANCEMENTS</div>
+          <h1 class="headline2 fonty copy">Finally, you can 
+          start feeling better.</h1>
+          <div class="div-flex">
+            <div>
+              <p class="desc fonty copy">First, it was leeches and blood-letting. Then, it was pill popping and mood-stabilizing. Put away the blunt instrument and choose precision backed by insight into what makes you, you—and happy. Incite’s revolutionary tab technology taps into the olfactory nerve for direct access to your limbic system. Once placed in the mouth, these fully dissolvable limbic tabs transmit a digital code to the brain, which is immediately translated into electrical impulses. </p>
+              <p class="desc fonty copy">Safe and 100% effective, these impulses generate a precise and specifically tailored sensation without any negative side effects. All it takes is a small, painless metal implant that is carefully contoured to the roof of your mouth, which pairs instantly to Incite’s ID8 app. Each fully customizable experience goes far beyond the simple upper / downer dichotomy of the early 2000s, allowing you to leave your cares behind with a Mellow Sunset or skyrocket your work ethic with a Soaring Eagle.</p>
+            </div>
+            <div class="spacer"></div>
+            <div>
+              <img class="device" src="img/device1_v2.png">
+            </div>
+          </div>
+          <div class="explore-btn explore-it copy" target-id="explore-limbic">
+            <span class="icon-arow-up"></span><span class="exploretext fonty">Try it for yourself</span>
+          </div>
+        </div>
+
+        <div class="empty-space"></div>
+
+      </div>
+    </section>
+
+    <!-- page -->
+    <section class="virtual page" selected-gallery="5">
+      <div class="wrapper">
+        <div class="headline-wrapper inner">
+          <div class="title name tag subtitle1 ">ADVANCEMENTS</div>
+          <h1 class="caption headline1 fonty">Seamless.
+          Wireless.
+          Limitless.</h1>
+          <div class="explore-btn" target-id="photo-virtual">
+            <span class="icon-arow-down"></span><span class="exploretext fonty">Explore Personal Incite</span>
+          </div>
+        </div>
+
+        <div class="photo-wrapper" id="photo-virtual">
+          <img src="img/transparent.png">
+          <div class="gallery">
+            <div class="photo5"></div>
+          </div>
+          <div class="overlay-caption box-tag">
+            <p>On the job, XR glasses allow semi-skilled workers to become construction experts or heart surgeons, as the glasses break down complex task into clear step-by-step instructions, with no preparation necessary.</p>
+          </div>
+        </div>
+
+
+        <div id="explore-virtual" class="explore inner">
+          <div class="name subtitle2 ">VIRTUAL ASSISTANT</div>
+          <h1 class="headline2 fonty">Reality has never 
+          been more convenient.</h1>
+          <div class="div-flex">
+            <div>
+              <p class="desc fonty">Find a new way to connect to the world. Incite OS offers solutions for most products and platforms—which means your Virtual Assistant goes where you go, in style. Untether yourself from the handheld experience with our A.I.-powered operating system, expanding the communication ecosystem into one that is truly multisensory and inclusive. Multidimensional, like you. Sophisticated acoustics and full voice command control in a full suite of accessory options, from traditional standalone headphones to our fashion-forward tech ear jewelry. </p>
+              <p class="desc fonty">Designer glasses, sunglasses and contact lenses get the Incite treatment with full definition XR video overlays and motion interactivity. All you need to do is link your Incite profile and a tailored Virtual Assistant is at the ready to help guide your life, in whichever direction you choose. What you call them is up to you—we wouldn’t presume to name yours for you. </p>
+            </div>
+            <div>
+              <img class="device" src="img/device2_v3.png">
+            </div>
+          </div>
+        </div>
+
+        <div class="empty-space"></div>
+
+      </div>
+    </section>
+
+    <section class="login box-section">
+      <div class="wrapper">
+        <div class="login-box box">
+          <div class="login-first">
+            <div class="login-top">
+              <div class="label box-tag">LOGIN</div>
+              <div class="create-account box-tag mousy"><div class="a-link create-an-account">CREATE AN ACCOUNT</div></div>
+            </div>
+
+            <form>
+              <div class="input-wrapper">
+                <p class="login-p box-label">Email <small class="noemail error">(No email added)</small></p>
+                <input class="text-input s-email mousy" type="email" size="30" maxlength="100" name="email">
+                <p class="login-p box-label"><small class="emailinvalid error">Email or password was not recognized. Please try again.</small></p>
+              </div>
+              <div class="input-wrapper">
+                <p class="login-p box-label">Password</p>
+                <input class="text-input s-pass mousy" type="password" autocomplete="off" name="password">
+              </div>
+            </form>
+            <div class="login-policy box-p">
+              This page is protected by reCAPTCHA, and subject to the Incites <a href="https://www.hbo.com/privacy-policy" target="_blank">Privacy Policy</a> and <a href="https://www.hbo.com/terms-of-use" target="_blank">Terms of service</a>.
+            </div>
+
+            <div class="button-wrapper">
+              <div class="btn sign-in box-btn">SIGN IN</div>
+            </div>
+          </div>
+
+          <div class="scanning">
+            <img class="center" src="img/loading-ceter.svg">
+            <img class="circle" src="img/loading-bar.svg">
+            <p class="scan">SCANNING</p>
+            <p class="confirmed">CONFIRMED IDENTITY</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="new box-section">
+      <div class="wrapper">
+        <div class="new-box box">
+          <div class="login-first">
+            <div class="login-top">
+              <div class="label box-tag">CREATE ACCOUNT</div>
+            </div>
+
+            <div class="form-wrapper">
+              <div class="input-wrapper">
+                <p class="login-p box-label">Full Name <small class="invalidname error">(Please complete this field)</small></p>
+                <input class="text-input s-fullname mousy" type="text" size="30" maxlength="100" name="fullname">
+              </div>
+              <div class="input-wrapper">
+                <p class="login-p box-label">Birthday <small class="agebelow error">(Age must be 16 years old and above)</small></p>
+                <input id="datepicker" class="text-input s-dob mousy" type="text" size="30" maxlength="100" name="dob" autocomplete="off">
+              </div>
+              <div class="input-wrapper">
+                <p class="login-p box-label">Email <small class="invalidemail error">(No email added)</small></p>
+                <input class="text-input s-email mousy" type="email" size="30" maxlength="100" name="email">
+              </div>
+              <div class="input-wrapper">
+                <p class="login-p box-label">Password <small class="invalidpass error">(Please complete this field)</small></p>
+                <input class="text-input s-pass1 mousy" type="password" autocomplete="off" name="password">
+              </div>
+            </div>
+
+            <div class="login-policy box-p">
+              By clicking the Sign Up button you agree to Incites <a href="https://www.hbo.com/privacy-policy" target="_blank">Privacy Policy</a> and <a href="https://www.hbo.com/terms-of-use" target="_blank">Terms of service</a>.
+            </div>
+
+            <div class="button-wrapper">
+              <div class="btn sign-up box-btn">SIGN UP</div>
+            </div>
+            <div class="goto-signin box-tag">
+              ALREADY HAVE AN ACCOUNT? <div class="a-link login-here">LOGIN HERE</div>
+            </div>
+          </div>
+
+          <div class="scanning">
+            <img class="center" src="img/loading-ceter.svg">
+            <img class="circle" src="img/loading-bar.svg">
+            <p class="scan">SCANNING</p>
+            <p class="confirmed">CONFIRMED IDENTITY</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ty box-section">
+      <div class="wrapper">
+        <div class="ty-box box">
+          <div class="tag box-tag">
+            <span>MY INCITE</span>
+          </div>
+          <h1 class="headline box-hl">Thank you for taking the time to complete this survey.</h1>
+          <p class="desc">We are very appreciative of the time you have taken to assist in our analysis, and commit to utilizing the information gained to contemplate and implement worthwhile improvements.  We will share these results with you through your Incite Inc, whom we also thank for their generous participation.</p>
+          <p class="desc">&nbsp;</p>
+          <p class="desc"><em>In order to chart your path, opt in to push notifications.</em></p>
+
+          <div class="icon-close ty-close-btn"></div>
+        </div>
+        <div class="view-my-incite box-btn">VIEW MY INCITE</div>
+      </div>
+    </section>
+
+    <section class="profile box-section">
+      <div class="wrapper">
+        <div class="profile-box box">
+          <div class="left">
+            <div class="left-bg">
+              <img class="incite-img" src="img/profile_infographics/incite_path_conformist_r1.png">
+            </div>
+            <p class="left-caption box-tag">Based on your assessment, we’ve charted your individualized life path</p>
+          </div>
+          <div class="right">
+            <div class="tag box-tag">
+              <span>RESULTS</span>
+            </div>
+            <h1 class="headline box-hl">Hi <span class="user-fullename"></span>,</h1>
+            <div class="result-desc">
+              <p >Our data indicates that you don’t play by society’s rules, and are on a constant quest to set yourself apart from the herd. Your natural tendencies are particularly dangerous in today’s world, where compliance has been determined to be a critical factor to ensuring the smooth functioning of society. However, your different way of thinking and seeing can also make you a strong leader; with Incite, you can learn how putting your powers to work in service of the greated good can make you happy, healthy, and  wealthy beyond your wildest dreams.  </p>
+              <p >Limbic Pairng Recommendation: <a href="#" target="_blank">Ocean Breeze</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pathfinder box-section">
+      <div class="wrapper">
+        <div class="pathfinder-box box">
+          <img class="incite-img card-result" src="img/profile_infographics/incite_path_conformist_r1.png">
+          <div class="overlay"></div>
+
+            <div class="text-box">
+              <h1 class="box-hl2">Your path has become misaligned.</h1>
+              <p>Our algorithm indicates there has been a disruption in your life path. If you hope to improve your life path, you’re going to have to work harder and put your trust in us. We can guide you down the right path but only you have the power to take it.</p>
+              <div class="icon-close result-close-btn"></div>
+            </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="underage box-section">
+      <div class="wrapper">
+        <div class="underage-box box">
+          <p class="desc box-p">Thank you for your interest in Incite. Unfortunately, this registration 
+          is not valid due to age restrictions.</p>
+          <p class="desc box-p last">Please visit other pages of our site to learn how Incite works for you.</p>
+
+          <div class="button-wrapper">
+            <div class="btn back-to-home box-btn">BACK TO HOME</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!------------------------
+    SURVEY
+     -------------------------->
+    <section class="survey box-section">
+      <div class="wrapper">
+
+        <div class="survey-box-wrapper box">
+
+          <div class="survey-box q1 drag-type" progress="-1" score="0">
+            <div class="tag box-tag">
+              <span>MY ASSESSMENT</span>
+              <div class="counter">01/<span>13</span></div>
+            </div>
+            <div class="q-wrapper" for-q="q1">
+              <div class="question">Are you a good friend to your friends?</div>
+
+              <div class="draggable-wrapper">
+                <div class="back">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+                <div class="progress"></div>
+                <div class="knob" name="choices1"></div>
+              </div>
+
+              <div class="cb-wrapper" >
+                <label class="cb">
+                  <p class="option opt1">More than they are to me</p>
+                  <input type="radio" name="choices1">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="cb">
+                  <p class="option opt2">Yes</p>
+                  <input type="radio" name="choices1">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="cb">
+                  <p class="option opt3">Not as much as I could be</p>
+                  <input type="radio" name="choices1">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="cb">
+                  <p class="option opt4">No</p>
+                  <input type="radio" name="choices1">
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="survey-box q2" score="0">
+            <div class="tag box-tag">
+              <span>MY ASSESSMENT</span>
+              <div class="counter">02/<span>13</span></div>
+            </div>
+            <div class="q-wrapper">
+              <div class="question">Can people change?</div>
+
+              <div class="cb-wrapper" for-q="q2">
+                <label class="cb">
+                  <p class="option">Mind over matter</p>
+                  <input type="radio" name="choices2" score-value="1">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="cb">
+                  <p class="option">We are who we are</p>
+                  <input type="radio" name="choices2" score-value="2">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="cb">
+                  <p class="option">Not everyone can change</p>
+                  <input type="radio" name="choices2" score-value="3">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="cb">
+                  <p class="option">I don't know</p>
+                  <input type="radio" name="choices2" score-value="4">
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="survey-box q3" score="0">
+            <div class="tag box-tag">
+              <span>MY ASSESSMENT</span>
+              <div class="counter">03/<span>13</span></div>
+            </div>
+            <div class="q-wrapper">
+              <div class="question">I have trouble relating to other people because:</div>
+
+              <div class="cb-wrapper" for-q="q3">
+                <label class="cb">
+                  <p class="option">Of social anxiety</p>
+                  <input type="radio" name="choices3" score-value="1">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="cb">
+                  <p class="option">I don't try</p>
+                  <input type="radio" name="choices3" score-value="2">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="cb">
+                  <p class="option">I have a specific experience</p>
+                  <input type="radio" name="choices3" score-value="3">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="cb">
+                  <p class="option">I don't have trouble relating to others</p>
+                  <input type="radio" name="choices3" score-value="4">
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="survey-box q4 drag-type" progress="-1" score="0">
+            <div class="tag box-tag">
+              <span>MY ASSESSMENT</span>
+              <div class="counter">04/<span>13</span></div>
+            </div>
+            <div class="q-wrapper" for-q="q4">
+              <div class="question">Who I am online is more representative of the real me, than who I am in the outside world</div>
+
+              <div class="draggable-wrapper">
+                <div class="back">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+                <div class="progress"></div>
+                <div class="knob" name="choices4"></div>
+              </div>
+
+              <div class="cb-wrapper" >
+                <label class="cb">
+                  <p class="option opt1">Agree</p>
+                  <input type="radio" name="checked4">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="cb">
+                  <p class="option opt2">I'm the same in both</p>
+                  <input type="radio" name="checked4">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="cb">
+                  <p class="option opt3">They're different but both me</p>
+                  <input type="radio" name="checked4">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="cb">
+                  <p class="option opt4">Disagree</p>
+                  <input type="radio" name="checked4">
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="survey-box q5 drag-type" progress="-1" score="0">
+            <div class="tag box-tag">
+              <span>MY ASSESSMENT</span>
+              <div class="counter">05/<span>13</span></div>
+            </div>
+            <div class="q-wrapper" for-q="q5">
+              <div class="question">The upside of technological progress is worth the downside</div>
+
+              <div class="draggable-wrapper">
+                <div class="back">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+                <div class="progress"></div>
+                <div class="knob" name="choices5"></div>
+              </div>
+
+              <div class="cb-wrapper" >
+                <label class="cb">
+                  <p class="option opt1">No, it just adds complexity not satisfaction</p>
+                  <input type="radio" name="checked5">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="cb">
+                  <p class="option opt2">There is no downside</p>
+                  <input type="radio" name="checked5">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="cb">
+                  <p class="option opt3">Yes, but we should closely regulate</p>
+                  <input type="radio" name="checked5">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="cb">
+                  <p class="option opt4">Yes, and regulation is harmful to progress</p>
+                  <input type="radio" name="checked5">
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="survey-box q6 drag-type" progress="-1" score="0">
+            <div class="tag box-tag">
+              <span>MY ASSESSMENT</span>
+              <div class="counter">06/<span>13</span></div>
+            </div>
+            <div class="q-wrapper" for-q="q6">
+              <div class="question">I feel in control of my life</div>
+
+              <div class="draggable-wrapper">
+                <div class="back">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+                <div class="progress"></div>
+                <div class="knob" name="choices6"></div>
+              </div>
+
+              <div class="cb-wrapper" >
+                <label class="cb">
+                  <p class="option opt1">All the time</p>
+                  <input type="radio" name="choices6">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="cb">
+                  <p class="option opt2">Some of the time</p>
+                  <input type="radio" name="choices6">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="cb">
+                  <p class="option opt3">Rarely</p>
+                  <input type="radio" name="choices6">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="cb">
+                  <p class="option opt4">Never</p>
+                  <input type="radio" name="choices6">
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="survey-box q7" score="0">
+            <div class="tag box-tag">
+              <span>MY ASSESSMENT</span>
+              <div class="counter">07/<span>13</span></div>
+            </div>
+            <div class="q-wrapper">
+              <div class="question">When I see others doing well, I feel</div>
+
+              <div class="cb-wrapper" for-q="q7">
+                <label class="cb">
+                  <p class="option">Happy</p>
+                  <input type="radio" name="checked7" score-value="1">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="cb">
+                  <p class="option">Driven</p>
+                  <input type="radio" name="checked7" score-value="2">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="cb">
+                  <p class="option">Jealous</p>
+                  <input type="radio" name="checked7" score-value="3">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="cb">
+                  <p class="option">Discouraged</p>
+                  <input type="radio" name="checked7" score-value="4">
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="survey-box q8" score="0">
+            <div class="tag box-tag">
+              <span>MY ASSESSMENT</span>
+              <div class="counter">08/<span>13</span></div>
+            </div>
+            <div class="q-wrapper">
+              <div class="question">Life</div>
+
+              <div class="cb-wrapper" for-q="q8">
+                <label class="cb">
+                  <p class="option">is meaningless and that scares me</p>
+                  <input type="radio" name="checked8" score-value="1">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="cb">
+                  <p class="option">has whatever meaning you decide</p>
+                  <input type="radio" name="checked8" score-value="2">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="cb">
+                  <p class="option">has a higher purpose</p>
+                  <input type="radio" name="checked8" score-value="3">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="cb">
+                  <p class="option">is meaningful only if you have love</p>
+                  <input type="radio" name="checked8" score-value="4">
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="survey-box q9" score="0">
+            <div class="tag box-tag">
+              <span>MY ASSESSMENT</span>
+              <div class="counter">09/<span>13</span></div>
+            </div>
+            <div class="q-wrapper">
+              <div class="question">My childhood set me up for success</div>
+
+              <div class="cb-wrapper" for-q="q9">
+                <label class="cb">
+                  <p class="option">Only emotionally, not financially</p>
+                  <input type="radio" name="checked9" score-value="1">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="cb">
+                  <p class="option">Both emotionally and financially</p>
+                  <input type="radio" name="checked9" score-value="2">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="cb">
+                  <p class="option">Only financially, not emotionally</p>
+                  <input type="radio" name="checked9" score-value="3">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="cb">
+                  <p class="option">Neither financially nor emotionally </p>
+                  <input type="radio" name="checked9" score-value="4">
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="survey-box q10" score="0">
+            <div class="tag box-tag">
+              <span>MY ASSESSMENT</span>
+              <div class="counter">10/<span>13</span></div>
+            </div>
+            <div class="q-wrapper">
+              <div class="question">I have committed crimes</div>
+
+              <div class="cb-wrapper" for-q="q10">
+                <label class="cb">
+                  <p class="option">I broke rules but not my morals</p>
+                  <input type="radio" name="checked10" score-value="1">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="cb">
+                  <p class="option">I broke rules and my morals</p>
+                  <input type="radio" name="checked10" score-value="2">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="cb">
+                  <p class="option">I've never committed a crime and I won't</p>
+                  <input type="radio" name="checked10" score-value="3">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="cb">
+                  <p class="option">I've never committed a crime but I might</p>
+                  <input type="radio" name="checked10" score-value="4">
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="survey-box q11" score="0">
+            <div class="tag box-tag">
+              <span>MY ASSESSMENT</span>
+              <div class="counter">11/<span>13</span></div>
+            </div>
+            <div class="q-wrapper">
+              <div class="question">Formal education is</div>
+
+              <div class="cb-wrapper" for-q="q11">
+                <label class="cb">
+                  <p class="option">Merely a societal construct for inequality</p>
+                  <input type="radio" name="checked11" score-value="1">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="cb">
+                  <p class="option">The ladder by which all can progress</p>
+                  <input type="radio" name="checked11" score-value="2">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="cb">
+                  <p class="option">Both of these and important</p>
+                  <input type="radio" name="checked11" score-value="3">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="cb">
+                  <p class="option">Neither of these and not important</p>
+                  <input type="radio" name="checked11" score-value="4">
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="survey-box q12 drag-type" progress="-1" score="0">
+            <div class="tag box-tag">
+              <span>MY ASSESSMENT</span>
+              <div class="counter">12/<span>13</span></div>
+            </div>
+            <div class="q-wrapper" for-q="q12">
+              <div class="question">A world tailor made for me is preferable to a world made for everyone</div>
+
+              <div class="draggable-wrapper">
+                <div class="back">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+                <div class="progress"></div>
+                <div class="knob" name="choices12"></div>
+              </div>
+
+              <div class="cb-wrapper" >
+                <label class="cb">
+                  <p class="option opt1">Yes, if it doesn't harm others</p>
+                  <input type="radio" name="checked12">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="cb">
+                  <p class="option opt2">Yes, even if it harms others</p>
+                  <input type="radio" name="checked12">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="cb">
+                  <p class="option opt3">No, there is something to gain even if its noise</p>
+                  <input type="radio" name="checked12">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="cb">
+                  <p class="option opt4">No, because it's not possible</p>
+                  <input type="radio" name="checked12">
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="survey-box q13" score="0">
+            <div class="tag box-tag">
+              <span>MY ASSESSMENT</span>
+              <div class="counter">13/<span>13</span></div>
+            </div>
+            <div class="q-wrapper">
+              <div class="question">Compiling available biometric data to automate health care is a good thing</div>
+
+              <div class="cb-wrapper" for-q="q13">
+                <label class="cb">
+                  <p class="option">Yes, if makes me healthier</p>
+                  <input type="radio" name="checked13" score-value="1">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="cb">
+                  <p class="option">Yes, if it makes it more convenient</p>
+                  <input type="radio" name="checked13" score-value="2">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="cb">
+                  <p class="option">No, that is an invasion of privacy</p>
+                  <input type="radio" name="checked13" score-value="3">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="cb">
+                  <p class="option">No, that will lead to bigger problems</p>
+                  <input type="radio" name="checked13" score-value="4">
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="prev-next">
+          <div class="survey-prev survey-btn icon-btn">
+            <span class="icon-prev-arrow"></span>
+          </div>
+          <div class="survey-next survey-btn icon-btn">
+            <span class="icon-next-arrow"></span>
+          </div>
+        </div>
+
+        <div class="s-submit box-btn">SUBMIT</div>
+
+      </div> <!-- end survey inner wrapper -->
+    </section> <!-- end survey section -->
+
+
+    <div class="spinner">
+      <img class="center" src="img/loading-ceter.svg">
+      <img class="circle" src="img/loading-bar.svg">
+    </div>
+
+    <div class="footer">
+      <div class="copyright">
+        <div class="push-note fonty copy">Enable <a href="https://support.google.com/chrome/answer/3220216?co=GENIE.Platform%3DDesktop&hl=en" target="_blank">Google Chrome</a> & <a href="https://support.mozilla.org/en-US/kb/push-notifications-firefox" target="_blank">Mozilla Firefox</a> push notifications</div>
+        <div class="all-rights fonty copy">© 2058 INCITE INC. All rights reserved.</div>
+        <div class="privacy fonty copy"></div>
+      </div>
+    </div>
+
+
+    <div class="blocker"></div>
+  </div> <!-- end .main-wrapper -->
+
+<script type="text/javascript">var submitted=false;</script>
+<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted)  {console.log('THE REDIRECT LINK HERE');}"></iframe>
+
+<form class="main-survey-form" action="https://data-stg.inciteinc.com/create-entry" method="post" target="hidden_iframe"
+onsubmit="submitted=true;">
+    <label>email</label>
+    <input id="email" name="email" type="email" jsname="YPqjbf" autocomplete="off" />
+    <br>
+    <label>fullname</label>
+    <input id="fullname" name="name" jsname="YPqjbf" value="" autocomplete="off" />
+    <br>
+    <label>token</label>
+    <input id="token" name="token" jsname="YPqjbf" value="" autocomplete="off" />
+    <br>
+    <label>score</label>
+    <input id="score" name="score" jsname="YPqjbf" value="0" autocomplete="off" />
+    <br>
+    <label>dob</label>
+    <input id="dob" name="dob" jsname="YPqjbf" value="" autocomplete="off" />
+    <br>
+    <label>q1</label>
+    <input id="q1" name="answers[]" jsname="YPqjbf" value="" autocomplete="off" />
+    <br>
+    <label>q2</label>
+    <input id="q2" name="answers[]" jsname="YPqjbf" value="" autocomplete="off" />
+    <br>
+    <label>q3</label>
+    <input id="q3" name="answers[]" jsname="YPqjbf" value="" autocomplete="off" />
+    <br>
+    <label>q4</label>
+    <input id="q4" name="answers[]" jsname="YPqjbf" value="" autocomplete="off" />
+    <br>
+    <label>q5</label>
+    <input id="q5" name="answers[]" jsname="YPqjbf" value="" autocomplete="off" />
+    <br>
+    <label>q6</label>
+    <input id="q6" name="answers[]" jsname="YPqjbf" value="" autocomplete="off" />
+    <br>
+    <label>q7</label>
+    <input id="q7" name="answers[]" jsname="YPqjbf" value="" autocomplete="off" />
+    <br>
+    <label>q8</label>
+    <input id="q8" name="answers[]" jsname="YPqjbf" value="" autocomplete="off" />
+    <br>
+    <label>q9</label>
+    <input id="q9" name="answers[]" jsname="YPqjbf" value="" autocomplete="off" />
+    <br>
+    <label>q10</label>
+    <input id="q10" name="answers[]" jsname="YPqjbf" value="" autocomplete="off" />
+    <br>
+    <label>q11</label>
+    <input id="q11" name="answers[]" jsname="YPqjbf" value="" autocomplete="off" />
+    <br>
+    <label>q12</label>
+    <input id="q12" name="answers[]" jsname="YPqjbf" value="" autocomplete="off" />
+    <br>
+    <label>q13</label>
+    <input id="q13" name="answers[]" jsname="YPqjbf" value="" autocomplete="off" />
+    <br>
+    <input id="main-submit" type="submit" value="Send" />
+
+</form>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-156391106-1"></script>
+<script>
+ window.dataLayer = window.dataLayer || [];
+ function gtag(){dataLayer.push(arguments);}
+ gtag('js', new Date());
+ gtag('config', 'UA-156391106-1');
+</script>
+
+<script type="text/javascript">
+  window.showOt = function() {
+    document.querySelector('#onetrust-consent-sdk').className = 'show';
+    $('.pc-close-btn-container, .button-group').on('click', function() {
+      document.querySelector('#onetrust-consent-sdk').className = '';
+    });
+  };
+  function footerLink() {
+    var privacyLink = '<a href="https://www.hbo.com/privacy-policy" target="_blank">Privacy Policy</a><a href="https://www.hbo.com/terms-of-use" target="_blank">Terms of Use</a>';
+    var linkHtml;
+    if (WM.UserConsent.isInGdprRegion()){
+        linkHtml = '<a class="ot-sdk-show-settings onclick="window.showOt()"">Cookie Preferences</a>';
+    } else {
+        linkHtml = '<a class="ot-sdk-show-settings" onclick="window.showOt()">Do Not Sell My Personal Information</a>';
+    }
+    $('.privacy').append(privacyLink + linkHtml);
+  }
+  window.onload = function() {
+    footerLink();
+  }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+<!-- Firebase libs -->
+<script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-messaging.js"></script>
+<script src="js/firebase-init.js"></script>
+
+<script src="js/particles.js"></script>
+<script src="js/Draggable.js"></script>
+<script src="js/tweenmax.js"></script>
+<script src="js/jsweather.js"></script>
+<script src="main.js"></script>
+<script defer src="js/firebase-webpush.js"></script>
+
+</body>
+</html>

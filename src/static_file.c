@@ -7,13 +7,14 @@
 #include "html_generator.h"
 #include "cache.h"
 
-#define NB_HANDLERS 4
+#define NB_HANDLERS 5
 
 int (*handlers[NB_HANDLERS]) (const char *ext, response_t *response, const char *path, int size, lru_cache_t *cache) = { 
-                                                        handle_text_file, 
+                                                        handle_text_file,
+                                                        handle_css_file,
                                                         handle_json_file, 
                                                         handle_png_file, 
-                                                        handle_jpeg_file 
+                                                        handle_jpeg_file
                                                         };
 
 void serve_static_file(request_t *request, connection_instance_t *connection, configuration_t *config)
@@ -140,6 +141,22 @@ int handle_text_file(const char* extension, response_t *response, const char *pa
         return -1;
     
     char *content_type = "text/html\0";
+    read_text_file(path, &response->body, &size, cache);
+
+    response->header.content_type = malloc(strlen(content_type));
+    strcpy(response->header.content_type, content_type);
+    response->header.content_length = size;
+
+    return 0;
+}
+
+int handle_css_file(const char* extension, response_t *response, const char *path, int size, lru_cache_t *cache)
+{
+    if (strcmp(extension, "css") != 0 
+        && strcmp(extension, "CSS") != 0)
+        return -1;
+    
+    char *content_type = "text/css\0";
     read_text_file(path, &response->body, &size, cache);
 
     response->header.content_type = malloc(strlen(content_type));

@@ -110,7 +110,7 @@ void handle_connection(int id, int server_fd, configuration_t *config)
                 epoll_instance->worker_id = id;
 
                 log_trace("Input \n%s", buffer);
-                if(strlen(buffer) != 0){
+                if (strlen(buffer) != 0){
                   handle_request(buffer, epoll_instance, config);
                 }
 
