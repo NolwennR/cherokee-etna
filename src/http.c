@@ -27,6 +27,8 @@ void init_header(response_header_t* header){
 void handle_request(char *data, connection_instance_t *connection, configuration_t *config)
 {
     request_t *request = malloc(sizeof(request_t));
+    log_trace("request address: %p", request);
+
 
     if (request == NULL) {
         log_error("Worker %d in malloc request", connection->worker_id);
@@ -49,39 +51,36 @@ void handle_method(request_t *request, connection_instance_t *connection, config
     return;
   }
 
-  char* url = malloc(strlen(request->url));
-  strcpy(url, request->url);
-  remove_argument(&url);
-
+  remove_argument(&request->url);
   init_header(&(response->header));
   response->body = NULL;
   
   switch (request->method)
   {
       case GET: {
-          if(strcmp(config->get_conf.url, url) == 0)
+          if(strcmp(config->get_conf.url, request->url) == 0)
             handle_py_call(response, connection, &config->get_conf);
           else 
             get_on_url(request, connection, response, config);
           break;
       }
       case POST: {
-          if(strcmp(config->get_conf.url, url) == 0)
+          if(strcmp(config->get_conf.url, request->url) == 0)
             handle_py_call(response, connection, &config->post_conf);
           break;
       }
       case PUT: {
-          if(strcmp(config->get_conf.url, url) == 0)
+          if(strcmp(config->get_conf.url, request->url) == 0)
             handle_py_call(response, connection, &config->put_conf);
           break;
       }
       case DELETE: {
-          if(strcmp(config->get_conf.url, url) == 0)
+          if(strcmp(config->get_conf.url, request->url) == 0)
             handle_py_call(response, connection, &(config->delete_conf));
           break;
       }
       case HEAD: {
-          if(strcmp(config->get_conf.url, url) == 0)
+          if(strcmp(config->get_conf.url, request->url) == 0)
             handle_py_call(response, connection, &config->head_conf);
           break;
       }
@@ -95,7 +94,6 @@ void handle_method(request_t *request, connection_instance_t *connection, config
 
 void get_on_url(request_t *request, connection_instance_t *connection, response_t *response, configuration_t* config)
 {
-  remove_argument(&request->url);
   serve_static_file(request, connection, response, config);  
 }
 
@@ -114,6 +112,8 @@ void free_request(request_t *request)
 {
     free(request->url);
     free(request->body);
+    log_trace("request address before free: %p", request);
+
     free(request);
 }
 

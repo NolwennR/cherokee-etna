@@ -38,7 +38,7 @@ void serve_static_file(request_t *request, connection_instance_t *connection, re
     strcpy(path, dir);
     strcat(path, request->url);
 
-    check_index_exists(&path);
+    // check_index_exists(&path);
 
     struct stat status;
     int error = stat(path, &status);
@@ -64,6 +64,7 @@ void serve_static_file(request_t *request, connection_instance_t *connection, re
     {
         /* it's a dir */    
         log_info("it's a dir");
+        log_trace("list directory");
         list_dir(path, request->url, &response->body);
         char *content_type = "text/html";
         response->header.content_type = malloc(strlen(content_type));

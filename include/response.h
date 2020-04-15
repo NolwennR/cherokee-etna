@@ -2,6 +2,8 @@
 #define RESPONSE_H
 
 #include <stdlib.h>
+#include <string.h>
+
 #include "http.h"
 
 void ok(response_t *response, connection_instance_t *connection);

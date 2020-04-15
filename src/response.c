@@ -36,8 +36,8 @@ void not_found(response_t *response, connection_instance_t *connection)
 {
     log_trace("Worker %d send NOT_FOUND", connection->worker_id);
 
-    const char* body_content = "Ressource not found\0";
-    response->body = malloc(strlen(body_content));
+    const char* body_content = "\"response\": \"Ressource not found\"\0";
+    response->body = strdup(body_content);
 
     if (!(response->body))
     {
@@ -46,7 +46,6 @@ void not_found(response_t *response, connection_instance_t *connection)
         return;
     }
 
-    strcpy(response->body, body_content);
     response_header_t header = {
         .status = NOT_FOUND,
         .content_type = APPLICATION_JSON,
@@ -64,9 +63,8 @@ void internal_server_error(response_t *response, connection_instance_t *connecti
 {
     log_trace("Worker %d send SERVER ERROR", connection->worker_id);
 
-    const char* body_content = "Internal server error !\0";
-    response->body = malloc(strlen(body_content));
-    strcpy(response->body, body_content);
+    const char* body_content = "{ \"response\": \"Internal server error !\" }\0";
+    response->body = strdup(body_content);
 
     response_header_t header = {
         .status = SERVER_ERROR,
@@ -84,8 +82,8 @@ void bad_request(response_t *response, connection_instance_t *connection)
 {
     log_trace("Worker %d send Bad Request", connection->worker_id);
 
-    const char* body_content = "Bad Request\0";
-    response->body = malloc(strlen(body_content));
+    const char* body_content = "{ \"response\": \"Bad Request\"\0";
+    response->body = malloc(strlen(body_content + 1));
 
     if (!(response->body))
     {
@@ -113,7 +111,7 @@ void not_implemented(response_t *response, connection_instance_t *connection)
     log_trace("Worker %d send NOT_FOUND", connection->worker_id);
 
     const char* body_content = "Not Implemented\0";
-    response->body = malloc(strlen(body_content));
+    response->body = malloc(strlen(body_content + 1));
 
     if (!(response->body))
     {
@@ -156,7 +154,9 @@ void send_response(response_t *response, connection_instance_t *connection)
 
 void free_response(response_t *response)
 {
+    log_trace("free response body");
     free(response->body);
+    log_trace("free response");
     free(response);
 }
 
