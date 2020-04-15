@@ -64,7 +64,10 @@ void internal_server_error(response_t *response, connection_instance_t *connecti
 {
     log_trace("Worker %d send SERVER ERROR", connection->worker_id);
 
-    response->body = "Internal server error !\0";
+    const char* body_content = "Internal server error !\0";
+    response->body = malloc(strlen(body_content));
+    strcpy(response->body, body_content);
+
     response_header_t header = {
         .status = SERVER_ERROR,
         .content_type = APPLICATION_JSON,

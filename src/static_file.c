@@ -38,6 +38,8 @@ void serve_static_file(request_t *request, connection_instance_t *connection, re
     strcpy(path, dir);
     strcat(path, request->url);
 
+    check_index_exists(&path);
+
     struct stat status;
     int error = stat(path, &status);
 
@@ -270,3 +272,40 @@ void read_image_file(const char *fileName, char **body, int *size, lru_cache_t *
     cache_put(cache, fileName, *body, size);
 }
 
+int check_index_exists(char **path)
+{
+    int success;
+    int path_length;
+    char *index;
+    char *index_path;
+
+    success = -1;
+    path_length = strlen(*path);
+    index_path = malloc(path_length + 12);
+
+    if (index_path[path_length] == '/') {
+        index = "index.html\0";
+    }
+    else {
+        index = "/index.html\0";
+    }
+
+    strcpy(index_path, *path);
+    strcat(index_path, index);
+
+    struct stat status;
+    stat(index_path, &status);
+
+    if (S_ISREG(status.st_mode)) {
+        success = 0;
+    }
+    if (success == 0) {
+        free(*path);
+        *path = index_path;
+    } else
+    {
+        free(index_path);
+    }
+
+    return success;
+}
