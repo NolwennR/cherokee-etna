@@ -16,9 +16,10 @@ int (*handlers[NB_HANDLERS]) (const char *ext, response_t *response, const char 
                                                         handle_jpeg_file 
                                                         };
 
-void serve_static_file(request_t *request, connection_instance_t *connection, configuration_t *config)
+void serve_static_file(request_t *request, connection_instance_t *connection, response_t* response)
 {
     lru_cache_t *cache;
+    configuration_t* config = get_configuration();
     log_trace("URL: %s", request->url);
     char *path;
     char dir[strlen(config->static_file_folder)];// = config->static_file_folder;//"/home/nolwenn/Documents/etna/master2/idv/aql5/group-763730/files\0";
@@ -26,16 +27,6 @@ void serve_static_file(request_t *request, connection_instance_t *connection, co
     cache = config->cache;
 
     strcpy(dir, config->static_file_folder);
-
-    response_t *response = malloc(sizeof(response_t));
-    init_header(&(response->header));
-    response->body = NULL;
-
-    if (!response)
-    {
-        log_error("malloc() response_t failed in static file response for worker %d", connection->worker_id);
-        return;
-    }
 
     path = malloc(strlen(request->url) + strlen(dir));
     if (!path)

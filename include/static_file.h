@@ -11,7 +11,7 @@
 
 #include "http.h"
 
-void serve_static_file(request_t *request, connection_instance_t *connection, configuration_t *config);
+void serve_static_file(request_t *request, connection_instance_t *connection, response_t *response);
 const char *get_filename_ext(const char *filename);
 void read_text_file(const char *fileName, char **body, int *size, lru_cache_t *cache);
 void read_image_file(const char *fileName, char **body, int *size, lru_cache_t *cache);

@@ -5,6 +5,7 @@
 #include "static_file.h"
 #include "server.h"
 #include "crud.h"
+#include "response.h"
 
 const char *http_method_array[] = {
   "GET",
@@ -41,34 +42,69 @@ void handle_request(char *data, connection_instance_t *connection, configuration
 
 void handle_method(request_t *request, connection_instance_t *connection, configuration_t *config)
 {
-    switch (request->method)
-    {
-        case GET:
-            get_on_url(request, connection, config);
-            break;
-        case POST:
-            // test_call_py();
-            break;
-        case PUT:
-            // put_on_url(request, connection, config);
-            break;
-        case DELETE:
-            // delete_on_url(request, connection, config);
-            break;
-        case HEAD:
-            // head_on_url(request, connection, config);
-            break;
-        case UNSUPORTED:
-            break;
-        default:
-            break;
-    }
+  response_t *response = malloc(sizeof(response_t));
+
+  if (!response) {
+    log_error("malloc() response_t failed in static file response for worker %d", connection->worker_id);
+    return;
+  }
+
+  char* url = malloc(strlen(request->url));
+  strcpy(url, request->url);
+  remove_argument(&url);
+
+  init_header(&(response->header));
+  response->body = NULL;
+  
+  switch (request->method)
+  {
+      case GET: {
+          if(strcmp(config->get_conf.url, url) == 0)
+            handle_py_call(response, connection, &config->get_conf);
+          else 
+            get_on_url(request, connection, response);
+          break;
+      }
+      case POST: {
+          if(strcmp(config->get_conf.url, url) == 0)
+            handle_py_call(response, connection, &config->post_conf);
+          // else 
+          //   post_on_url(request, connection, response);
+          break;
+      }
+      case PUT: {
+          if(strcmp(config->get_conf.url, url) == 0)
+            handle_py_call(response, connection, &config->put_conf);
+          // else 
+          //   put_on_url(request, connection, response);
+          break;
+      }
+      case DELETE: {
+          if(strcmp(config->get_conf.url, url) == 0)
+            handle_py_call(response, connection, &(config->delete_conf));
+          // else 
+          //   delete_on_url(request, connection, response);
+          break;
+      }
+      case HEAD: {
+          if(strcmp(config->get_conf.url, url) == 0)
+            handle_py_call(response, connection, &config->head_conf);
+          // else 
+          //   head_on_url(request, connection, response);
+          break;
+      }
+      case UNSUPORTED:
+          break;
+      default:
+          break;
+  }
+
 }
 
-void get_on_url(request_t *request, connection_instance_t *connection, configuration_t *config)
+void get_on_url(request_t *request, connection_instance_t *connection, response_t *response)
 {
-    remove_argument(&request->url);
-    serve_static_file(request, connection, config);
+  remove_argument(&request->url);
+  serve_static_file(request, connection, response);  
 }
 
 // void post_on_url(request_t *request, connection_instance_t *connection, configuration_t *config)

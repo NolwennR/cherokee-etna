@@ -9,6 +9,7 @@
 #include <string.h>
 #include <sys/wait.h>
 #include "server.h"
+#include "config.h"
 
 int run_server(configuration_t *config);
 

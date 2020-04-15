@@ -1,38 +1,57 @@
 #include "crud.h"
 
-
-void test_call_py()
+return_value_t* call_py_function(method_conf_t* method_conf)
 {
-    PyObject *pName, *pModule, *pDict, *pFunc;
+    configuration_t* config = get_configuration();
+    PyObject *pModule, *pDict, *pFunc;
+    return_value_t *return_value = NULL;
 
-    // Initialize the Python Interpreter
     Py_Initialize();
 
-    // Build the name object
-    pName = PyUnicode_FromString("py_function");
+    PySys_SetPath(Py_DecodeLocale(config->python_folder, NULL));
 
-    // Load the module object
-    pModule = PyImport_Import(pName);
+    pModule = PyImport_ImportModule(method_conf->file_name);
 
-    // pDict is a borrowed reference 
+    if(pModule == NULL){
+        PyErr_Print();
+    }
+
     pDict = PyModule_GetDict(pModule);
-
-    // pFunc is also a borrowed reference 
-    pFunc = PyDict_GetItemString(pDict, "multiply");
+    pFunc = PyDict_GetItemString(pDict, method_conf->function_name);
 
     if (PyCallable_Check(pFunc)) 
     {
-        PyObject_CallObject(pFunc, NULL);
-    } else 
-    {
+        return_value = malloc(sizeof(return_value_t));
+
+        PyObject* values = PyObject_CallObject(pFunc, NULL);
+        return_value->code = PyLong_AsLong(PyList_GetItem(values, 0));
+        return_value->body = PyUnicode_AsUTF8(PyList_GetItem(values, 1));
+
+    } else {
         PyErr_Print();
     }
 
     // Clean up
     Py_DECREF(pModule);
-    Py_DECREF(pName);
 
     // Finish the Python Interpreter
     Py_Finalize();
 
+    return return_value;
+}
+
+void handle_py_call(response_t* response, connection_instance_t* connection, method_conf_t* method_conf) {
+  return_value_t *return_value = call_py_function(method_conf);
+
+  if (return_value != NULL) {
+    if(return_value->code == 200) {
+      response->body = malloc(strlen(return_value->body)); 
+      strcpy(response->body, return_value->body);
+      ok(response, connection);
+    }
+
+    free(return_value);
+  } else if (return_value->code == 200) {
+    internal_server_error(response, connection);
+  }
 }

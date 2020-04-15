@@ -11,6 +11,7 @@
 #include <fcntl.h>
 #include <stdlib.h>
 #include "server.h"
+#include "config.h"
 
 #define MAX_EVENTS 1000
 
