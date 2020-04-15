@@ -8,6 +8,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include "server.h"
+#include "config.h"
+
 
 #define SERVER_NAME "cherokee\0"
 #define APPLICATION_JSON "application/json\0"
@@ -81,11 +83,6 @@ void free_request(request_t *request);
 void handle_method(request_t *request, connection_instance_t *connection, configuration_t *config);
 void remove_argument(char **path);
 
-void get_on_url(request_t *request, connection_instance_t *connection, configuration_t *config);
-void post_on_url(request_t *request, connection_instance_t *connection, configuration_t *config);
-void put_on_url(request_t *request, connection_instance_t *connection, configuration_t *config);
-void delete_on_url(request_t *request, connection_instance_t *connection, configuration_t *config);
-void head_on_url(request_t *request, connection_instance_t *connection, configuration_t *config);
-
+void get_on_url(request_t *request, connection_instance_t *connection, response_t *reponse, configuration_t* config);
 
 #endif

@@ -17,7 +17,7 @@ int (*handlers[NB_HANDLERS]) (const char *ext, response_t *response, const char 
                                                         handle_jpeg_file
                                                         };
 
-void serve_static_file(request_t *request, connection_instance_t *connection, configuration_t *config)
+void serve_static_file(request_t *request, connection_instance_t *connection, response_t* response, configuration_t* config)
 {
     lru_cache_t *cache;
     log_trace("URL: %s", request->url);
@@ -27,16 +27,6 @@ void serve_static_file(request_t *request, connection_instance_t *connection, co
     cache = config->cache;
 
     strcpy(dir, config->static_file_folder);
-
-    response_t *response = malloc(sizeof(response_t));
-    init_header(&(response->header));
-    response->body = NULL;
-
-    if (!response)
-    {
-        log_error("malloc() response_t failed in static file response for worker %d", connection->worker_id);
-        return;
-    }
 
     path = malloc(strlen(request->url) + strlen(dir));
     if (!path)

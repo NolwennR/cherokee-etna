@@ -57,7 +57,7 @@ int run_server(configuration_t *config)
 
     /* Set the listen back log (5 connections queued) */
     log_info("Creating listener on port %d...", config->port);
-    log_info("Take a look at http://%d:%d...", addr.sin_addr.s_addr, config->port);
+    log_info("Take a look at http://localhost:%d", config->port);
 
     result = listen(listen_fd, 5);
     if (result < 0)

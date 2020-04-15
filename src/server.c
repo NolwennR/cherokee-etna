@@ -3,26 +3,19 @@
 #include "banner.h"
 #include "log/log.h"
 #include "inih/ini.h"
+#include "config.h"
 
 int main (int argc, char **argv)
 {
     int         exit_status;
-    configuration_t *config;
+
+    init_configuration();
+    
+    configuration_t *config = get_configuration();
 
     exit_status   = 0;
 
     write_banner();
-
-    config = malloc(sizeof(configuration_t));
-    if (!config){
-        log_error("malloc failed for config");
-        return 1;
-    }
-
-    if (ini_parse("config.ini", handler, config) < 0) {
-        log_fatal("Can't load 'config.ini'\n");
-        return 1;
-    }
 
     log_info("Config loaded from 'config.ini': port=%d, workers=%d, log_level=%d, static file folder=%s\n",
         config->port, config->workers, config->log_level, config->static_file_folder);
@@ -51,33 +44,4 @@ void parse_argument(int argc, char *argv[], configuration_t *config) {
         config->workers = atoi(argv[1]);
     if (argc >= 3)
         config->port = atoi(argv[2]);
-}
-
-int handler(void* user, const char* section, const char* name, const char* value)
-{
-    configuration_t* pconfig = (configuration_t*)user;
-
-    #define MATCH(s, n) strcmp(section, s) == 0 && strcmp(name, n) == 0
-    if (MATCH("global", "port")) {
-        pconfig->port = atoi(value);
-    } else if (MATCH("global", "workers")) {
-        pconfig->workers = atoi(value);
-    } else if (MATCH("global", "log_level")) {
-        pconfig->log_level = atoi(value);
-    } else if (MATCH("global", "python_file")) {
-        pconfig->python_file = strdup(value);
-    } else if (MATCH("global", "static_file_folder")) {
-        pconfig->static_file_folder = strdup(value);
-    } else if (MATCH("get", "url")) {
-        pconfig->get_conf.url = strdup(value);
-    } else if (MATCH("get", "function_name")) {
-        pconfig->get_conf.function_name = strdup(value);
-    } else if (MATCH("post", "url")) {
-        pconfig->post_conf.url = strdup(value);
-    } else if (MATCH("post", "function_name")) {
-        pconfig->post_conf.function_name = strdup(value);
-    } else {
-        return 0;  /* unknown section/name, error */
-    }
-    return 1;
 }

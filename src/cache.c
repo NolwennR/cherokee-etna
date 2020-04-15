@@ -72,6 +72,7 @@ lru_node_t *create_node(char *content, const char *file_name, int *content_lengt
 /* needs content length as we can deal with images (bytes) and can't use strlen */
 int cache_get(lru_cache_t *cache, const char *file_name, char **content) 
 {
+    log_debug("try get into cache");
     int hit;
     
     hit = -1;
@@ -133,6 +134,8 @@ void set_entry_to_top_node(lru_cache_t *cache, lru_node_t *node)
 
 void cache_put(lru_cache_t *cache, const char *file_name, char *content, int *content_length)
 {
+    log_debug("try put into cache");
+
     if (cache_is_full(cache)) { 
         /* remove last item (rear) from hash and list */
         for (size_t i = 0; i < cache->hash->capacity; i++)
