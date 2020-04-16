@@ -1,11 +1,5 @@
 #include <html_generator.h>
 
-static void freeLinks(char** links, int size){
-  for(int i = 0; i < size; i++){
-    free(links[i]);
-  }
-}
-
 static char* generateLink(char* path, struct dirent* dir) {
   size_t length;
   char *link = NULL;
@@ -22,11 +16,9 @@ static char* generateLink(char* path, struct dirent* dir) {
 
   length = snprintf(NULL, 0, pattern, path, dir->d_name, dir->d_name);
 
-  link = malloc(sizeof(char) * length + 1);
+  link = malloc(length);
   
   sprintf(link, pattern, path, dir->d_name, dir->d_name);
-
-  link[length] = 0;
 
   return link;
 }
@@ -71,9 +63,9 @@ char* generateDirListing(char* path, dir_list_t* list){
     length = header_length;
 
     size_t body_length = length + footer_length + linksSize;
-    body = malloc(sizeof(char) * body_length + 1);
+    body = malloc(body_length);
   
-    strncpy(body, html_header, header_length);
+    strncpy(body, html_header, length);
 
     while((link = links[linkIndex++]) != NULL) {
       size_t name_length = strlen(link);
@@ -87,9 +79,7 @@ char* generateDirListing(char* path, dir_list_t* list){
     length += footer_length;
 
     body[length] = 0;
-
-    freeLinks(links, list->size);
-
+    
     return body;
   }
 

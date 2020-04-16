@@ -2,6 +2,15 @@
 #include "http.h"
 #include "log/log.h"
 
+char *format_response_to_string(response_t response)
+{
+    log_trace("reponse status %d", response.header.status);
+    char *content;
+    content =  "HTTP/1.1 200 OK\nContent-Type: text/plain\nContent-Length: 12\n\nHello world";
+
+    return content;
+}
+
 int format_response(response_t *response, char **formatted_response)
 {
     int size;
@@ -10,7 +19,7 @@ int format_response(response_t *response, char **formatted_response)
     char *server_header;
     char *content_type_header;
     char *content_length_header;
-    char *body_separator = "\r\n";
+    char *body_separator = "\r\n\0";
     size = 0;
 
     size = strlen(body_separator);
@@ -36,7 +45,7 @@ int format_response(response_t *response, char **formatted_response)
         size += strlen(content_length_header);
     }
 
-    *formatted_response = malloc(size * sizeof(char) + 1);
+    *formatted_response = malloc(size);
 
     strcpy(*formatted_response, status_line);
     strcat(*formatted_response, date_header);
@@ -90,7 +99,7 @@ void add_status_line(status_code status,char **status_line)
     sprintf(status_str, "%d", status);
     status_str[9] = '\0';
 
-    *status_line = malloc(sizeof(char) * (strlen(http_version) + strlen(reason_phrase) + strlen(status_str) + 1));
+    *status_line = malloc(strlen(http_version) + strlen(reason_phrase) + strlen(status_str) + 1);
 
     strcpy(*status_line, http_version);
     strcat(*status_line, status_str);
@@ -101,7 +110,7 @@ void add_date_header(char *date, char **date_header)
 {
     char *prop = "Date: ";
 
-    *date_header = malloc(sizeof(char) * (strlen(prop) + strlen(date) + strlen("\n\0") + 1));
+    *date_header = malloc(strlen(prop) + strlen(date) + strlen("\n\0") + 1);
     strcpy(*date_header, prop);
     strcat(*date_header, date);
     strcat(*date_header, "\n");
@@ -111,7 +120,7 @@ void add_server_header(char *server, char **server_header)
 {
     char *prop = "Server: ";
     
-    *server_header = malloc(sizeof(char) * (strlen(prop) + strlen(server) + strlen("\n\0") + 1));
+    *server_header = malloc(strlen(prop) + strlen(server) + strlen("\n\0") + 1);
     strcpy(*server_header, prop);
     strcat(*server_header, server);
     strcat(*server_header, "\n");
@@ -121,7 +130,7 @@ void add_content_type_header(char *content_type, char **content_type_header)
 {
     char *prop = "Content-type: ";
 
-    *content_type_header = malloc(sizeof(char) * (strlen(prop) + strlen(content_type) + strlen("\n\0") + 1));
+    *content_type_header = malloc(strlen(prop) + strlen(content_type) + strlen("\n\0") + 1);
     strcpy(*content_type_header, prop);
     strcat(*content_type_header, content_type);
     strcat(*content_type_header, "\n");

@@ -36,7 +36,8 @@ void not_found(response_t *response, connection_instance_t *connection)
 {
     log_trace("Worker %d send NOT_FOUND", connection->worker_id);
 
-    response->body = strdup("{\"response\": \"Ressource not found\"}");
+    const char* body_content = "\"response\": \"Ressource not found\"\0";
+    response->body = strdup(body_content);
 
     if (!(response->body))
     {
@@ -45,13 +46,14 @@ void not_found(response_t *response, connection_instance_t *connection)
         return;
     }
 
-    response->header = (response_header_t) {
+    response_header_t header = {
         .status = NOT_FOUND,
         .content_type = APPLICATION_JSON,
         .server = SERVER_NAME,
         .content_length = strlen(response->body),
     };
 
+    response->header = header;
     log_trace("Worker \"%s\" response body", response->body);
 
     send_response(response, connection);
@@ -61,14 +63,17 @@ void internal_server_error(response_t *response, connection_instance_t *connecti
 {
     log_trace("Worker %d send SERVER ERROR", connection->worker_id);
 
-    response->body = strdup("{ \"response\": \"Internal server error !\" }");
+    const char* body_content = "{ \"response\": \"Internal server error !\" }\0";
+    response->body = strdup(body_content);
 
-    response->header = (response_header_t) {
+    response_header_t header = {
         .status = SERVER_ERROR,
         .content_type = APPLICATION_JSON,
         .server = SERVER_NAME,
         .content_length = strlen(response->body),
     };
+
+    response->header = header;
 
     send_response(response, connection);
 }
@@ -77,7 +82,8 @@ void bad_request(response_t *response, connection_instance_t *connection)
 {
     log_trace("Worker %d send Bad Request", connection->worker_id);
 
-    response->body = strdup("{ \"response\": \"Bad Request\" }");
+    const char* body_content = "{ \"response\": \"Bad Request\"\0";
+    response->body = malloc(strlen(body_content + 1));
 
     if (!(response->body))
     {
@@ -86,12 +92,15 @@ void bad_request(response_t *response, connection_instance_t *connection)
         return;
     }
 
-    response->header = (response_header_t) {
+    strcpy(response->body, body_content);
+    response_header_t header = {
         .status = BAD_REQUEST,
         .content_type = APPLICATION_JSON,
         .server = SERVER_NAME,
         .content_length = strlen(response->body),
     };
+
+    response->header = header;
     log_trace("Worker \"%s\" response body", response->body);
 
     send_response(response, connection);
@@ -101,7 +110,8 @@ void not_implemented(response_t *response, connection_instance_t *connection)
 {
     log_trace("Worker %d send NOT_FOUND", connection->worker_id);
 
-    response->body = strdup("Not Implemented");
+    const char* body_content = "Not Implemented\0";
+    response->body = malloc(strlen(body_content + 1));
 
     if (!(response->body))
     {
@@ -109,13 +119,16 @@ void not_implemented(response_t *response, connection_instance_t *connection)
         free_response(response);
         return;
     }
-    response->header = (response_header_t) {
+
+    strcpy(response->body, body_content);
+    response_header_t header = {
         .status = NOT_IMPLEMENTED,
         .content_type = APPLICATION_JSON,
         .server = SERVER_NAME,
         .content_length = strlen(response->body),
     };
 
+    response->header = header;
     log_trace("Worker \"%s\" response body", response->body);
 
     send_response(response, connection);
@@ -164,7 +177,7 @@ int set_current_time(response_header_t *header)
 
     strftime(buf, 300, "%d/%m/%Y", ptm);
 
-    header->date = malloc(sizeof(char) * (sizeof(buf) + 1));
+    header->date = malloc(sizeof(buf + 1));
     strcpy(header->date, buf);
 
     return 0;

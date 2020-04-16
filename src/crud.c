@@ -45,7 +45,7 @@ void handle_py_call(response_t* response, connection_instance_t* connection, met
 
   if (return_value != NULL) {
     if(return_value->code == 200) {
-      response->body = malloc(strlen(return_value->body) * sizeof(char) + 1); 
+      response->body = malloc(strlen(return_value->body)); 
       strcpy(response->body, return_value->body);
       ok(response, connection);
     }

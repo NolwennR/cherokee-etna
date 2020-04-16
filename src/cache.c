@@ -89,7 +89,7 @@ int cache_get(lru_cache_t *cache, const char *file_name, char **content)
         if (strcmp(node->file_name, file_name) == 0){
             hit = 0;
             if (!(*content)){
-                *content = malloc(node->content_length * sizeof(char));
+                *content = malloc(node->content_length);
             }
             if (!(*content)){
                 log_error("Malloc failed, couldn't set content from cache request");
@@ -189,10 +189,7 @@ void remove_last_entry(lru_list_t *list)
     if (list->rear) 
         list->rear->next = NULL; 
   
-    free(temp->file_content);
-    free(temp->file_name);
-    free(temp);
-    
+    free(temp); 
     list->count--; 
 }
 
