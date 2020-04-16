@@ -7,14 +7,16 @@
 #include "html_generator.h"
 #include "cache.h"
 
-#define NB_HANDLERS 5
+#define NB_HANDLERS 7
 
 int (*handlers[NB_HANDLERS]) (const char *ext, response_t *response, const char *path, int size, lru_cache_t *cache) = { 
                                                         handle_text_file,
                                                         handle_css_file,
                                                         handle_json_file, 
+                                                        handle_javascript_file, 
                                                         handle_png_file, 
-                                                        handle_jpeg_file
+                                                        handle_jpeg_file,
+                                                        handle_mp4_file
                                                         };
 
 void serve_static_file(request_t *request, connection_instance_t *connection, response_t* response, configuration_t* config)
@@ -175,6 +177,21 @@ int handle_json_file(const char* extension, response_t *response, const char *pa
     return 0;
 }
 
+int handle_javascript_file(const char *extension, response_t *response, const char *path, int size, lru_cache_t *cache)
+{
+    if (strcmp(extension, "js") != 0 
+        && strcmp(extension, "min.js") != 0)
+        return -1;
+    
+    char *content_type = "application/javascript\0";
+    response->header.content_type = strdup(content_type);
+    response->header.content_length = size;
+
+    read_image_file(path, &response->body, &size, cache);
+
+    return 0;
+}
+
 int handle_png_file(const char *extension, response_t *response, const char *path, int size, lru_cache_t *cache)
 {
     if (strcmp(extension, "png") != 0 
@@ -208,6 +225,20 @@ int handle_jpeg_file(const char *extension, response_t *response, const char *pa
     return 0;
 }
 
+int handle_mp4_file(const char *extension, response_t *response, const char *path, int size, lru_cache_t *cache)
+{
+    if (strcmp(extension, "mp4") != 0 )
+        return -1;
+    
+    char *content_type = "video/mp4\0";
+    response->header.content_type = strdup(content_type);
+    response->header.content_length = size;
+
+    read_image_file(path, &response->body, &size, cache);
+
+    return 0;
+}
+
 const char *get_filename_ext(const char *filename)
 {
     const char *dot = strrchr(filename, '.');
@@ -221,6 +252,7 @@ void read_text_file(const char *fileName, char **body, int *size, lru_cache_t *c
 {
     int cache_result;
     if ((cache_result = cache_get(cache, fileName, body)) != -1){
+        log_trace("hit cache");
         return;
     }
 
@@ -248,6 +280,7 @@ void read_image_file(const char *fileName, char **body, int *size, lru_cache_t *
 {
     int cache_result;
     if ((cache_result = cache_get(cache, fileName, body)) != -1){
+        log_trace("hit cache");
         return;
     }
 

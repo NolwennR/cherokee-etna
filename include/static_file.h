@@ -23,7 +23,9 @@ int check_index_exists(char **path);
 int handle_text_file(const char* extension, response_t *response, const char *path, int size, lru_cache_t *cache);
 int handle_css_file(const char* extension, response_t *response, const char *path, int size, lru_cache_t *cache);
 int handle_json_file(const char* extension, response_t *response, const char *path, int size, lru_cache_t *cache);
+int handle_javascript_file(const char *extension, response_t *response, const char *path, int size, lru_cache_t *cache);
 int handle_png_file(const char *extension, response_t *response, const char *path, int size, lru_cache_t *cache);
 int handle_jpeg_file(const char *extension, response_t *response, const char *path, int size, lru_cache_t *cache);
+int handle_mp4_file(const char *extension, response_t *response, const char *path, int size, lru_cache_t *cache);
 
 #endif

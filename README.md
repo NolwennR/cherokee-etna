@@ -6,7 +6,7 @@
 
 - Server tcp spawn un nombre déterminé de workers au moment de l'initialization.
 - Chaque worker prend un charge des requetes http et les traite, répartition des connections géré par le système d'exploitation
-- Polling des workers grâce à epoll() ou poll()
+- Polling des workers grâce à epoll()
 - Pour servir des pages statiques, chaque worker implémente un cache LRU. 
         https://www.geeksforgeeks.org/lru-cache-implementation/
 
