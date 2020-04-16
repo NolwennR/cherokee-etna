@@ -8,9 +8,8 @@
 - Chaque worker prend un charge des requetes http et les traite, répartition des connections géré par le système d'exploitation
 - Polling des workers grâce à epoll()
 - Pour servir des pages statiques, chaque worker implémente un cache LRU. 
-        https://www.geeksforgeeks.org/lru-cache-implementation/
 
-### Parser http
+### Prise en charge de la requête
 
 - Parse du header et generation de tokens
 - Parse du body et generation de tokens
@@ -18,19 +17,6 @@
 - Generation de la réponse (header / body)
 - Stream au client
 - Fermeture de la connection
-
-### Modules
-
-Les modules permettent la prise en charge des requêtes
-- Module http
-- Module directory listing
-
-## Optimistion niveau code
-
-- Utilisation de slab allocation: permet de l'espace mémoire pour des objects de même type, dans notre cas une connection.
-        https://en.wikipedia.org/wiki/Slab_allocation
-- Alignement mémoire des structures pour éviter le padding
-- Utilisation des structures de tableau pour charger de la mémoire continue dans le cache
 
 ## Tests
 
@@ -47,9 +33,6 @@ $ sudo apt-get install criterion-dev
 - parsing du body
 - parsing de l'url
 
-
-### Tests requêtes
-- Si pas HTTP/1.1 retourne Not supported
 
 ## Benchmarking
 
@@ -69,38 +52,40 @@ Percentage of the requests served within a certain time (ms)
   99%     43
  100%    371 (longest request)
 
-## Pense-bêt
 
-## En cours
-
-## A faire
-
-- CRUD => Nonox
-- Not supported => Nonox
-- Mettre en place le LRU => Cécé
-
-#### Les librairies
+## Les librairies
 https://github.com/cofyc/argparse
 https://github.com/rxi/log.c
 https://github.com/benhoyt/inih
 
+## Ressources
 
-#### Epoll
+### Architecture serveur
+
+http://aosabook.org/en/nginx.html
+http://www.kegel.com/c10k.html 
+https://pl.atyp.us/content/tech/servers.html
+https://www.tutorialspoint.com/http/http_requests.htm
+https://www.ibm.com/support/knowledgecenter/ssw_ibm_i_71/rzab6/example.htm
+
+
+### LRU
+
+https://www.geeksforgeeks.org/lru-cache-implementation/
+
+
+### Epoll
+
 https://medium.com/@copyconstruct/the-method-to-epolls-madness-d9d2d6378642
+https://devarea.com/linux-io-multiplexing-select-vs-poll-vs-epoll/#.XphKxvngrmh
 
-#### Question suivi
-- Listing du répertoire doit-on generer un html ? oui
-- si index dans le dossier on sert l'index.html
-- si fichier sans extension considère comme répertoire ? 
-- Problème read image
-
-## Architecture
 
 ### Diagramme de decision
+
 https://www.loggly.com/blog/http-status-code-diagram/
 
 
-#### Embed Python
+### Embeded Python
 
 find flags: 
 /usr/lib/python3.6/config-3.6m-x86_64-linux-gnu/python-config.py --libs
