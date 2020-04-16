@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-W -Wall -Wextra -Werror -std=c11 -g -I./include -I./libraries -I/usr/include/python3.6m -L/usr/include/python3.6m -DLOG_USE_COLOR -D_GNU_SOURCE 
+CFLAGS=-W -Wall -Wextra -Werror -g -I./include -I./libraries -I/usr/include/python3.6m -L/usr/include/python3.6m -DLOG_USE_COLOR -D_GNU_SOURCE 
 RM=rm -rf
 MDIR= mkdir -p
 TESTLIB= -lcriterion
