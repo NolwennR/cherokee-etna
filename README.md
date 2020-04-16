@@ -22,11 +22,11 @@
 
 ### Installation de criterion
 
-`̀ `
+```
 $ sudo add-apt-repository ppa:snaipewastaken/ppa
 $ sudo apt-get update
 $ sudo apt-get install criterion-dev
-`̀ `
+```
 
 ### Tests pour le parsing
 - parsing du header
@@ -41,21 +41,12 @@ $ sudo apt-get install criterion-dev
  
  run test ```ab -n 5000 -c 500 http://localhost:8070/```
 
-Percentage of the requests served within a certain time (ms)
-  50%      2
-  66%      7
-  75%     14
-  80%     22
-  90%     38
-  95%     40
-  98%     43
-  99%     43
- 100%    371 (longest request)
-
 
 ## Les librairies
 https://github.com/cofyc/argparse
+
 https://github.com/rxi/log.c
+
 https://github.com/benhoyt/inih
 
 ## Ressources
@@ -63,9 +54,13 @@ https://github.com/benhoyt/inih
 ### Architecture serveur
 
 http://aosabook.org/en/nginx.html
+
 http://www.kegel.com/c10k.html 
+
 https://pl.atyp.us/content/tech/servers.html
+
 https://www.tutorialspoint.com/http/http_requests.htm
+
 https://www.ibm.com/support/knowledgecenter/ssw_ibm_i_71/rzab6/example.htm
 
 
@@ -77,6 +72,7 @@ https://www.geeksforgeeks.org/lru-cache-implementation/
 ### Epoll
 
 https://medium.com/@copyconstruct/the-method-to-epolls-madness-d9d2d6378642
+
 https://devarea.com/linux-io-multiplexing-select-vs-poll-vs-epoll/#.XphKxvngrmh
 
 
@@ -89,7 +85,9 @@ https://www.loggly.com/blog/http-status-code-diagram/
 
 find flags: 
 /usr/lib/python3.6/config-3.6m-x86_64-linux-gnu/python-config.py --libs
+
 /usr/lib/python3.6/config-3.6m-x86_64-linux-gnu/python-config.py --cflags
 
 find header:
+
 locate Python.h
