@@ -148,8 +148,7 @@ void cache_put(lru_cache_t *cache, const char *file_name, char *content, int *co
         }
     } 
   
-    // Create a new node with given page number, 
-    // And add the new node to the front of queue 
+    /* And add the new node to the front of queue */
     lru_node_t* temp = create_node(content, file_name, content_length); 
     if (!temp){
         log_debug("Couldn't add new data to cache");
@@ -162,16 +161,14 @@ void cache_put(lru_cache_t *cache, const char *file_name, char *content, int *co
     {
         cache->list->rear = cache->list->front = temp; 
     }
-    else // Else change the front 
+    else /* Else change the front */
     { 
         cache->list->front->previous = temp; 
         cache->list->front = temp; 
     } 
   
-    // Add page entry to hash also 
     cache->hash->nodes_array[cache->list->count] = temp; 
   
-    // increment number of full frames 
     cache->list->count++; 
 }
 
