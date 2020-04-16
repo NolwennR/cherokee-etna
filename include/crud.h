@@ -13,6 +13,6 @@ typedef struct return_value {
   const char* body;
 } return_value_t;
 
-void handle_py_call(response_t* responnse, connection_instance_t* connection, method_conf_t* method_conf);
+void handle_py_call(response_t* response, connection_instance_t* connection, method_conf_t* method_conf);
 
 #endif
