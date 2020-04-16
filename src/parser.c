@@ -32,7 +32,7 @@ void parse_header(request_t *request, char *data)
 void parse_uri(request_t *request, char **data)
 {
     size_t url_length = strcspn(*data, " ");
-    request->url = malloc(url_length + 1);
+    request->url = malloc(sizeof(char) * (url_length + 1));
     
     if (!request->url) {
         log_error("Worker Malloc failed for request url"); /*TODO : get worker id */

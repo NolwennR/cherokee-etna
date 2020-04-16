@@ -21,14 +21,12 @@ void serve_static_file(request_t *request, connection_instance_t *connection, re
 {
     lru_cache_t *cache;
     log_trace("URL: %s", request->url);
+    const char *dir = config->static_file_folder;
     char *path;
-    char dir[strlen(config->static_file_folder)];// = config->static_file_folder;//"/home/nolwenn/Documents/etna/master2/idv/aql5/group-763730/files\0";
     
     cache = config->cache;
 
-    strcpy(dir, config->static_file_folder);
-
-    path = malloc(strlen(request->url) + strlen(dir));
+    path = malloc(sizeof(char) * (strlen(request->url) + strlen(dir)));
     if (!path)
     {
         log_error("malloc() path failed in static file response for worker %d", connection->worker_id);
@@ -65,10 +63,8 @@ void serve_static_file(request_t *request, connection_instance_t *connection, re
         /* it's a dir */    
         log_info("it's a dir");
         log_trace("list directory");
-        list_dir(path, request->url, &response->body);
-        char *content_type = "text/html";
-        response->header.content_type = malloc(strlen(content_type));
-        strcpy(response->header.content_type, content_type);
+        list_dir(path, request->url, &(response->body));
+        response->header.content_type = strdup("text/html");
     } 
     else if (S_ISREG(status.st_mode))
     {
@@ -121,6 +117,7 @@ void list_dir(const char *path, char* url, char **body)
         }
 
         *body = generateDirListing(url, list);
+        
         closedir(d);
     }
 }
@@ -136,7 +133,7 @@ int handle_text_file(const char* extension, response_t *response, const char *pa
     char *content_type = "text/html\0";
     read_text_file(path, &response->body, &size, cache);
 
-    response->header.content_type = malloc(strlen(content_type));
+    response->header.content_type = malloc(sizeof(char) * strlen(content_type));
     strcpy(response->header.content_type, content_type);
     response->header.content_length = size;
 
@@ -152,7 +149,7 @@ int handle_css_file(const char* extension, response_t *response, const char *pat
     char *content_type = "text/css\0";
     read_text_file(path, &response->body, &size, cache);
 
-    response->header.content_type = malloc(strlen(content_type));
+    response->header.content_type = malloc(sizeof(char) * strlen(content_type));
     strcpy(response->header.content_type, content_type);
     response->header.content_length = size;
 
@@ -166,7 +163,7 @@ int handle_json_file(const char* extension, response_t *response, const char *pa
         return -1;
     
     char *content_type = "application/json\0";
-    response->header.content_type = malloc(strlen(content_type));
+    response->header.content_type = malloc(sizeof(char) * strlen(content_type));
     strcpy(response->header.content_type, content_type);
     response->header.content_length = size;
 
@@ -182,7 +179,7 @@ int handle_png_file(const char *extension, response_t *response, const char *pat
         return -1;
     
     char *content_type = "image/png\0";
-    response->header.content_type = malloc(strlen(content_type));
+    response->header.content_type = malloc(sizeof(char) * strlen(content_type));
     strcpy(response->header.content_type, content_type);
     response->header.content_length = size;
 
@@ -199,7 +196,7 @@ int handle_jpeg_file(const char *extension, response_t *response, const char *pa
         return -1;
     
     char *content_type = "image/jpeg\0";
-    response->header.content_type = malloc(strlen(content_type));
+    response->header.content_type = malloc(sizeof(char) * strlen(content_type));
     strcpy(response->header.content_type, content_type);
     response->header.content_length = size;
 
@@ -231,7 +228,7 @@ void read_text_file(const char *fileName, char **body, int *size, lru_cache_t *c
     if (file == NULL)
         return; /* could not open file */
 
-    *body = malloc((*size));
+    *body = malloc(sizeof(char) * (*size));
 
     while ((c = fgetc(file)) != EOF)
     {
@@ -259,7 +256,7 @@ void read_image_file(const char *fileName, char **body, int *size, lru_cache_t *
         return; 
     }
 
-    *body = malloc((*size));
+    *body = malloc(sizeof(char) * (*size));
     /* while */
     fread(*body, sizeof(char), *size, file);
     if (ferror(file) != 0) 
@@ -282,7 +279,7 @@ int check_index_exists(char **path)
 
     success = -1;
     path_length = strlen(*path);
-    index_path = malloc(path_length + 12);
+    index_path = malloc(sizeof(char) * (path_length + 12));
 
     if (index_path[path_length] == '/') {
         index = "index.html\0";

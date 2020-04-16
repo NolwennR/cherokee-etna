@@ -5,7 +5,6 @@
 #include <string.h>
 #include "http.h"
 
-char *format_response_to_string();
 void add_reason_phrase(status_code status, char **reason_phrase);
 int format_response(response_t *response, char **formatted_response);
 void add_status_line(status_code status,char **status_line);
