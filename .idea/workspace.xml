@@ -10,17 +10,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4fb9c83e-e51e-4ca9-8346-f278144b2ffb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.vscode/launch.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vscode/launch.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vscode/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vscode/settings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/http.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/http.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/response.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/response.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/worker.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/worker.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/http.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/http.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parser.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/response.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/response.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/server.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static_file.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/static_file.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/worker.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/worker.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/templated-spatial/LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/templated-spatial/assets/css/font-awesome.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/templated-spatial/assets/css/images/overlay.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/templated-spatial/assets/css/main.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/templated-spatial/assets/fonts/FontAwesome.otf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/templated-spatial/assets/fonts/fontawesome-webfont.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/templated-spatial/assets/fonts/fontawesome-webfont.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/templated-spatial/assets/fonts/fontawesome-webfont.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/templated-spatial/assets/fonts/fontawesome-webfont.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/templated-spatial/assets/fonts/fontawesome-webfont.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/templated-spatial/elements.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/templated-spatial/generic.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/templated-spatial/images/banner.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/templated-spatial/images/pic01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/templated-spatial/images/pic02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/templated-spatial/images/pic03.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/templated-spatial/images/pic04.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/templated-spatial/images/pic05.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/templated-spatial/images/pic06.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/templated-spatial/images/pic07.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/templated-spatial/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/unit-tests/unit-tests" beforeDir="false" afterPath="$PROJECT_DIR$/test/unit-tests/unit-tests" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,6 +42,47 @@
   </component>
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/response.c">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/manager.c">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/thread_pool.c">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/worker.c">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/html_generator.c">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/formatter.c">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/dir_list.c">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-144" />
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -45,8 +98,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="2025" />
-    <option name="y" value="28" />
+    <option name="x" value="240" />
+    <option name="y" value="159" />
     <option name="width" value="1440" />
     <option name="height" value="790" />
   </component>
@@ -63,6 +116,11 @@
               <item name="group-763730" type="b2602c69:ProjectViewProjectNode" />
               <item name="group-763730" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="group-763730" type="b2602c69:ProjectViewProjectNode" />
+              <item name="group-763730" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -70,10 +128,12 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -103,22 +163,21 @@
       <option name="presentableId" value="Default" />
       <updated>1584957628564</updated>
       <workItem from="1584957631417" duration="91000" />
+      <workItem from="1597508031805" duration="1661000" />
+      <workItem from="1599074240260" duration="143000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="91000" />
+    <option name="totallyTimeSpent" value="1895000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1920" y="-6" width="1920" height="1086" extended-state="6" />
+    <frame x="0" y="-6" width="1920" height="1086" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18569905" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18996799" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Database Changes" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -126,13 +185,42 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Database" />
+      <window_info anchor="bottom" id="Database Changes" order="7" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/response.c">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/manager.c">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/thread_pool.c">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/worker.c">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/formatter.c">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dir_list.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-144" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/html_generator.c">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
   </component>
 </project>
